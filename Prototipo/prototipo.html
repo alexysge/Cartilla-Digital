@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartilla Verde - Antecedentes y Promoción de la Salud</title>
+    <link rel="stylesheet" href="styles.css"> </link>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span>🧒</span>
+                <span>Cartilla Verde - Captura de Datos</span>
+            </div>
+            <div class="breadcrumb">
+                📋 Sistema de Salud > Cartilla Verde > Captura
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Resumen del Paciente -->
+        <div class="info-cards-container">
+            <!-- Resumen del Paciente -->
+            <div class="patient-summary">
+                <div class="patient-avatar">👶</div>
+                <div class="patient-info">
+                    <h2>Ana Sofía Martínez López</h2>
+                    <div class="patient-meta">5 años, 4 meses</div>
+                    <p class="patient-meta">CV-2024-001</p>
+                    <p class="patient-meta">Fecha de nacimiento: 15/03/2020</p>
+                </div>
+            </div>
+
+            <!-- Información del Doctor -->
+            <div class="doctor-summary">
+                <div class="doctor-avatar">👨‍⚕️</div>
+                <div class="doctor-info">
+                    <h2>Dr. Luis Antonio Pérez González</h2>
+                    <div class="doctor-meta">Médico Familiar</div>
+                    <p class="doctor-meta">UMF 11 Peralvillo</p>
+                    <p class="doctor-meta">Turno: Vespertino • Consultorio: 5</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Sistema de Pestañas -->
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="antecedentes">
+                    <span>📋</span>
+                    <span>Antecedentes</span>
+                </button>
+                <button class="tab-btn" data-tab="promocion">
+                    <span>🌟</span>
+                    <span>Promoción de la Salud</span>
+                </button>
+                <button class="tab-btn" data-tab="desarrollo">
+                    <span>👶</span>
+                    <span>Desarrollo Infantil</span>
+                </button>
+            </div>
+
+            <!-- TAB: Antecedentes -->
+            <div class="tab-content active" id="antecedentes">
+                <form id="antecedentesForm">
+                    <!-- Sección: Datos del Parto y Nacimiento -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">👶</div>
+                            <div class="section-info">
+                                <h3>Datos del Parto y Nacimiento</h3>
+                                <p class="section-description">Información sobre el parto y medidas antropométricas al
+                                    nacer</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Tipo de Parto -->
+                            <div class="form-group">
+                                <label class="form-label">Tipo de Parto <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="parto" name="tipoParto" value="parto"
+                                            class="radio-input" required>
+                                        <label for="parto" class="radio-label">Parto</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="cesarea" name="tipoParto" value="cesarea"
+                                            class="radio-input" required>
+                                        <label for="cesarea" class="radio-label">Cesárea</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Peso al Nacer -->
+                            <div class="form-group">
+                                <label for="pesoNacer" class="form-label">Peso al Nacer <span
+                                        class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" id="pesoNacer" name="pesoNacer" class="form-input"
+                                        placeholder="Ej. 3200" min="500" max="6000" step="1" required>
+                                    <div class="input-addon">gramos</div>
+                                </div>
+                            </div>
+
+                            <!-- Talla al Nacer -->
+                            <div class="form-group">
+                                <label for="tallaNacer" class="form-label">Talla al Nacer <span
+                                        class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" id="tallaNacer" name="tallaNacer" class="form-input"
+                                        placeholder="Ej. 50" min="30" max="70" step="0.1" required>
+                                    <div class="input-addon">cm</div>
+                                </div>
+                            </div>
+
+                            <!-- Perímetro Cefálico -->
+                            <div class="form-group">
+                                <label for="perimetroCefalico" class="form-label">Perímetro Cefálico <span
+                                        class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" id="perimetroCefalico" name="perimetroCefalico"
+                                        class="form-input" placeholder="Ej. 35" min="25" max="45" step="0.1" required>
+                                    <div class="input-addon">cm</div>
+                                </div>
+                            </div>
+
+                            <!-- APGAR -->
+                            <div class="form-group">
+                                <label class="form-label">APGAR <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        <label for="apgar1" class="form-label">1 minuto</label>
+                                        <input type="number" id="apgar1" name="apgar1" class="form-input"
+                                            placeholder="0-10" min="0" max="10" step="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apgar5" class="form-label">5 minutos</label>
+                                        <input type="number" id="apgar5" name="apgar5" class="form-input"
+                                            placeholder="0-10" min="0" max="10" step="1" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Profilaxis Oftálmica -->
+                            <div class="form-group">
+                                <label for="profilaxisOftalmica" class="form-label">Profilaxis Oftálmica</label>
+                                <select id="profilaxisOftalmica" name="profilaxisOftalmica" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="si">Sí aplicada</option>
+                                    <option value="no">No aplicada</option>
+                                    <option value="desconocido">Desconocido</option>
+                                </select>
+                            </div>
+
+                            <!-- Vitamina K -->
+                            <div class="form-group">
+                                <label for="vitaminaK" class="form-label">Vitamina K</label>
+                                <select id="vitaminaK" name="vitaminaK" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="si">Sí aplicada</option>
+                                    <option value="no">No aplicada</option>
+                                    <option value="desconocido">Desconocido</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Complicaciones -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">⚠️</div>
+                            <div class="section-info">
+                                <h3>Complicaciones</h3>
+                                <p class="section-description">Información sobre complicaciones durante el embarazo y
+                                    nacimiento</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Complicaciones en el Embarazo -->
+                            <div class="form-group">
+                                <label for="complicacionesEmbarazo" class="form-label">¿Hubo complicaciones en el
+                                    embarazo?</label>
+                                <select id="complicacionesEmbarazo" name="complicacionesEmbarazo" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="sin_complicaciones">Sin complicaciones</option>
+                                    <option value="embarazo_ectopico_tubarico">Embarazo ectópico tubárico</option>
+                                    <option value="huevo_muerto_retenido">Huevo muerto retenido</option>
+                                    <option value="aborto_espontaneo_no_especificado">Aborto espontáneo no especificado
+                                    </option>
+                                    <option value="hiperemesis_gravidica_leve">Hiperemesis gravídica leve</option>
+                                    <option value="infeccion_tracto_urinario">Infección del tracto urinario</option>
+                                    <option value="otras_complicaciones_obstetricas">Otras complicaciones obstétricas
+                                        especificadas</option>
+                                    <option value="hemorragia_primer_trimestre">Hemorragia del primer trimestre</option>
+                                    <option value="preeclampsia_leve_moderada">Preeclampsia leve a moderada</option>
+                                    <option value="hipertension_gestacional">Hipertensión gestacional</option>
+                                    <option value="itu_segundo_trimestre">ITU segundo trimestre</option>
+                                    <option value="diabetes_gestacional">Diabetes gestacional</option>
+                                    <option value="crecimiento_fetal_retardado">Crecimiento fetal retardado</option>
+                                    <option value="anomalias_uterinas">Anomalías uterinas complicando el embarazo
+                                    </option>
+                                    <option value="parto_pretermino_espontaneo">Parto pretérmino espontáneo</option>
+                                    <option value="rotura_prematura_membranas">Rotura prematura de membranas</option>
+                                    <option value="placenta_previa_sin_hemorragia">Placenta previa sin hemorragia
+                                    </option>
+                                    <option value="preeclampsia_severa">Preeclampsia severa</option>
+                                    <option value="embolia_liquido_amniotico">Embolia por líquido amniótico</option>
+                                    <option value="retraso_trabajo_parto">Retraso del trabajo de parto</option>
+                                    <option value="polihidramnios">Polihidramnios</option>
+                                </select>
+                            </div>
+
+                            <!-- Complicaciones al Nacimiento -->
+                            <div class="form-group">
+                                <label for="complicacionesNacimiento" class="form-label">¿Hubo complicaciones al
+                                    nacimiento?</label>
+                                <select id="complicacionesNacimiento" name="complicacionesNacimiento"
+                                    class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="sin_complicaciones">Sin complicaciones</option>
+                                    <option value="bajo_peso_edad_gestacional">Bajo peso para edad gestacional</option>
+                                    <option value="sindrome_dificultad_respiratoria">Síndrome de dificultad respiratoria
+                                    </option>
+                                    <option value="sepsis_bacteriana_rn">Sepsis bacteriana del RN</option>
+                                    <option value="ictericia_neonatal_inespecifica">Ictericia neonatal inespecífica
+                                    </option>
+                                    <option value="apnea_recien_nacido">Apnea del recién nacido</option>
+                                    <option value="hipoxia_intrauterina">Hipoxia intrauterina</option>
+                                    <option value="aspiracion_neonatal">Aspiración neonatal</option>
+                                    <option value="asfixia_al_nacer">Asfixia al nacer</option>
+                                    <option value="macrosomia_fetal">Macrosomía fetal</option>
+                                    <option value="insuficiencia_cardiaca_neonatal">Insuficiencia cardíaca neonatal
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Tamizajes -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🔍</div>
+                            <div class="section-info">
+                                <h3>Tamizajes Neonatales</h3>
+                                <p class="section-description">Indique qué tamizajes se realizaron al recién nacido</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <span>⚠️</span>
+                            <div><strong>Importante:</strong> Los tamizajes neonatales son fundamentales para la
+                                detección temprana de enfermedades.</div>
+                        </div>
+
+                        <div class="tamizajes-grid">
+                            <!-- Tamiz Metabólico -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_metabolico" name="tamizajes[]"
+                                        value="tamiz_metabolico" class="tamiz-checkbox">
+                                    <label for="tamiz_metabolico" class="tamiz-label">🧪 Tamiz metabólico
+                                        neonatal</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_metabolico">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_metabolico" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_metabolico" name="fecha_tamiz_metabolico"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_metabolico"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_metabolico"
+                                                name="observaciones_tamiz_metabolico" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Auditivo -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_auditivo" name="tamizajes[]" value="tamiz_auditivo"
+                                        class="tamiz-checkbox">
+                                    <label for="tamiz_auditivo" class="tamiz-label">👂 Tamiz auditivo</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_auditivo">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_auditivo" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_auditivo" name="fecha_tamiz_auditivo"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_auditivo"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_auditivo"
+                                                name="observaciones_tamiz_auditivo" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Oftalmológico -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_oftalmologico" name="tamizajes[]"
+                                        value="tamiz_oftalmologico" class="tamiz-checkbox">
+                                    <label for="tamiz_oftalmologico" class="tamiz-label">👁️ Tamiz oftalmológico</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_oftalmologico">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_oftalmologico" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_oftalmologico"
+                                                name="fecha_tamiz_oftalmologico" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_oftalmologico"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_oftalmologico"
+                                                name="observaciones_tamiz_oftalmologico" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Cardíaco -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_cardiaco" name="tamizajes[]" value="tamiz_cardiaco"
+                                        class="tamiz-checkbox">
+                                    <label for="tamiz_cardiaco" class="tamiz-label">❤️ Tamiz cardíaco</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_cardiaco">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_cardiaco" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_cardiaco" name="fecha_tamiz_cardiaco"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_cardiaco"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_cardiaco"
+                                                name="observaciones_tamiz_cardiaco" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz de Cadera -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_cadera" name="tamizajes[]" value="tamiz_cadera"
+                                        class="tamiz-checkbox">
+                                    <label for="tamiz_cadera" class="tamiz-label">🦴 Tamiz de cadera</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_cadera">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_cadera" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_cadera" name="fecha_tamiz_cadera"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_cadera"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_cadera" name="observaciones_tamiz_cadera"
+                                                class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Otras Complicaciones -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🏥</div>
+                            <div class="section-info">
+                                <h3>Otras Complicaciones</h3>
+                                <p class="section-description">Seleccione todas las complicaciones que apliquen para el
+                                    paciente</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <span>ℹ️</span>
+                            <div><strong>Instrucciones:</strong> Marque todas las casillas que correspondan al historial
+                                médico del paciente.</div>
+                        </div>
+
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alergias" name="otras_complicaciones[]" value="alergias"
+                                    class="checkbox-input">
+                                <label for="alergias" class="checkbox-label">🤧 Alergias</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="discapacidad" name="otras_complicaciones[]"
+                                    value="discapacidad" class="checkbox-input">
+                                <label for="discapacidad" class="checkbox-label">♿ Discapacidad</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="malformaciones_congenitas" name="otras_complicaciones[]"
+                                    value="malformaciones_congenitas" class="checkbox-input">
+                                <label for="malformaciones_congenitas" class="checkbox-label">🧬 Malformaciones
+                                    congénitas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cirugias" name="otras_complicaciones[]" value="cirugias"
+                                    class="checkbox-input">
+                                <label for="cirugias" class="checkbox-label">⚕️ Cirugías</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="otras_enfermedades" name="otras_complicaciones[]"
+                                    value="otras_enfermedades" class="checkbox-input">
+                                <label for="otras_enfermedades" class="checkbox-label">🏥 Otras enfermedades</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tuberculosis" name="otras_complicaciones[]"
+                                    value="tuberculosis" class="checkbox-input">
+                                <label for="tuberculosis" class="checkbox-label">🦠 Tuberculosis</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-outline" id="limpiarAntecedentes">
+                            <span>🗑️</span> Limpiar Formulario
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="guardarBorradorAnt">
+                            <span>💾</span> Guardar Borrador
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="guardarAntecedentes">
+                            <span>✅</span> Guardar Antecedentes
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TAB: Promoción de la Salud -->
+            <div class="tab-content" id="promocion">
+                <form id="promocionForm">
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🌟</div>
+                            <div class="section-info">
+                                <h3>Promoción de la Salud</h3>
+                                <p class="section-description">Acciones educativas y preventivas realizadas con el
+                                    paciente y familia</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <span>ℹ️</span>
+                            <div><strong>Instrucciones:</strong> Seleccione las acciones de promoción de la salud
+                                realizadas y registre la fecha de aplicación correspondiente.</div>
+                        </div>
+
+                        <!-- CUIDADOS DEL RECIÉN NACIDO Y SUEÑO SEGURO -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="cuidados_rn_sueno" name="promocion[]"
+                                    value="cuidados_rn_sueno" class="promocion-checkbox">
+                                <label for="cuidados_rn_sueno" class="promocion-title">👶 CUIDADOS DEL RECIÉN NACIDO, DE
+                                    LA NIÑA Y EL NIÑO Y SUEÑO SEGURO</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_cuidados_rn_sueno">
+                                <label for="fecha_cuidados_rn_sueno" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_cuidados_rn_sueno" name="fecha_cuidados_rn_sueno"
+                                    class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- LACTANCIA MATERNA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="lactancia_materna" name="promocion[]"
+                                    value="lactancia_materna" class="promocion-checkbox">
+                                <label for="lactancia_materna" class="promocion-title">🤱 LACTANCIA MATERNA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_lactancia_materna">
+                                <label for="fecha_lactancia_materna" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_lactancia_materna" name="fecha_lactancia_materna"
+                                    class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- ALIMENTACIÓN COMPLEMENTARIA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="alimentacion_complementaria" name="promocion[]"
+                                    value="alimentacion_complementaria" class="promocion-checkbox">
+                                <label for="alimentacion_complementaria" class="promocion-title">🥄 ALIMENTACIÓN
+                                    COMPLEMENTARIA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_alimentacion_complementaria">
+                                <label for="fecha_alimentacion_complementaria" class="form-label">Fecha de
+                                    aplicación:</label>
+                                <input type="date" id="fecha_alimentacion_complementaria"
+                                    name="fecha_alimentacion_complementaria" class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- NUTRICIÓN DE LA NIÑA Y EL NIÑO -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="nutricion_nina_nino" name="promocion[]"
+                                    value="nutricion_nina_nino" class="promocion-checkbox">
+                                <label for="nutricion_nina_nino" class="promocion-title">🍎 NUTRICIÓN DE LA NIÑA Y EL
+                                    NIÑO</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_nutricion_nina_nino">
+                                <label for="fecha_nutricion_nina_nino" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_nutricion_nina_nino" name="fecha_nutricion_nina_nino"
+                                    class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- HIGIENE BUCAL -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="higiene_bucal" name="promocion[]" value="higiene_bucal"
+                                    class="promocion-checkbox">
+                                <label for="higiene_bucal" class="promocion-title">🦷 HIGIENE BUCAL</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_higiene_bucal">
+                                <label for="fecha_higiene_bucal" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_higiene_bucal" name="fecha_higiene_bucal"
+                                    class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- PREVENCIÓN DE ACCIDENTES -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="prevencion_accidentes" name="promocion[]"
+                                    value="prevencion_accidentes" class="promocion-checkbox">
+                                <label for="prevencion_accidentes" class="promocion-title">🛡️ PREVENCIÓN DE
+                                    ACCIDENTES</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_prevencion_accidentes">
+                                <label for="fecha_prevencion_accidentes" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_prevencion_accidentes" name="fecha_prevencion_accidentes"
+                                    class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- ESTIMULACIÓN TEMPRANA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="estimulacion_temprana" name="promocion[]"
+                                    value="estimulacion_temprana" class="promocion-checkbox">
+                                <label for="estimulacion_temprana" class="promocion-title">🧸 ESTIMULACIÓN
+                                    TEMPRANA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_estimulacion_temprana">
+                                <label for="fecha_estimulacion_temprana" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_estimulacion_temprana" name="fecha_estimulacion_temprana"
+                                    class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- DETECCIÓN DE VIOLENCIA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="deteccion_violencia" name="promocion[]"
+                                    value="deteccion_violencia" class="promocion-checkbox">
+                                <label for="deteccion_violencia" class="promocion-title">⚠️ DETECCIÓN DE
+                                    VIOLENCIA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_deteccion_violencia">
+                                <label for="fecha_deteccion_violencia" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_deteccion_violencia" name="fecha_deteccion_violencia"
+                                    class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- OTROS -->
+                        <div class="promocion-item" id="otrosPromocion">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="otros" name="promocion[]" value="otros"
+                                    class="promocion-checkbox">
+                                <label for="otros" class="promocion-title"> OTROS</label>
+                            </div>
+
+                            <!-- Selector de acciones -->
+                            <div class="age-selector-section">
+                                <select class="age-select" id="otrosSelect">
+                                    <option value="">Selecciona</option>
+                                    <option value="incorporacion-programa-salud">Incorporación a programa de sal
+                                    </option>
+                                    <option value="primera-visita-medico">Primera visita al médico</option>
+                                    <option value="tamiz-neonatal">Tamiz Neonatal: Enfermedades Metabólicas Congénitas
+                                    </option>
+                                    <option value="prevencion-muerte-subita">Prevención de la muerte súbita de la y el
+                                        lactante</option>
+                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías
+                                        biliares</option>
+                                    <option value="prevencion-raquitismo">Prevención de raquitismo</option>
+                                    <option value="Detección-de-atresia-de-vias-biliares">Detección de atresia de vias biliares</option>
+                                    <option value="cuidados-nino-enfermo">Cuidados de la niña y el niño enfermo</option>
+                                    <option value="crecimiento-desarrollo">Crecimiento y desarrollo de la niña y niño
+                                    </option>
+                                    <option value="control-esfinteres">Control de esfínteres</option>
+                                    <option value="vigilancia-estado-nutricional">Vigilancia y evaluación del estado
+                                        nutricional</option>
+                                    <option value="prevencion-desnutricion">Prevención de desnutrición</option>
+                                    <option value="prevencion-adicciones">Prevención de adicciones</option>
+                                    <option value="destete">Destete</option>
+                                    <option value="vacunacion">Vacunación</option>
+                                    <option value="control-fiebre">Control de fiebre</option>
+                                    <option value="prevencion-enfermedades-respiratorias">Prevención y control de
+                                        enfermedades respiratorias no transmisibles: Asma</option>
+                                    <option value="ojo-seco">Ojo seco</option>
+                                    <option value="consejos-crianza">Consejos de crianza</option>
+                                    <option value="entorno-favorable-salud">Entorno favorable a la salud</option>
+                                    <option value="duenos-responsables-animales">Dueños responsables con animales de
+                                        compañía</option>
+                                    <option value="higiene-sueno">Higiene del sueño</option>
+                                    <option value="acoso-escolar">Acoso escolar</option>
+                                    <option value="cultura-donacion-organos">Cultura para la donación de órganos y
+                                        tejidos</option>
+                                    <option value="desparasitacion-intestinal">Desparasitación intestinal</option>
+                                    <option value="cuidados-embarazo">Cuidados del embarazo</option>
+                                    <option value="administracion-vitamina-a">Administración de vitamina “A”</option>
+                                    <option value="prevencion-anemia">Prevención anemia</option>
+                                    <option value="cuidados-despues-parto">Cuidados después del parto</option>
+                                    <option value="guia-cuidado-salud">Guía para el Cuidado de la Salud PrevenIMSS
+                                        Familiar</option>
+                                    <option value="prevencion-colapso-cuidador">Acciones de prevencion de colapso del
+                                        cuidador</option>
+                                    <option value="educacion-duelo">Educación del duelo</option>
+                                    <option value="posvencion">Posvención</option>
+                                    <option value="relajacion-autocontrol-olvidos">Técnicas de relajación, autocuidado y
+                                        autocontrol emocional (Trastorno psicológico - Olvidos)</option>
+                                    <option value="relajacion-autocontrol-enojos">Técnicas de relajación, autocuidado y
+                                        autocontrol emocional (Trastorno psicológico - Irritable o enojos)</option>
+                                    <option value="relajacion-autocontrol-ansiedad">Técnicas de relajación, autocuidado
+                                        y autocontrol emocional (Trastornos psicológicos - Ansiedad o )</option>
+                                    <option value="orientacion-emocional-depresion">Orientación sobre
+                                        emociones,autoestima y apoyo emocional (Trastornos psicológicos - Depresión o
+                                        Tristeza)</option>
+                                    <option value="prevencion-autolesion">Prevención en la Autolesión y conducta suicida
+                                    </option>
+                                    <option value="mejoramiento-conducta-alimentaria">Acciones para el mejoramiento en
+                                        la conducta alimentaria.</option>
+                                    <option value="resolucion-problemas-familia">Resolución de problemas en el núcleo
+                                        familiar</option>
+                                    <option value="orientacion-madres-padres">Orientación/Consejería para madres, padres
+                                        o tutores o representante legal</option>
+                                    <option value="prevencion-acoso-escolar">Prevención de Acoso Escolar</option>
+                                    <option value="evaluacion-neurodesarrollo">Desarrollo Infantil Temprano: Evaluación
+                                        del Neurodesarrollo</option>
+                                    <option value="salud-visual-tiempo-pantalla">Consejos sobre Salud Visual: Tiempo de
+                                        pantalla</option>
+                                    <option value="tamiz-visual">Tamiz visual</option>
+                                    <option value="tamiz-cadera">Tamiz de Cadera: Displasia de la Cadera en Desarrollo
+                                    </option>
+                                    <option value="tamiz-auditivo">Tamiz Auditivo: Detección de hipoacusia</option>
+                                    <option value="riesgos-salud-bucal">Factores de riesgo que afectan la salud bucal
+                                    </option>
+                                    <option value="prevencion-enfermedades-bucales">Prevención de enfermedades bucales
+                                    </option>
+                                    <option value="alimentacion-saludable">Alimentación saludable</option>
+                                    <option value="higiene-bucal">Higiene bucal</option>
+                                    <option value="ensenanza-cepillado">Enseñanza de la técnica de Cepillado Dental
+                                    </option>
+                                    <option value="ensenanza-hilo-dental">Enseñanza del uso del Hilo Dental (a partir de
+                                       2 los años)</option>
+                                </select>
+                            </div>
+
+                            <!-- Fecha -->
+                            <div class="promocion-date-group show">
+                                <label for="fecha_otros" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_otros" class="date-input">
+                            </div>
+
+                            <!-- Botón Agregar -->
+                            <div style="margin-top: 15px;">
+                                <button type="button" class="btn btn-outline" id="agregarOtro">➕ Agregar</button>
+                            </div>
+
+                            <!-- Contenedor donde se mostrarán las acciones agregadas -->
+                            <div id="otrosAgregados" style="margin-top: 20px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-outline" id="limpiarPromocion">
+                            <span>🗑️</span> Limpiar Formulario
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="guardarBorradorProm">
+                            <span>💾</span> Guardar Borrador
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="guardarPromocion">
+                            <span>✅</span> Guardar Promoción
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- TAB: Desarrollo Infantil -->
+            <div class="tab-content" id="desarrollo">
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">👶</div>
+                        <div class="section-info">
+                            <h3>Desarrollo Infantil</h3>
+                            <p class="section-description">Marca los logros que tu niña o niño ha alcanzado de acuerdo a
+                                su edad y muéstralo en cada consulta</p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="development-form">
+                        <!-- Fecha de Evaluación -->
+                        <div class="date-section">
+                            <h4>📅 Fecha de Evaluación del Desarrollo</h4>
+                            <input type="date" id="fecha_evaluacion_desarrollo" name="fecha_evaluacion_desarrollo"
+                                class="date-input-large">
+                        </div>
+
+                        <!-- Selector de Edad -->
+                        <div class="age-selector-section">
+                            <h4>🎂 Edad del Niño(a)</h4>
+                            <select id="edad_nino" name="edad_nino" class="age-select">
+                                <option value="">Selecciona la edad...</option>
+                                <option value="1mes">1 mes</option>
+                                <option value="3meses">3 meses</option>
+                                <option value="6meses">6 meses</option>
+                                <option value="1ano">1 año</option>
+                                <option value="18meses">1 año 6 meses</option>
+                                <option value="2anos">2 años</option>
+                                <option value="3anos">3 años</option>
+                                <option value="4anos">4 años</option>
+                                <option value="5anos">5 años</option>
+                                <option value="6anos">6 años</option>
+                                <option value="7anos">7 años</option>
+                                <option value="8anos">8 años</option>
+                            </select>
+                        </div>
+
+                        <!-- Orientación sobre desarrollo infantil -->
+                        <div class="development-orientation">
+                            <h4>📝 Orientación sobre desarrollo infantil</h4>
+
+                        </div>
+
+                        <!-- Secciones de Desarrollo por Edad -->
+
+                        <!-- UN MES -->
+
+                        <div class="age-questions-section" id="questions-1mes" style="display: none;">
+                            <div class="age-title">
+                                <h3>👶 Evaluación - 1 mes</h3>
+                            </div>
+
+                            <!-- MOTOR -->
+                            <div>
+                                <div class="development-category motor-category">
+                                    <div class="category-header">
+                                        <h4>🏃‍♂️ MOTOR</h4>
+                                    </div>
+
+                                    <div class="question-item">
+                                        <p class="question-text">¿Puede voltear su cabeza para los dos lados cuando está
+                                            boca abajo?</p>
+                                        <div class="radio-group">
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q1_si" name="motor_1m_q1" value="si"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q1_si" class="radio-label">Sí</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q1_no" name="motor_1m_q1" value="no"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q1_no" class="radio-label">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="question-item">
+                                        <p class="question-text">Reflejos primarios positivos (succión, presión palmar,
+                                            deglución)</p>
+                                        <div class="radio-group">
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q2_si" name="motor_1m_q2" value="si"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q2_si" class="radio-label">Sí</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q2_no" name="motor_1m_q2" value="no"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q2_no" class="radio-label">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- LENGUAJE -->
+                            <div class="development-category lenguaje-category">
+                                <div class="category-header">
+                                    <h4>💬 LENGUAJE</h4>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">¿Llora o hace ruido al estar incómoda(o) o querer comer?
+                                    </p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q1_si" name="lenguaje_1m_q1" value="si"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q1_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q1_no" name="lenguaje_1m_q1" value="no"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q1_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Emite sonidos para expresar placer</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q2_si" name="lenguaje_1m_q2" value="si"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q2_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q2_no" name="lenguaje_1m_q2" value="no"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q2_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SOCIAL -->
+                            <div class="development-category social-category">
+                                <div class="category-header">
+                                    <h4>👥 SOCIAL</h4>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">¿Se tranquiliza al hablarle o levantarla(o)?</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q1_si" name="social_1m_q1" value="si"
+                                                class="radio-input">
+                                            <label for="social_1m_q1_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q1_no" name="social_1m_q1" value="no"
+                                                class="radio-input">
+                                            <label for="social_1m_q1_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Fija la mirada en los rostros y los sigue a 180°</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q2_si" name="social_1m_q2" value="si"
+                                                class="radio-input">
+                                            <label for="social_1m_q2_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q2_no" name="social_1m_q2" value="no"
+                                                class="radio-input">
+                                            <label for="social_1m_q2_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SIGNOS DE ALARMA -->
+                            <div class="development-category alarma-category">
+                                <div class="category-header">
+                                    <h4>⚠️ SIGNOS DE ALARMA</h4>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Totalmente flácido (reflejos primarios negativos)</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q1_si" name="alarma_1m_q1" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q1_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q1_no" name="alarma_1m_q1" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q1_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Posición de arqueo</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q2_si" name="alarma_1m_q2" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q2_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q2_no" name="alarma_1m_q2" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q2_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Succión negativa</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q3_si" name="alarma_1m_q3" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q3_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q3_no" name="alarma_1m_q3" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q3_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Hipertonicidad e hipotonicidad</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q4_si" name="alarma_1m_q4" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q4_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q4_no" name="alarma_1m_q4" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q4_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">No sigue objetos</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q5_si" name="alarma_1m_q5" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q5_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q5_no" name="alarma_1m_q5" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q5_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Manos empuñadas con el pulgar adentro</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q6_si" name="alarma_1m_q6" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q6_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q6_no" name="alarma_1m_q6" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q6_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Cabeza en gota</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q7_si" name="alarma_1m_q7" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q7_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q7_no" name="alarma_1m_q7" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q7_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">No responde a sonidos llorando</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q8_si" name="alarma_1m_q8" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q8_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q8_no" name="alarma_1m_q8" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q8_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CINCO AÑOS -->
+                    <div class="age-questions-section" id="questions-5anos" style="display: none;">
+                        <div class="age-title">
+                            <h3>🧒 Evaluación - 5 años</h3>
+                        </div>
+
+                        <!-- MOTOR -->
+                        <div class="development-category motor-category">
+                            <div class="category-header">
+                                <h4>🏃‍♂️ MOTOR</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede brincar hacia atrás con los pies juntos?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q1_si" name="motor_5a_q1" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q1_no" name="motor_5a_q1" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede darse marometas?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q2_si" name="motor_5a_q2" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q2_no" name="motor_5a_q2" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede brincar en un solo pie, tres veces seguidas?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q3_si" name="motor_5a_q3" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q3_no" name="motor_5a_q3" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Sabe escribir 2 o más letras?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q4_si" name="motor_5a_q4" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q4_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q4_no" name="motor_5a_q4" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q4_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Sabe dibujar un círculo?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q5_si" name="motor_5a_q5" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q5_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q5_no" name="motor_5a_q5" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q5_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LENGUAJE -->
+                        <div class="development-category lenguaje-category">
+                            <div class="category-header">
+                                <h4>💬 LENGUAJE</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Comunica sus emociones cuando está "feliz, triste o enojado"?
+                                </p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q1_si" name="lenguaje_5a_q1" value="si"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q1_no" name="lenguaje_5a_q1" value="no"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede contar cuentos?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q2_si" name="lenguaje_5a_q2" value="si"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q2_no" name="lenguaje_5a_q2" value="no"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Sabe usar el tiempo futuro?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q3_si" name="lenguaje_5a_q3" value="si"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q3_no" name="lenguaje_5a_q3" value="no"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SOCIAL -->
+                        <div class="development-category social-category">
+                            <div class="category-header">
+                                <h4>👥 SOCIAL</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Le gusta ir a la escuela?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q1_si" name="social_5a_q1" value="si"
+                                            class="radio-input">
+                                        <label for="social_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q1_no" name="social_5a_q1" value="no"
+                                            class="radio-input">
+                                        <label for="social_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Se puede bañar solo?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q2_si" name="social_5a_q2" value="si"
+                                            class="radio-input">
+                                        <label for="social_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q2_no" name="social_5a_q2" value="no"
+                                            class="radio-input">
+                                        <label for="social_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede decir el nombre de dos de sus amigos?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q3_si" name="social_5a_q3" value="si"
+                                            class="radio-input">
+                                        <label for="social_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q3_no" name="social_5a_q3" value="no"
+                                            class="radio-input">
+                                        <label for="social_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONOCIMIENTOS -->
+                        <div class="development-category conocimiento-category">
+                            <div class="category-header">
+                                <h4>🧠 CONOCIMIENTOS</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede escribir dos números o letras?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q1_si" name="conocimiento_5a_q1"
+                                            value="si" class="radio-input">
+                                        <label for="conocimiento_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q1_no" name="conocimiento_5a_q1"
+                                            value="no" class="radio-input">
+                                        <label for="conocimiento_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede contar correctamente hasta diez?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q2_si" name="conocimiento_5a_q2"
+                                            value="si" class="radio-input">
+                                        <label for="conocimiento_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q2_no" name="conocimiento_5a_q2"
+                                            value="no" class="radio-input">
+                                        <label for="conocimiento_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Utiliza correctamente las palabras ayer, hoy y mañana?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q3_si" name="conocimiento_5a_q3"
+                                            value="si" class="radio-input">
+                                        <label for="conocimiento_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q3_no" name="conocimiento_5a_q3"
+                                            value="no" class="radio-input">
+                                        <label for="conocimiento_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder para otras edades -->
+                    <div class="age-questions-section" id="questions-3meses" style="display: none;">
+                        <div class="age-title">
+                            <h3>👶 Evaluación - 3 meses</h3>
+                        </div>
+                        <p class="placeholder-text">Las preguntas para 3 meses aparecerán aquí...</p>
+                    </div>
+
+                    <!-- Más placeholders para otras edades... -->
+                    <div class="no-age-selected" id="no-age-message">
+                        <div class="empty-state">
+                            <h4>📋 Selecciona una edad</h4>
+                            <p>Por favor, selecciona la edad del niño(a) para mostrar las preguntas de evaluación
+                                correspondientes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder para otras edades -->
+                <div class="age-questions-section" id="questions-6meses" style="display: none;">
+                    <div class="age-title">
+                        <h3>👶 Evaluación - 6 meses</h3>
+                    </div>
+                    <p class="placeholder-text">Las preguntas para 6 meses aparecerán aquí...</p>
+                </div>
+
+
+                <!-- Placeholder para otras edades -->
+                <div class="age-questions-section" id="questions-1anio" style="display: none;">
+                    <div class="age-title">
+                        <h3>👶 Evaluación - 1 año</h3>
+                    </div>
+                    <p class="placeholder-text">Las preguntas para 1 año aparecerán aquí...</p>
+                </div>
+
+
+                <!-- Botones de Acción -->
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-outline" id="limpiarDesarrollo">
+                        <span>🗑️</span> Limpiar Formulario
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="guardarBorradorDes">
+                        <span>💾</span> Guardar Borrador
+                    </button>
+                    <button type="button" class="btn btn-primary" id="guardarDesarrollo">
+                        <span>✅</span> Guardar Desarrollo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="prototipo.js">   </script>
+</body>
+
+</html>
