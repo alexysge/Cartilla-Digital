@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartilla Verde - Antecedentes y Promoción de la Salud</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .info-cards-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .patient-summary, .doctor-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .patient-summary {
+            border-left: 6px solid #27ae60;
+        }
+
+        .doctor-summary {
+            border-left: 6px solid #3498db;
+        }
+
+        .patient-avatar, .doctor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .patient-avatar {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .doctor-avatar {
+            background: linear-gradient(135deg, #3498db, #5dade2);
+        }
+
+        .patient-info h2, .doctor-info h2 {
+            color: #27ae60;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .patient-meta, .doctor-meta {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 3px;
+        }
+
+        .tabs-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .tabs-nav {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            min-width: 200px;
+            padding: 20px 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #6c757d;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: #27ae60;
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #e9ecef;
+            color: #27ae60;
+        }
+
+        .tab-content {
+            padding: 40px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 25px;
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #27ae60;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .section-info h3 {
+            font-size: 22px;
+            color: #27ae60;
+            margin-bottom: 5px;
+        }
+
+        .section-description {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #27ae60;
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-input {
+            width: 20px;
+            height: 20px;
+            accent-color: #27ae60;
+            cursor: pointer;
+        }
+
+        .radio-label {
+            font-size: 14px;
+            color: #495057;
+            cursor: pointer;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .input-group .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .input-addon {
+            background: #e9ecef;
+            padding: 12px 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .tamizajes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tamiz-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .tamiz-item.selected {
+            border-color: #27ae60;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.1);
+        }
+
+        .tamiz-header {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .tamiz-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: #27ae60;
+        }
+
+        .tamiz-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .tamiz-details {
+            display: none;
+            padding: 20px;
+            background: #fdfdfd;
+        }
+
+        .tamiz-details.show {
+            display: block;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            border-color: #27ae60;
+            background: #f0f8f0;
+        }
+
+        .checkbox-item.checked {
+            border-color: #27ae60;
+            background: #d4edda;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            accent-color: #27ae60;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #495057;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .promocion-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .promocion-item:hover {
+            border-color: #27ae60;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.1);
+        }
+
+        .promocion-item.selected {
+            border-color: #27ae60;
+            background: #f0f8f0;
+        }
+
+        .promocion-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .promocion-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #27ae60;
+            cursor: pointer;
+        }
+
+        .promocion-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .promocion-date-group {
+            display: none;
+            padding-top: 10px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .promocion-date-group.show {
+            display: block;
+        }
+
+        .date-input {
+            width: 100%;
+            max-width: 200px;
+            padding: 8px 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: #27ae60;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+
+        .development-form {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+        }
+
+        .date-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .date-section h4 {
+            color: #27ae60;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .date-input-large {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px 20px;
+            border: 3px solid #27ae60;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            background: white;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .age-selector-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .age-selector-section h4 {
+            color: #27ae60;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .age-select {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px 20px;
+            border: 3px solid #27ae60;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            color: #2c3e50;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .age-questions-section {
+            margin-top: 30px;
+        }
+
+        .age-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .age-title h3 {
+            color: #27ae60;
+            font-size: 24px;
+            border-bottom: 3px solid #27ae60;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .no-age-selected {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .empty-state h4 {
+            color: #6c757d;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .empty-state p {
+            color: #adb5bd;
+            font-size: 16px;
+        }
+
+        .development-category {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-header {
+            padding: 15px 25px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+
+        .category-header h4 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .motor-category .category-header {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .motor-category {
+            border: 3px solid #27ae60;
+        }
+
+        .lenguaje-category .category-header {
+            background: linear-gradient(135deg, #e91e63, #f06292);
+        }
+
+        .lenguaje-category {
+            border: 3px solid #e91e63;
+        }
+
+        .social-category .category-header {
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+        }
+
+        .social-category {
+            border: 3px solid #f39c12;
+        }
+
+        .conocimiento-category .category-header {
+            background: linear-gradient(135deg, #9b59b6, #bb73e0);
+        }
+
+        .conocimiento-category {
+            border: 3px solid #9b59b6;
+        }
+
+        .alarma-category .category-header {
+            background: linear-gradient(135deg, #e74c3c, #ec7063);
+        }
+
+        .alarma-category {
+            border: 3px solid #e74c3c;
+        }
+
+        .question-item {
+            background: white;
+            padding: 20px 25px;
+            border-bottom: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+        }
+
+        .question-item:hover {
+            background: #f8f9fa;
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .radio-item.selected {
+            background: #d4edda;
+            border-color: #27ae60;
+            border-radius: 25px;
+            padding: 8px 16px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #27ae60;
+            border: 2px solid #27ae60;
+        }
+
+        .btn-outline:hover {
+            background: #27ae60;
+            color: white;
+        }
+
+        .historial-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .historial-item {
+            background: white;
+            border: 2px solid #27ae60;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .historial-item:hover {
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .historial-content {
+            flex: 1;
+        }
+
+        .historial-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .historial-fecha {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .historial-cartilla {
+            background: #e8f5e8;
+            color: #27ae60;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-delete:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .btn-link {
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-link:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-link:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .tabs-nav {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                min-width: auto;
+                flex: 1;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .input-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span>🧒</span>
+                <span>Cartilla Verde - Captura de Datos</span>
+            </div>
+            <div class="breadcrumb">
+                📋 Sistema de Salud > Cartilla Verde > Captura
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Resumen del Paciente -->
+        <div class="info-cards-container">
+            <!-- Resumen del Paciente -->
+            <div class="patient-summary">
+                <div class="patient-avatar">👶</div>
+                <div class="patient-info">
+                    <h2>Ana Sofía Martínez López</h2>
+                    <div class="patient-meta">5 años, 4 meses</div>
+                    <p class="patient-meta">CV-2024-001</p>
+                    <p class="patient-meta">Fecha de nacimiento: 15/03/2020</p>
+                </div>
+            </div>
+
+            <!-- Información del Doctor -->
+            <div class="doctor-summary">
+                <div class="doctor-avatar">👨‍⚕️</div>
+                <div class="doctor-info">
+                    <h2>Dr. Luis Antonio Pérez González</h2>
+                    <div class="doctor-meta">Médico Familiar</div>
+                    <p class="doctor-meta">UMF 11 Peralvillo</p>
+                    <p class="doctor-meta">Turno: Vespertino • Consultorio: 5</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sistema de Pestañas -->
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="antecedentes">
+                    <span>📋</span>
+                    <span>Antecedentes</span>
+                </button>
+                <button class="tab-btn" data-tab="promocion">
+                    <span>🌟</span>
+                    <span>Promoción de la Salud</span>
+                </button>
+                <button class="tab-btn" data-tab="desarrollo">
+                    <span>👶</span>
+                    <span>Desarrollo Infantil</span>
+                </button>
+            </div>
+
+            <!-- TAB: Antecedentes -->
+            <div class="tab-content active" id="antecedentes">
+                <form id="antecedentesForm">
+                    <!-- Sección: Datos del Parto y Nacimiento -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">👶</div>
+                            <div class="section-info">
+                                <h3>Datos del Parto y Nacimiento</h3>
+                                <p class="section-description">Información sobre el parto y medidas antropométricas al nacer</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Tipo de Parto -->
+                            <div class="form-group">
+                                <label class="form-label">Tipo de Parto <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="parto" name="tipoParto" value="parto" class="radio-input" required>
+                                        <label for="parto" class="radio-label">Parto</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="cesarea" name="tipoParto" value="cesarea" class="radio-input" required>
+                                        <label for="cesarea" class="radio-label">Cesárea</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Peso al Nacer -->
+                            <div class="form-group">
+                                <label for="pesoNacer" class="form-label">Peso al Nacer <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" id="pesoNacer" name="pesoNacer" class="form-input" placeholder="Ej. 3200" min="500" max="6000" step="1" required>
+                                    <div class="input-addon">gramos</div>
+                                </div>
+                            </div>
+
+                            <!-- Talla al Nacer -->
+                            <div class="form-group">
+                                <label for="tallaNacer" class="form-label">Talla al Nacer <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" id="tallaNacer" name="tallaNacer" class="form-input" placeholder="Ej. 50" min="30" max="70" step="0.1" required>
+                                    <div class="input-addon">cm</div>
+                                </div>
+                            </div>
+
+                            <!-- Perímetro Cefálico -->
+                            <div class="form-group">
+                                <label for="perimetroCefalico" class="form-label">Perímetro Cefálico <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" id="perimetroCefalico" name="perimetroCefalico" class="form-input" placeholder="Ej. 35" min="25" max="45" step="0.1" required>
+                                    <div class="input-addon">cm</div>
+                                </div>
+                            </div>
+
+                            <!-- APGAR -->
+                            <div class="form-group">
+                                <label class="form-label">APGAR <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <div class="form-group">
+                                        <label for="apgar1" class="form-label">1 minuto</label>
+                                        <input type="number" id="apgar1" name="apgar1" class="form-input" placeholder="0-10" min="0" max="10" step="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apgar5" class="form-label">5 minutos</label>
+                                        <input type="number" id="apgar5" name="apgar5" class="form-input" placeholder="0-10" min="0" max="10" step="1" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Profilaxis Oftálmica -->
+                            <div class="form-group">
+                                <label for="profilaxisOftalmica" class="form-label">Profilaxis Oftálmica</label>
+                                <select id="profilaxisOftalmica" name="profilaxisOftalmica" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="si">Sí aplicada</option>
+                                    <option value="no">No aplicada</option>
+                                    <option value="desconocido">Desconocido</option>
+                                </select>
+                            </div>
+
+                            <!-- Vitamina K -->
+                            <div class="form-group">
+                                <label for="vitaminaK" class="form-label">Vitamina K</label>
+                                <select id="vitaminaK" name="vitaminaK" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="si">Sí aplicada</option>
+                                    <option value="no">No aplicada</option>
+                                    <option value="desconocido">Desconocido</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Complicaciones -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">⚠️</div>
+                            <div class="section-info">
+                                <h3>Complicaciones</h3>
+                                <p class="section-description">Información sobre complicaciones durante el embarazo y nacimiento</p>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Complicaciones en el Embarazo -->
+                            <div class="form-group">
+                                <label for="complicacionesEmbarazo" class="form-label">¿Hubo complicaciones en el embarazo?</label>
+                                <select id="complicacionesEmbarazo" name="complicacionesEmbarazo" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="sin_complicaciones">Sin complicaciones</option>
+                                    <option value="embarazo_ectopico_tubarico">Embarazo ectópico tubárico</option>
+                                    <option value="huevo_muerto_retenido">Huevo muerto retenido</option>
+                                    <option value="aborto_espontaneo_no_especificado">Aborto espontáneo no especificado</option>
+                                    <option value="hiperemesis_gravidica_leve">Hiperemesis gravídica leve</option>
+                                    <option value="infeccion_tracto_urinario">Infección del tracto urinario</option>
+                                    <option value="otras_complicaciones_obstetricas">Otras complicaciones obstétricas especificadas</option>
+                                    <option value="hemorragia_primer_trimestre">Hemorragia del primer trimestre</option>
+                                    <option value="preeclampsia_leve_moderada">Preeclampsia leve a moderada</option>
+                                    <option value="hipertension_gestacional">Hipertensión gestacional</option>
+                                    <option value="itu_segundo_trimestre">ITU segundo trimestre</option>
+                                    <option value="diabetes_gestacional">Diabetes gestacional</option>
+                                    <option value="crecimiento_fetal_retardado">Crecimiento fetal retardado</option>
+                                    <option value="anomalias_uterinas">Anomalías uterinas complicando el embarazo</option>
+                                    <option value="parto_pretermino_espontaneo">Parto pretérmino espontáneo</option>
+                                    <option value="rotura_prematura_membranas">Rotura prematura de membranas</option>
+                                    <option value="placenta_previa_sin_hemorragia">Placenta previa sin hemorragia</option>
+                                    <option value="preeclampsia_severa">Preeclampsia severa</option>
+                                    <option value="embolia_liquido_amniotico">Embolia por líquido amniótico</option>
+                                    <option value="retraso_trabajo_parto">Retraso del trabajo de parto</option>
+                                    <option value="polihidramnios">Polihidramnios</option>
+                                </select>
+                            </div>
+
+                            <!-- Complicaciones al Nacimiento -->
+                            <div class="form-group">
+                                <label for="complicacionesNacimiento" class="form-label">¿Hubo complicaciones al nacimiento?</label>
+                                <select id="complicacionesNacimiento" name="complicacionesNacimiento" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="sin_complicaciones">Sin complicaciones</option>
+                                    <option value="bajo_peso_edad_gestacional">Bajo peso para edad gestacional</option>
+                                    <option value="sindrome_dificultad_respiratoria">Síndrome de dificultad respiratoria</option>
+                                    <option value="sepsis_bacteriana_rn">Sepsis bacteriana del RN</option>
+                                    <option value="ictericia_neonatal_inespecifica">Ictericia neonatal inespecífica</option>
+                                    <option value="apnea_recien_nacido">Apnea del recién nacido</option>
+                                    <option value="hipoxia_intrauterina">Hipoxia intrauterina</option>
+                                    <option value="aspiracion_neonatal">Aspiración neonatal</option>
+                                    <option value="asfixia_al_nacer">Asfixia al nacer</option>
+                                    <option value="macrosomia_fetal">Macrosomía fetal</option>
+                                    <option value="insuficiencia_cardiaca_neonatal">Insuficiencia cardíaca neonatal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Tamizajes -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🔍</div>
+                            <div class="section-info">
+                                <h3>Tamizajes Neonatales</h3>
+                                <p class="section-description">Indique qué tamizajes se realizaron al recién nacido</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <span>⚠️</span>
+                            <div><strong>Importante:</strong> Los tamizajes neonatales son fundamentales para la detección temprana de enfermedades.</div>
+                        </div>
+
+                        <div class="tamizajes-grid">
+                            <!-- Tamiz Metabólico -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_metabolico" name="tamizajes[]" value="tamiz_metabolico" class="tamiz-checkbox">
+                                    <label for="tamiz_metabolico" class="tamiz-label">🧪 Tamiz metabólico neonatal</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_metabolico">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_metabolico" class="form-label">Fecha de realización:</label>
+                                            <input type="date" id="fecha_tamiz_metabolico" name="fecha_tamiz_metabolico" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_metabolico" class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_metabolico" name="observaciones_tamiz_metabolico" class="form-input" rows="2" placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Auditivo -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_auditivo" name="tamizajes[]" value="tamiz_auditivo" class="tamiz-checkbox">
+                                    <label for="tamiz_auditivo" class="tamiz-label">👂 Tamiz auditivo</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_auditivo">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_auditivo" class="form-label">Fecha de realización:</label>
+                                            <input type="date" id="fecha_tamiz_auditivo" name="fecha_tamiz_auditivo" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_auditivo" class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_auditivo" name="observaciones_tamiz_auditivo" class="form-input" rows="2" placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Oftalmológico -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_oftalmologico" name="tamizajes[]" value="tamiz_oftalmologico" class="tamiz-checkbox">
+                                    <label for="tamiz_oftalmologico" class="tamiz-label">👁️ Tamiz oftalmológico</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_oftalmologico">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_oftalmologico" class="form-label">Fecha de realización:</label>
+                                            <input type="date" id="fecha_tamiz_oftalmologico" name="fecha_tamiz_oftalmologico" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_oftalmologico" class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_oftalmologico" name="observaciones_tamiz_oftalmologico" class="form-input" rows="2" placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Cardíaco -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_cardiaco" name="tamizajes[]" value="tamiz_cardiaco" class="tamiz-checkbox">
+                                    <label for="tamiz_cardiaco" class="tamiz-label">❤️ Tamiz cardíaco</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_cardiaco">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_cardiaco" class="form-label">Fecha de realización:</label>
+                                            <input type="date" id="fecha_tamiz_cardiaco" name="fecha_tamiz_cardiaco" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_cardiaco" class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_cardiaco" name="observaciones_tamiz_cardiaco" class="form-input" rows="2" placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz de Cadera -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_cadera" name="tamizajes[]" value="tamiz_cadera" class="tamiz-checkbox">
+                                    <label for="tamiz_cadera" class="tamiz-label">🦴 Tamiz de cadera</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_cadera">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_cadera" class="form-label">Fecha de realización:</label>
+                                            <input type="date" id="fecha_tamiz_cadera" name="fecha_tamiz_cadera" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_cadera" class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_cadera" name="observaciones_tamiz_cadera" class="form-input" rows="2" placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección: Otras Complicaciones -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🏥</div>
+                            <div class="section-info">
+                                <h3>Otras Complicaciones</h3>
+                                <p class="section-description">Seleccione todas las complicaciones que apliquen para el paciente</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <span>ℹ️</span>
+                            <div><strong>Instrucciones:</strong> Marque todas las casillas que correspondan al historial médico del paciente.</div>
+                        </div>
+
+                        <div class="checkbox-grid">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="alergias" name="otras_complicaciones[]" value="alergias" class="checkbox-input">
+                                <label for="alergias" class="checkbox-label">🤧 Alergias</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="discapacidad" name="otras_complicaciones[]" value="discapacidad" class="checkbox-input">
+                                <label for="discapacidad" class="checkbox-label">♿ Discapacidad</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="malformaciones_congenitas" name="otras_complicaciones[]" value="malformaciones_congenitas" class="checkbox-input">
+                                <label for="malformaciones_congenitas" class="checkbox-label">🧬 Malformaciones congénitas</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cirugias" name="otras_complicaciones[]" value="cirugias" class="checkbox-input">
+                                <label for="cirugias" class="checkbox-label">⚕️ Cirugías</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="otras_enfermedades" name="otras_complicaciones[]" value="otras_enfermedades" class="checkbox-input">
+                                <label for="otras_enfermedades" class="checkbox-label">🏥 Otras enfermedades</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="tuberculosis" name="otras_complicaciones[]" value="tuberculosis" class="checkbox-input">
+                                <label for="tuberculosis" class="checkbox-label">🦠 Tuberculosis</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-outline" id="limpiarAntecedentes">
+                            <span>🗑️</span> Limpiar Formulario
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="guardarBorradorAnt">
+                            <span>💾</span> Guardar Borrador
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="guardarAntecedentes">
+                            <span>✅</span> Guardar Antecedentes
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TAB: Promoción de la Salud -->
+            <div class="tab-content" id="promocion">
+                <form id="promocionForm">
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🌟</div>
+                            <div class="section-info">
+                                <h3>Promoción de la Salud</h3>
+                                <p class="section-description">Acciones educativas y preventivas realizadas con el paciente y familia</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <span>ℹ️</span>
+                            <div><strong>Instrucciones:</strong> Primero seleccione el estado de la Cartilla Nacional de Salud, luego las acciones de promoción realizadas y registre la fecha de aplicación correspondiente.</div>
+                        </div>
+
+                        <!-- Selector de Estado de Cartilla -->
+                        <div class="form-section" style="margin-bottom: 30px; background: #fff; border: 3px solid #27ae60;">
+                            <div class="section-header" style="border-bottom: 2px solid #27ae60; margin-bottom: 20px;">
+                                <div class="section-icon" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">📋</div>
+                                <div class="section-info">
+                                    <h3 style="color: #27ae60;">Estado de Cartilla Nacional de Salud</h3>
+                                    <p class="section-description">Seleccione el estado actual de la Cartilla Nacional de Salud del paciente</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="estadoCartilla" class="form-label" style="font-size: 16px; font-weight: bold;">Estado de la Cartilla <span class="required">*</span></label>
+                                <select id="estadoCartilla" name="estadoCartilla" class="form-select" style="font-size: 16px; font-weight: 600; border: 3px solid #27ae60; padding: 15px;">
+                                    <option value="">Seleccione el estado de la cartilla...</option>
+                                    <option value="primera_vez">Entrega por primera vez de Cartilla Nacional de Salud</option>
+                                    <option value="ya_tiene">Ya tiene Cartilla Nacional de Salud</option>
+                                    <option value="reposicion">Reposición de Cartilla Nacional de Salud</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- CUIDADOS DEL RECIÉN NACIDO Y SUEÑO SEGURO -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="cuidados_rn_sueno" name="promocion[]" value="cuidados_rn_sueno" class="promocion-checkbox">
+                                <label for="cuidados_rn_sueno" class="promocion-title">👶 CUIDADOS DEL RECIÉN NACIDO, DE LA NIÑA Y EL NIÑO Y SUEÑO SEGURO</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_cuidados_rn_sueno">
+                                <div style="display: flex; gap: 15px; align-items: end;">
+                                    <div style="flex: 1;">
+                                        <label for="fecha_cuidados_rn_sueno" class="form-label">Fecha de aplicación:</label>
+                                        <input type="date" id="fecha_cuidados_rn_sueno" name="fecha_cuidados_rn_sueno" class="date-input">
+                                    </div>
+                                    <div>
+                                        <a href="https://www.google.com" target="_blank" class="btn-link">
+                                            🔗 Más información
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LACTANCIA MATERNA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="lactancia_materna" name="promocion[]" value="lactancia_materna" class="promocion-checkbox">
+                                <label for="lactancia_materna" class="promocion-title">🤱 LACTANCIA MATERNA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_lactancia_materna">
+                                <div style="display: flex; gap: 15px; align-items: end;">
+                                    <div style="flex: 1;">
+                                        <label for="fecha_lactancia_materna" class="form-label">Fecha de aplicación:</label>
+                                        <input type="date" id="fecha_lactancia_materna" name="fecha_lactancia_materna" class="date-input">
+                                    </div>
+                                    <div>
+                                        <a href="https://www.google.com" target="_blank" class="btn-link">
+                                            🔗 Más información
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ALIMENTACIÓN COMPLEMENTARIA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="alimentacion_complementaria" name="promocion[]" value="alimentacion_complementaria" class="promocion-checkbox">
+                                <label for="alimentacion_complementaria" class="promocion-title">🥄 ALIMENTACIÓN COMPLEMENTARIA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_alimentacion_complementaria">
+                                <div style="display: flex; gap: 15px; align-items: end;">
+                                    <div style="flex: 1;">
+                                        <label for="fecha_alimentacion_complementaria" class="form-label">Fecha de aplicación:</label>
+                                        <input type="date" id="fecha_alimentacion_complementaria" name="fecha_alimentacion_complementaria" class="date-input">
+                                    </div>
+                                    <div>
+                                        <a href="https://www.google.com" target="_blank" class="btn-link">
+                                            🔗 Más información
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NUTRICIÓN DE LA NIÑA Y EL NIÑO -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="nutricion_nina_nino" name="promocion[]" value="nutricion_nina_nino" class="promocion-checkbox">
+                                <label for="nutricion_nina_nino" class="promocion-title">🍎 NUTRICIÓN DE LA NIÑA Y EL NIÑO</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_nutricion_nina_nino">
+                                <label for="fecha_nutricion_nina_nino" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_nutricion_nina_nino" name="fecha_nutricion_nina_nino" class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- HIGIENE BUCAL -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="higiene_bucal" name="promocion[]" value="higiene_bucal" class="promocion-checkbox">
+                                <label for="higiene_bucal" class="promocion-title">🦷 HIGIENE BUCAL</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_higiene_bucal">
+                                <label for="fecha_higiene_bucal" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_higiene_bucal" name="fecha_higiene_bucal" class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- PREVENCIÓN DE ACCIDENTES -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="prevencion_accidentes" name="promocion[]" value="prevencion_accidentes" class="promocion-checkbox">
+                                <label for="prevencion_accidentes" class="promocion-title">🛡️ PREVENCIÓN DE ACCIDENTES</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_prevencion_accidentes">
+                                <label for="fecha_prevencion_accidentes" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_prevencion_accidentes" name="fecha_prevencion_accidentes" class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- ESTIMULACIÓN TEMPRANA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="estimulacion_temprana" name="promocion[]" value="estimulacion_temprana" class="promocion-checkbox">
+                                <label for="estimulacion_temprana" class="promocion-title">🧸 ESTIMULACIÓN TEMPRANA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_estimulacion_temprana">
+                                <label for="fecha_estimulacion_temprana" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_estimulacion_temprana" name="fecha_estimulacion_temprana" class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- DETECCIÓN DE VIOLENCIA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="deteccion_violencia" name="promocion[]" value="deteccion_violencia" class="promocion-checkbox">
+                                <label for="deteccion_violencia" class="promocion-title">⚠️ DETECCIÓN DE VIOLENCIA</label>
+                            </div>
+                            <div class="promocion-date-group" id="date_deteccion_violencia">
+                                <label for="fecha_deteccion_violencia" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_deteccion_violencia" name="fecha_deteccion_violencia" class="date-input">
+                            </div>
+                        </div>
+
+                        <!-- OTROS -->
+                        <div class="promocion-item" id="otrosPromocion">
+                            <div class="promocion-header">
+                                <input type="checkbox" id="otros" name="promocion[]" value="otros" class="promocion-checkbox">
+                                <label for="otros" class="promocion-title">📋 OTROS</label>
+                            </div>
+
+                            <!-- Selector de acciones -->
+                            <div class="age-selector-section">
+                                <select class="age-select" id="otrosSelect">
+                                    <option value="">Selecciona</option>
+                                    <option value="incorporacion-programa-salud">Incorporación a programa de salud</option>
+                                    <option value="primera-visita-medico">Primera visita al médico</option>
+                                    <option value="tamiz-neonatal">Tamiz Neonatal: Enfermedades Metabólicas Congénitas</option>
+                                    <option value="prevencion-muerte-subita">Prevención de la muerte súbita de la y el lactante</option>
+                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías biliares</option>
+                                    <option value="prevencion-raquitismo">Prevención de raquitismo</option>
+                                    <option value="cuidados-nino-enfermo">Cuidados de la niña y el niño enfermo</option>
+                                    <option value="crecimiento-desarrollo">Crecimiento y desarrollo de la niña y niño</option>
+                                    <option value="control-esfinteres">Control de esfínteres</option>
+                                    <option value="vigilancia-estado-nutricional">Vigilancia y evaluación del estado nutricional</option>
+                                    <option value="prevencion-desnutricion">Prevención de desnutrición</option>
+                                    <option value="prevencion-adicciones">Prevención de adicciones</option>
+                                    <option value="destete">Destete</option>
+                                    <option value="vacunacion">Vacunación</option>
+                                    <option value="control-fiebre">Control de fiebre</option>
+                                    <option value="prevencion-enfermedades-respiratorias">Prevención y control de enfermedades respiratorias no transmisibles: Asma</option>
+                                </select>
+                            </div>
+
+                            <!-- Fecha -->
+                            <div class="promocion-date-group show">
+                                <label for="fecha_otros" class="form-label">Fecha de aplicación:</label>
+                                <input type="date" id="fecha_otros" class="date-input">
+                            </div>
+
+                            <!-- Botón Agregar -->
+                            <div style="margin-top: 15px;">
+                                <button type="button" class="btn btn-outline" id="agregarOtro">➕ Agregar</button>
+                            </div>
+
+                            <!-- Contenedor donde se mostrarán las acciones agregadas -->
+                            <div id="otrosAgregados" style="margin-top: 20px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-outline" id="limpiarPromocion">
+                            <span>🗑️</span> Limpiar Formulario
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="guardarBorradorProm">
+                            <span>💾</span> Guardar Borrador
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="guardarPromocion">
+                            <span>✅</span> Guardar Promoción
+                        </button>
+                    </div>
+
+                    <!-- Historial de Promociones Guardadas -->
+                    <div class="form-section" id="historialPromocion" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-icon">📚</div>
+                            <div class="section-info">
+                                <h3>Historial de Promociones de la Salud</h3>
+                                <p class="section-description">Actividades de promoción registradas previamente</p>
+                            </div>
+                        </div>
+                        
+                        <div id="historialPromociones" class="historial-container">
+                            <!-- Aquí se mostrarán las promociones guardadas -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TAB: Desarrollo Infantil -->
+            <div class="tab-content" id="desarrollo">
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">👶</div>
+                        <div class="section-info">
+                            <h3>Desarrollo Infantil</h3>
+                            <p class="section-description">Marca los logros que tu niña o niño ha alcanzado de acuerdo a su edad y muéstralo en cada consulta</p>
+                        </div>
+                    </div>
+
+                    <div class="development-form">
+                        <!-- Fecha de Evaluación -->
+                        <div class="date-section">
+                            <h4>📅 Fecha de Evaluación del Desarrollo</h4>
+                            <input type="date" id="fecha_evaluacion_desarrollo" name="fecha_evaluacion_desarrollo" class="date-input-large">
+                        </div>
+
+                        <!-- Selector de Edad -->
+                        <div class="age-selector-section">
+                            <h4>🎂 Edad del Niño(a)</h4>
+                            <select id="edad_nino" name="edad_nino" class="age-select">
+                                <option value="">Selecciona la edad...</option>
+                                <option value="1mes">1 mes</option>
+                                <option value="3meses">3 meses</option>
+                                <option value="6meses">6 meses</option>
+                                <option value="1ano">1 año</option>
+                                <option value="18meses">1 año 6 meses</option>
+                                <option value="2anos">2 años</option>
+                                <option value="3anos">3 años</option>
+                                <option value="4anos">4 años</option>
+                                <option value="5anos">5 años</option>
+                                <option value="6anos">6 años</option>
+                                <option value="7anos">7 años</option>
+                                <option value="8anos">8 años</option>
+                            </select>
+                        </div>
+
+                        <!-- UN MES -->
+
+                        <div class="age-questions-section" id="questions-1mes" style="display: none;">
+                            <div class="age-title">
+                                <h3>👶 Evaluación - 1 mes</h3>
+                            </div>
+
+                            <!-- MOTOR -->
+                            <div>
+                                <div class="development-category motor-category">
+                                    <div class="category-header">
+                                        <h4>🏃‍♂️ MOTOR</h4>
+                                    </div>
+
+                                    <div class="question-item">
+                                        <p class="question-text">¿Puede voltear su cabeza para los dos lados cuando está
+                                            boca abajo?</p>
+                                        <div class="radio-group">
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q1_si" name="motor_1m_q1" value="si"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q1_si" class="radio-label">Sí</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q1_no" name="motor_1m_q1" value="no"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q1_no" class="radio-label">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="question-item">
+                                        <p class="question-text">Reflejos primarios positivos (succión, presión palmar,
+                                            deglución)</p>
+                                        <div class="radio-group">
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q2_si" name="motor_1m_q2" value="si"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q2_si" class="radio-label">Sí</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input type="radio" id="motor_1m_q2_no" name="motor_1m_q2" value="no"
+                                                    class="radio-input">
+                                                <label for="motor_1m_q2_no" class="radio-label">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- LENGUAJE -->
+                            <div class="development-category lenguaje-category">
+                                <div class="category-header">
+                                    <h4>💬 LENGUAJE</h4>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">¿Llora o hace ruido al estar incómoda(o) o querer comer?
+                                    </p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q1_si" name="lenguaje_1m_q1" value="si"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q1_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q1_no" name="lenguaje_1m_q1" value="no"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q1_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Emite sonidos para expresar placer</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q2_si" name="lenguaje_1m_q2" value="si"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q2_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="lenguaje_1m_q2_no" name="lenguaje_1m_q2" value="no"
+                                                class="radio-input">
+                                            <label for="lenguaje_1m_q2_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SOCIAL -->
+                            <div class="development-category social-category">
+                                <div class="category-header">
+                                    <h4>👥 SOCIAL</h4>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">¿Se tranquiliza al hablarle o levantarla(o)?</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q1_si" name="social_1m_q1" value="si"
+                                                class="radio-input">
+                                            <label for="social_1m_q1_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q1_no" name="social_1m_q1" value="no"
+                                                class="radio-input">
+                                            <label for="social_1m_q1_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Fija la mirada en los rostros y los sigue a 180°</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q2_si" name="social_1m_q2" value="si"
+                                                class="radio-input">
+                                            <label for="social_1m_q2_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="social_1m_q2_no" name="social_1m_q2" value="no"
+                                                class="radio-input">
+                                            <label for="social_1m_q2_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SIGNOS DE ALARMA -->
+                            <div class="development-category alarma-category">
+                                <div class="category-header">
+                                    <h4>⚠️ SIGNOS DE ALARMA</h4>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Totalmente flácido (reflejos primarios negativos)</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q1_si" name="alarma_1m_q1" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q1_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q1_no" name="alarma_1m_q1" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q1_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Posición de arqueo</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q2_si" name="alarma_1m_q2" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q2_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q2_no" name="alarma_1m_q2" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q2_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Succión negativa</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q3_si" name="alarma_1m_q3" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q3_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q3_no" name="alarma_1m_q3" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q3_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Hipertonicidad e hipotonicidad</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q4_si" name="alarma_1m_q4" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q4_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q4_no" name="alarma_1m_q4" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q4_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">No sigue objetos</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q5_si" name="alarma_1m_q5" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q5_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q5_no" name="alarma_1m_q5" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q5_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Manos empuñadas con el pulgar adentro</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q6_si" name="alarma_1m_q6" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q6_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q6_no" name="alarma_1m_q6" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q6_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">Cabeza en gota</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q7_si" name="alarma_1m_q7" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q7_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q7_no" name="alarma_1m_q7" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q7_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-item">
+                                    <p class="question-text">No responde a sonidos llorando</p>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q8_si" name="alarma_1m_q8" value="si"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q8_si" class="radio-label">Sí</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="alarma_1m_q8_no" name="alarma_1m_q8" value="no"
+                                                class="radio-input">
+                                            <label for="alarma_1m_q8_no" class="radio-label">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- CINCO AÑOS -->
+                    <div class="age-questions-section" id="questions-5anos" style="display: none;">
+                        <div class="age-title">
+                            <h3>🧒 Evaluación - 5 años</h3>
+                        </div>
+
+                        <!-- MOTOR -->
+                        <div class="development-category motor-category">
+                            <div class="category-header">
+                                <h4>🏃‍♂️ MOTOR</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede brincar hacia atrás con los pies juntos?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q1_si" name="motor_5a_q1" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q1_no" name="motor_5a_q1" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede darse marometas?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q2_si" name="motor_5a_q2" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q2_no" name="motor_5a_q2" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede brincar en un solo pie, tres veces seguidas?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q3_si" name="motor_5a_q3" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q3_no" name="motor_5a_q3" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Sabe escribir 2 o más letras?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q4_si" name="motor_5a_q4" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q4_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q4_no" name="motor_5a_q4" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q4_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Sabe dibujar un círculo?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q5_si" name="motor_5a_q5" value="si"
+                                            class="radio-input">
+                                        <label for="motor_5a_q5_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="motor_5a_q5_no" name="motor_5a_q5" value="no"
+                                            class="radio-input">
+                                        <label for="motor_5a_q5_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LENGUAJE -->
+                        <div class="development-category lenguaje-category">
+                            <div class="category-header">
+                                <h4>💬 LENGUAJE</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Comunica sus emociones cuando está "feliz, triste o enojado"?
+                                </p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q1_si" name="lenguaje_5a_q1" value="si"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q1_no" name="lenguaje_5a_q1" value="no"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede contar cuentos?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q2_si" name="lenguaje_5a_q2" value="si"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q2_no" name="lenguaje_5a_q2" value="no"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Sabe usar el tiempo futuro?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q3_si" name="lenguaje_5a_q3" value="si"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="lenguaje_5a_q3_no" name="lenguaje_5a_q3" value="no"
+                                            class="radio-input">
+                                        <label for="lenguaje_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SOCIAL -->
+                        <div class="development-category social-category">
+                            <div class="category-header">
+                                <h4>👥 SOCIAL</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Le gusta ir a la escuela?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q1_si" name="social_5a_q1" value="si"
+                                            class="radio-input">
+                                        <label for="social_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q1_no" name="social_5a_q1" value="no"
+                                            class="radio-input">
+                                        <label for="social_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Se puede bañar solo?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q2_si" name="social_5a_q2" value="si"
+                                            class="radio-input">
+                                        <label for="social_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q2_no" name="social_5a_q2" value="no"
+                                            class="radio-input">
+                                        <label for="social_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede decir el nombre de dos de sus amigos?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q3_si" name="social_5a_q3" value="si"
+                                            class="radio-input">
+                                        <label for="social_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="social_5a_q3_no" name="social_5a_q3" value="no"
+                                            class="radio-input">
+                                        <label for="social_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONOCIMIENTOS -->
+                        <div class="development-category conocimiento-category">
+                            <div class="category-header">
+                                <h4>🧠 CONOCIMIENTOS</h4>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede escribir dos números o letras?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q1_si" name="conocimiento_5a_q1"
+                                            value="si" class="radio-input">
+                                        <label for="conocimiento_5a_q1_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q1_no" name="conocimiento_5a_q1"
+                                            value="no" class="radio-input">
+                                        <label for="conocimiento_5a_q1_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Puede contar correctamente hasta diez?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q2_si" name="conocimiento_5a_q2"
+                                            value="si" class="radio-input">
+                                        <label for="conocimiento_5a_q2_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q2_no" name="conocimiento_5a_q2"
+                                            value="no" class="radio-input">
+                                        <label for="conocimiento_5a_q2_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <p class="question-text">¿Utiliza correctamente las palabras ayer, hoy y mañana?</p>
+                                <div class="radio-group">
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q3_si" name="conocimiento_5a_q3"
+                                            value="si" class="radio-input">
+                                        <label for="conocimiento_5a_q3_si" class="radio-label">Sí</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="conocimiento_5a_q3_no" name="conocimiento_5a_q3"
+                                            value="no" class="radio-input">
+                                        <label for="conocimiento_5a_q3_no" class="radio-label">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <!-- Placeholder para otras edades -->
+                        <div class="no-age-selected" id="no-age-message">
+                            <div class="empty-state">
+                                <h4>📋 Selecciona una edad</h4>
+                                <p>Por favor, selecciona la edad del niño(a) para mostrar las preguntas de evaluación correspondientes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-outline" id="limpiarDesarrollo">
+                        <span>🗑️</span> Limpiar Formulario
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="guardarBorradorDes">
+                        <span>💾</span> Guardar Borrador
+                    </button>
+                    <button type="button" class="btn btn-primary" id="guardarDesarrollo">
+                        <span>✅</span> Guardar Desarrollo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidad de pestañas
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    // Remover clase active de todos los botones y contenidos
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    // Agregar clase active al botón clickeado y su contenido correspondiente
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Funcionalidad para checkboxes de promoción
+            const promocionCheckboxes = document.querySelectorAll('.promocion-checkbox');
+            promocionCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const parentItem = this.closest('.promocion-item');
+                    const dateGroup = parentItem.querySelector('.promocion-date-group');
+                    if (this.checked) {
+                        parentItem.classList.add('selected');
+                        dateGroup.classList.add('show');
+                    } else {
+                        parentItem.classList.remove('selected');
+                        dateGroup.classList.remove('show');
+                        // Limpiar la fecha cuando se desmarca
+                        const dateInput = dateGroup.querySelector('.date-input');
+                        if (dateInput) {
+                            dateInput.value = '';
+                        }
+                    }
+                });
+            });
+
+            // Funcionalidad para checkboxes normales
+            const checkboxItems = document.querySelectorAll('.checkbox-item');
+            checkboxItems.forEach(item => {
+                const checkbox = item.querySelector('.checkbox-input');
+                if (checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            item.classList.add('checked');
+                        } else {
+                            item.classList.remove('checked');
+                        }
+                    });
+                }
+            });
+
+            // Funcionalidad del selector de edad
+            const edadSelector = document.getElementById('edad_nino');
+            const ageQuestionsSections = document.querySelectorAll('.age-questions-section');
+            const noAgeMessage = document.getElementById('no-age-message');
+            
+            edadSelector?.addEventListener('change', function() {
+                const selectedAge = this.value;
+                // Ocultar todas las secciones de preguntas
+                ageQuestionsSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                if (selectedAge) {
+                    // Ocultar mensaje de "no edad seleccionada"
+                    noAgeMessage.style.display = 'none';
+                    // Mostrar la sección correspondiente a la edad seleccionada
+                    const targetSection = document.getElementById(`questions-${selectedAge}`);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                    }
+                } else {
+                    // Mostrar mensaje de "no edad seleccionada"
+                    noAgeMessage.style.display = 'block';
+                }
+            });
+
+            // Funcionalidad para radio buttons de desarrollo
+            const radioItems = document.querySelectorAll('.radio-item');
+            radioItems.forEach(item => {
+                const radio = item.querySelector('.radio-input');
+                if (radio) {
+                    radio.addEventListener('change', function() {
+                        // Remover clase selected de todos los radio items del mismo grupo
+                        const groupName = this.name;
+                        const sameGroupItems = document.querySelectorAll(`input[name="${groupName}"]`);
+                        sameGroupItems.forEach(groupRadio => {
+                            const parentItem = groupRadio.closest('.radio-item');
+                            if (parentItem) {
+                                parentItem.classList.remove('selected');
+                            }
+                        });
+                        // Agregar clase selected al item actual
+                        item.classList.add('selected');
+                    });
+                }
+            });
+
+            // Funcionalidad para tamizajes
+            const tamizCheckboxes = document.querySelectorAll('.tamiz-checkbox');
+            tamizCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const tamizItem = this.closest('.tamiz-item');
+                    const details = tamizItem.querySelector('.tamiz-details');
+                    if (this.checked) {
+                        tamizItem.classList.add('selected');
+                        details.classList.add('show');
+                    } else {
+                        tamizItem.classList.remove('selected');
+                        details.classList.remove('show');
+                        // Limpiar campos cuando se desmarca
+                        const dateInput = details.querySelector('input[type="date"]');
+                        const textArea = details.querySelector('textarea');
+                        if (dateInput) dateInput.value = '';
+                        if (textArea) textArea.value = '';
+                    }
+                });
+            });
+
+            // Funcionalidad de botones de limpiar
+            document.getElementById('limpiarAntecedentes')?.addEventListener('click', function() {
+                if (confirm('¿Está seguro de que desea limpiar todos los campos del formulario de antecedentes?')) {
+                    document.getElementById('antecedentesForm').reset();
+                    // Remover clases checked de los checkboxes
+                    document.querySelectorAll('#antecedentes .checkbox-item').forEach(item => {
+                        item.classList.remove('checked');
+                    });
+                    // Remover clases selected de tamizajes
+                    document.querySelectorAll('#antecedentes .tamiz-item').forEach(item => {
+                        item.classList.remove('selected');
+                        const details = item.querySelector('.tamiz-details');
+                        if (details) details.classList.remove('show');
+                    });
+                }
+            });
+
+            document.getElementById('limpiarPromocion')?.addEventListener('click', function() {
+                if (confirm('¿Está seguro de que desea limpiar todos los campos del formulario de promoción?')) {
+                    limpiarFormularioPromocion();
+                    
+                    // También limpiar historial si se desea
+                    if (confirm('¿También desea limpiar el historial de promociones guardadas?')) {
+                        document.getElementById('historialPromociones').innerHTML = '';
+                        document.getElementById('historialPromocion').style.display = 'none';
+                    }
+                }
+            });
+
+            document.getElementById('limpiarDesarrollo')?.addEventListener('click', function() {
+                if (confirm('¿Está seguro de que desea limpiar todos los campos del formulario de desarrollo?')) {
+                    // Limpiar campos básicos
+                    document.getElementById('fecha_evaluacion_desarrollo').value = '';
+                    // Resetear selector de edad
+                    document.getElementById('edad_nino').value = '';
+                    // Ocultar todas las secciones de preguntas y mostrar mensaje por defecto
+                    ageQuestionsSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    noAgeMessage.style.display = 'block';
+                    // Limpiar todos los radio buttons y remover clases selected
+                    document.querySelectorAll('#desarrollo .radio-input').forEach(radio => {
+                        radio.checked = false;
+                    });
+                    document.querySelectorAll('#desarrollo .radio-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+                }
+            });
+
+            // Funcionalidad de botones de guardar
+            document.getElementById('guardarAntecedentes')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Antecedentes guardados correctamente');
+            });
+
+            document.getElementById('guardarPromocion')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                guardarPromocionesAlHistorial();
+            });
+
+            document.getElementById('guardarDesarrollo')?.addEventListener('click', function() {
+                alert('Datos de desarrollo infantil guardados correctamente');
+            });
+
+            // Funcionalidad de borradores
+            document.getElementById('guardarBorradorAnt')?.addEventListener('click', function() {
+                alert('Borrador de antecedentes guardado');
+            });
+
+            document.getElementById('guardarBorradorProm')?.addEventListener('click', function() {
+                alert('Borrador de promoción guardado');
+            });
+
+            document.getElementById('guardarBorradorDes')?.addEventListener('click', function() {
+                alert('Borrador de desarrollo guardado');
+            });
+
+            // Funcionalidad de agregar otros
+            document.getElementById('agregarOtro')?.addEventListener('click', function() {
+                const select = document.getElementById('otrosSelect');
+                const fecha = document.getElementById('fecha_otros').value;
+                const container = document.getElementById('otrosAgregados');
+                const texto = select.options[select.selectedIndex].text;
+                const valor = select.value;
+                
+                if (!valor || !fecha) {
+                    alert('Por favor selecciona una acción y una fecha.');
+                    return;
+                }
+                
+                const nuevoItem = document.createElement('div');
+                nuevoItem.classList.add('promocion-item', 'selected');
+                nuevoItem.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong>${texto}</strong><br>
+                            <span style="color:#7f8c8d;">Fecha: ${fecha}</span>
+                        </div>
+                        <button type="button" class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="this.parentElement.parentElement.remove()">🗑️</button>
+                    </div>
+                `;
+                container.appendChild(nuevoItem);
+                
+                // Limpiar selección
+                select.selectedIndex = 0;
+                document.getElementById('fecha_otros').value = '';
+            });
+        });
+
+        // Funciones para el historial de promociones
+        function guardarPromocionesAlHistorial() {
+            const estadoCartilla = document.getElementById('estadoCartilla').value;
+            const estadoCartillaTexto = document.getElementById('estadoCartilla').options[document.getElementById('estadoCartilla').selectedIndex].text;
+            
+            if (!estadoCartilla) {
+                alert('Por favor seleccione el estado de la Cartilla Nacional de Salud');
+                return;
+            }
+
+            let promocionesSeleccionadas = [];
+
+            // Obtener promociones principales seleccionadas
+            const promocionesCheckboxes = document.querySelectorAll('.promocion-checkbox');
+            promocionesCheckboxes.forEach(checkbox => {
+                if (checkbox.checked && checkbox.id !== 'otros') {
+                    const parentItem = checkbox.closest('.promocion-item');
+                    const label = parentItem.querySelector('.promocion-title').textContent;
+                    const dateInput = parentItem.querySelector('.date-input');
+                    const fecha = dateInput ? dateInput.value : '';
+                    
+                    if (fecha) {
+                        promocionesSeleccionadas.push({
+                            titulo: label,
+                            fecha: fecha,
+                            estadoCartilla: estadoCartillaTexto
+                        });
+                    }
+                }
+            });
+
+            // Obtener promociones de "otros" agregadas
+            const otrosAgregados = document.getElementById('otrosAgregados').children;
+            for (let item of otrosAgregados) {
+                const texto = item.querySelector('strong').textContent;
+                const fechaTexto = item.querySelector('span').textContent.replace('Fecha: ', '');
+                
+                promocionesSeleccionadas.push({
+                    titulo: `📋 ${texto}`,
+                    fecha: fechaTexto,
+                    estadoCartilla: estadoCartillaTexto
+                });
+            }
+
+            if (promocionesSeleccionadas.length === 0) {
+                alert('Por favor seleccione al menos una actividad de promoción con su fecha');
+                return;
+            }
+
+            // Agregar al historial
+            promocionesSeleccionadas.forEach(promocion => {
+                agregarAlHistorialPromocion(promocion);
+            });
+
+            // Limpiar formulario después de guardar
+            limpiarFormularioPromocion();
+            
+            alert(`${promocionesSeleccionadas.length} actividad(es) de promoción guardada(s) correctamente`);
+            
+            // Mostrar sección de historial
+            document.getElementById('historialPromocion').style.display = 'block';
+        }
+
+        function agregarAlHistorialPromocion(promocion) {
+            const container = document.getElementById('historialPromociones');
+            
+            const historialItem = document.createElement('div');
+            historialItem.classList.add('historial-item');
+            historialItem.innerHTML = `
+                <div class="historial-content">
+                    <div class="historial-cartilla">${promocion.estadoCartilla}</div>
+                    <div class="historial-title">${promocion.titulo}</div>
+                    <div class="historial-fecha">📅 Fecha: ${promocion.fecha}</div>
+                </div>
+                <button type="button" class="btn-delete" onclick="eliminarDelHistorial(this)">🗑️ Eliminar</button>
+            `;
+            
+            container.appendChild(historialItem);
+        }
+
+        function eliminarDelHistorial(button) {
+            if (confirm('¿Está seguro de eliminar esta actividad del historial?')) {
+                button.parentElement.remove();
+                
+                // Ocultar sección de historial si no hay elementos
+                const container = document.getElementById('historialPromociones');
+                if (container.children.length === 0) {
+                    document.getElementById('historialPromocion').style.display = 'none';
+                }
+            }
+        }
+
+        function limpiarFormularioPromocion() {
+            // Limpiar estado de cartilla
+            document.getElementById('estadoCartilla').value = '';
+            
+            // Desmarcar y ocultar fechas de promociones principales
+            document.querySelectorAll('.promocion-item').forEach(item => {
+                const checkbox = item.querySelector('.promocion-checkbox');
+                const dateGroup = item.querySelector('.promocion-date-group');
+                const dateInput = item.querySelector('.date-input');
+                
+                if (checkbox) checkbox.checked = false;
+                if (dateGroup) dateGroup.classList.remove('show');
+                if (dateInput) dateInput.value = '';
+                item.classList.remove('selected');
+            });
+            
+            // Limpiar otros agregados
+            document.getElementById('otrosAgregados').innerHTML = '';
+            document.getElementById('otrosSelect').selectedIndex = 0;
+            document.getElementById('fecha_otros').value = '';
+            document.getElementById('otros').checked = false;
+        }
+    </script>
+</body>
+</html>
