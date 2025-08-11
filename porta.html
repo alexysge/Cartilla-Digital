@@ -1656,10 +1656,6 @@
             line-height: 1.4;
         }
 
-        .semaforo-acciones {
-            text-align: center;
-        }
-
         /* CSS para historial con múltiples fechas */
 
         .historial-item {
@@ -1943,6 +1939,14 @@
                     <span>👶</span>
                     <span>Desarrollo Infantil</span>
                 </button>
+                <button class="tab-btn" data-tab="nutricion">
+                    <span>🍎</span>
+                    <span>Nutrición</span>
+                </button>
+                <button class="tab-btn" data-tab="vacunacion">
+    <span>💉</span>
+    <span>Vacunación</span>
+</button>
             </div>
 
             <!-- TAB: Antecedentes -->
@@ -2028,26 +2032,32 @@
                             </div>
 
                             <!-- Profilaxis Oftálmica -->
-                            <div class="form-group">
-                                <label for="profilaxisOftalmica" class="form-label">Profilaxis Oftálmica</label>
-                                <select id="profilaxisOftalmica" name="profilaxisOftalmica" class="form-select">
-                                    <option value="">Seleccione...</option>
-                                    <option value="si">Sí aplicada</option>
-                                    <option value="no">No aplicada</option>
-                                    <option value="desconocido">Desconocido</option>
-                                </select>
-                            </div>
+<div class="promocion-item" style="margin-bottom: 20px;">
+    <div class="promocion-header-with-date" style="flex-wrap: wrap; gap: 15px;">
+        <div class="promocion-check-title" style="flex: 1; min-width: 200px;">
+            <input type="checkbox" id="profilaxisOftalmica" name="antecedentes[]" value="profilaxis_oftalmica" class="promocion-checkbox">
+            <label for="profilaxisOftalmica" class="promocion-title">👁️ Profilaxis Oftálmica</label>
+        </div>
+        <div class="promocion-date-inline">
+            <label for="fecha_profilaxis_oftalmica" class="date-label">Fecha:</label>
+            <input type="date" id="fecha_profilaxis_oftalmica" name="fecha_profilaxis_oftalmica" class="date-input-header">
+        </div>
+    </div>
+</div>
 
-                            <!-- Vitamina K -->
-                            <div class="form-group">
-                                <label for="vitaminaK" class="form-label">Vitamina K</label>
-                                <select id="vitaminaK" name="vitaminaK" class="form-select">
-                                    <option value="">Seleccione...</option>
-                                    <option value="si">Sí aplicada</option>
-                                    <option value="no">No aplicada</option>
-                                    <option value="desconocido">Desconocido</option>
-                                </select>
-                            </div>
+<!-- Vitamina K -->
+<div class="promocion-item" style="margin-bottom: 20px;">
+    <div class="promocion-header-with-date" style="flex-wrap: wrap; gap: 15px">
+        <div class="promocion-check-title">
+            <input type="checkbox" id="vitaminaK" name="antecedentes[]" value="vitamina_k" class="promocion-checkbox">
+            <label for="vitaminaK" class="promocion-title">💉 Vitamina K</label>
+        </div>
+        <div class="promocion-date-inline">
+            <label for="fecha_vitamina_k" class="date-label">Fecha:</label>
+            <input type="date" id="fecha_vitamina_k" name="fecha_vitamina_k" class="date-input-header">
+        </div>
+    </div>
+</div>
                         </div>
                     </div>
 
@@ -3355,7 +3365,6 @@
                                 <div class="luz-icon">🟢</div>
                                 <div class="luz-texto">
                                     <h5>DESARROLLO NORMAL</h5>
-                                    <p>Todo sí lo hace sin signos de alarma</p>
                                 </div>
                             </div>
                         </div>
@@ -3365,7 +3374,6 @@
                                 <div class="luz-icon">🟡</div>
                                 <div class="luz-texto">
                                     <h5>ALTERACIÓN LEVE DEL DESARROLLO</h5>
-                                    <p>No hace algún ítem, sin signos de alarma</p>
                                 </div>
                             </div>
                         </div>
@@ -3375,16 +3383,9 @@
                                 <div class="luz-icon">🔴</div>
                                 <div class="luz-texto">
                                     <h5>SOSPECHA DE ALTERACIÓN GRAVE DEL DESARROLLO</h5>
-                                    <p>No hace ningún ítem y/o presenta uno o más signos de alarma</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="semaforo-acciones">
-                        <button type="button" class="btn btn-outline" onclick="recalcularSemaforo()">
-                            🔄 Recalcular
-                        </button>
                     </div>
                 </div>
 
@@ -3402,6 +3403,128 @@
                     </button>
                 </div>
             </div>
+
+            <div class="tab-content" id="nutricion">
+    <div class="form-section">
+        <div class="section-header">
+            <div class="section-icon">🍎</div>
+            <div class="section-info">
+                <h3>Evaluación Nutricional</h3>
+                <p class="section-description">Registro y seguimiento del estado nutricional del paciente</p>
+            </div>
+        </div>
+
+        <form id="nutricionForm">
+            <div class="nutrition-form">
+                <!-- Selector de Edad -->
+                <div class="age-selector-section">
+                    <h4>📅 Edad para Evaluación</h4>
+                    <select id="edad_nutricion" name="edad_nutricion" class="age-select">
+                        <option value="">Selecciona la edad...</option>
+                        <option value="al_nacer">Al nacer</option>
+                        <option value="1mes">1 mes</option>
+                        <option value="2meses">2 meses</option>
+                        <option value="3meses">3 meses</option>
+                        <option value="4meses">4 meses</option>
+                        <option value="5meses">5 meses</option>
+                        <option value="6meses">6 meses</option>
+                        <option value="7meses">7 meses</option>
+                        <option value="8meses">8 meses</option>
+                        <option value="9meses">9 meses</option>
+                        <option value="10meses">10 meses</option>
+                        <option value="11meses">11 meses</option>
+                        <option value="1ano">1 año</option>
+                        <option value="2anos">2 años</option>
+                        <option value="3anos">3 años</option>
+                        <option value="4anos">4 años</option>
+                        <option value="5anos">5 años</option>
+                        <option value="6anos">6 años</option>
+                        <option value="7anos">7 años</option>
+                        <option value="8anos">8 años</option>
+                    </select>
+                </div>
+
+                <!-- Datos de Medición -->
+                <div class="form-grid" style="margin-top: 30px;">
+                    <div class="form-group">
+                        <label for="peso_nutricion" class="form-label">Peso <span class="required">*</span></label>
+                        <div class="input-group">
+                            <input type="number" id="peso_nutricion" name="peso_nutricion" class="form-input"
+                                placeholder="Ej. 15.5" min="0.1" max="999.9" step="0.1" required>
+                            <div class="input-addon">kg</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="talla_nutricion" class="form-label">Talla <span class="required">*</span></label>
+                        <div class="input-group">
+                            <input type="number" id="talla_nutricion" name="talla_nutricion" class="form-input"
+                                placeholder="Ej. 98.5" min="0.1" max="999.9" step="0.1" required>
+                            <div class="input-addon">cm</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha_nutricion" class="form-label">Fecha de Medición <span class="required">*</span></label>
+                        <input type="date" id="fecha_nutricion" name="fecha_nutricion" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imc_nutricion" class="form-label">IMC</label>
+                        <div class="input-group">
+                            <input type="text" id="imc_nutricion" name="imc_nutricion" class="form-input"
+                                placeholder="Se calculará automáticamente" readonly style="background: #f8f9fa;">
+                            <div class="input-addon">kg/m²</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resultado de Evaluación -->
+                <div id="resultado_nutricion" class="form-section" style="display: none; margin-top: 30px;">
+                    <div class="section-header">
+                        <div class="section-icon">📊</div>
+                        <div class="section-info">
+                            <h3>Resultado de Evaluación</h3>
+                            <p class="section-description">Estado nutricional según IMC</p>
+                        </div>
+                    </div>
+
+                    <div id="estado_nutricional" class="nutrition-result">
+                        <!-- Aquí se mostrará el resultado -->
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-outline" id="limpiarNutricion">
+                        <span>🗑️</span> Limpiar Formulario
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="guardarBorradorNut">
+                        <span>💾</span> Guardar Borrador
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="guardarNutricion">
+                        <span>✅</span> Guardar Evaluación
+                    </button>
+                </div>
+
+                <!-- Historial de Evaluaciones -->
+                <div class="form-section" id="historialNutricion" style="display: none;">
+                    <div class="section-header">
+                        <div class="section-icon">📈</div>
+                        <div class="section-info">
+                            <h3>Historial Nutricional</h3>
+                            <p class="section-description">Evaluaciones nutricionales registradas</p>
+                        </div>
+                    </div>
+
+                    <div id="historialEvaluaciones" class="historial-container">
+                        <!-- Aquí se mostrarán las evaluaciones guardadas -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
         </div>
     </div>
 
@@ -4229,6 +4352,344 @@
                 }
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    
+    // Funcionalidad para checkboxes de antecedentes (similar a promoción)
+    const antecedentesCheckboxes = document.querySelectorAll('#antecedentes .promocion-checkbox');
+    antecedentesCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const parentItem = this.closest('.promocion-item');
+            const dateInput = parentItem.querySelector('.date-input-header');
+            
+            if (this.checked) {
+                parentItem.classList.add('selected');
+                // Opcional: enfocar el campo de fecha cuando se marca el checkbox
+                if (dateInput) {
+                    dateInput.focus();
+                }
+            } else {
+                parentItem.classList.remove('selected');
+                // Limpiar la fecha cuando se desmarca
+                if (dateInput) {
+                    dateInput.value = '';
+                }
+            }
+        });
+    });
+    
+    // Actualizar la función de limpiar antecedentes para incluir estos nuevos campos
+    const limpiarAntecedentesBtn = document.getElementById('limpiarAntecedentes');
+    if (limpiarAntecedentesBtn) {
+        limpiarAntecedentesBtn.addEventListener('click', function() {
+            if (confirm('¿Está seguro de que desea limpiar todos los campos del formulario de antecedentes?')) {
+                document.getElementById('antecedentesForm').reset();
+                
+                // Remover clases checked de los checkboxes
+                document.querySelectorAll('#antecedentes .checkbox-item').forEach(item => {
+                    item.classList.remove('checked');
+                });
+                
+                // Remover clases selected de tamizajes
+                document.querySelectorAll('#antecedentes .tamiz-item').forEach(item => {
+                    item.classList.remove('selected');
+                    const details = item.querySelector('.tamiz-details');
+                    if (details) details.classList.remove('show');
+                });
+                
+                // Limpiar nuevos campos de checkbox con fecha
+                document.querySelectorAll('#antecedentes .promocion-item').forEach(item => {
+                    item.classList.remove('selected');
+                    const checkbox = item.querySelector('.promocion-checkbox');
+                    const dateInput = item.querySelector('.date-input-header');
+                    if (checkbox) checkbox.checked = false;
+                    if (dateInput) dateInput.value = '';
+                });
+            }
+        });
+    }
+    
+    // Función para obtener datos de antecedentes (incluyendo nuevos campos)
+    function obtenerDatosAntecedentes() {
+        const datos = {};
+        
+        // Datos básicos del formulario
+        const formData = new FormData(document.getElementById('antecedentesForm'));
+        for (let [key, value] of formData.entries()) {
+            datos[key] = value;
+        }
+        
+        // Datos específicos de checkbox con fecha
+        const profilaxisCheckbox = document.getElementById('profilaxisOftalmica');
+        const profilaxisFecha = document.getElementById('fecha_profilaxis_oftalmica');
+        if (profilaxisCheckbox && profilaxisCheckbox.checked) {
+            datos.profilaxis_oftalmica = {
+                aplicada: true,
+                fecha: profilaxisFecha.value
+            };
+        }
+        
+        const vitaminaCheckbox = document.getElementById('vitaminaK');
+        const vitaminaFecha = document.getElementById('fecha_vitamina_k');
+        if (vitaminaCheckbox && vitaminaCheckbox.checked) {
+            datos.vitamina_k = {
+                aplicada: true,
+                fecha: vitaminaFecha.value
+            };
+        }
+        
+        return datos;
+    }
+    
+    // Actualizar función de guardar antecedentes
+    const guardarAntecedentesBtn = document.getElementById('guardarAntecedentes');
+    if (guardarAntecedentesBtn) {
+        guardarAntecedentesBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const datos = obtenerDatosAntecedentes();
+            console.log('Datos de antecedentes:', datos);
+            
+            // Validar que si se marca un checkbox, tenga fecha
+            let errores = [];
+            
+            if (document.getElementById('profilaxisOftalmica').checked && !document.getElementById('fecha_profilaxis_oftalmica').value) {
+                errores.push('Debe especificar la fecha de aplicación de la Profilaxis Oftálmica');
+            }
+            
+            if (document.getElementById('vitaminaK').checked && !document.getElementById('fecha_vitamina_k').value) {
+                errores.push('Debe especificar la fecha de aplicación de la Vitamina K');
+            }
+            
+            if (errores.length > 0) {
+                alert('Errores encontrados:\n' + errores.join('\n'));
+                return;
+            }
+            
+            alert('Antecedentes guardados correctamente');
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Referencias a elementos
+    const pesoInput = document.getElementById('peso_nutricion');
+    const tallaInput = document.getElementById('talla_nutricion');
+    const edadSelect = document.getElementById('edad_nutricion');
+    const imcInput = document.getElementById('imc_nutricion');
+    const resultadoDiv = document.getElementById('resultado_nutricion');
+    const estadoDiv = document.getElementById('estado_nutricional');
+
+    // Rangos de IMC por edad (simplificados para el ejemplo)
+    const rangosIMC = {
+        'al_nacer': { min: 10, max: 18 },
+        '1mes': { min: 12, max: 20 },
+        '2meses': { min: 13, max: 21 },
+        '3meses': { min: 14, max: 22 },
+        '4meses': { min: 14.5, max: 22.5 },
+        '5meses': { min: 15, max: 23 },
+        '6meses': { min: 15.5, max: 23.5 },
+        '7meses': { min: 16, max: 24 },
+        '8meses': { min: 16.2, max: 24.2 },
+        '9meses': { min: 16.4, max: 24.4 },
+        '10meses': { min: 16.6, max: 24.6 },
+        '11meses': { min: 16.8, max: 24.8 },
+        '1ano': { min: 17, max: 25 },
+        '2anos': { min: 15, max: 18 },
+        '3anos': { min: 14, max: 17 },
+        '4anos': { min: 14, max: 17 },
+        '5anos': { min: 14, max: 17 }
+        // Para mayores de 5 años no hay rangos específicos, solo se calcula IMC
+    };
+
+    // Función para calcular IMC
+    function calcularIMC() {
+        const peso = parseFloat(pesoInput.value);
+        const talla = parseFloat(tallaInput.value);
+        const edad = edadSelect.value;
+
+        if (peso && talla && edad) {
+            // Convertir talla de cm a metros
+            const tallaMetros = talla / 100;
+            const imc = peso / (tallaMetros * tallaMetros);
+            
+            imcInput.value = imc.toFixed(2);
+            evaluarEstadoNutricional(imc, edad);
+        } else {
+            imcInput.value = '';
+            resultadoDiv.style.display = 'none';
+        }
+    }
+
+    // Función para evaluar estado nutricional
+    function evaluarEstadoNutricional(imc, edad) {
+        let estado = '';
+        let clase = '';
+        let icono = '';
+        let mensaje = '';
+        let derivacion = '';
+
+        // Para mayores de 5 años
+        if (['6anos', '7anos', '8anos'].includes(edad)) {
+            if (imc < 18.5) {
+                estado = 'Peso bajo';
+                clase = 'peso-bajo';
+                icono = '⬇️';
+            } else if (imc >= 18.5 && imc < 25) {
+                estado = 'Peso normal';
+                clase = 'peso-normal';
+                icono = '✅';
+            } else if (imc >= 25 && imc < 30) {
+                estado = 'Sobrepeso';
+                clase = 'sobrepeso';
+                icono = '⬆️';
+            } else {
+                estado = 'Obesidad';
+                clase = 'obesidad';
+                icono = '🔴';
+            }
+        } else {
+            // Para menores de 5 años
+            const rangos = rangosIMC[edad];
+            if (!rangos) return;
+
+            if (imc < rangos.min * 0.85) {
+                estado = 'Peso bajo';
+                clase = 'peso-bajo';
+                icono = '⬇️';
+                derivacion = 'Derivar a Medicina Familiar y Nutricionista';
+            } else if (imc < rangos.min) {
+                estado = 'Riesgo de Peso bajo';
+                clase = 'riesgo-peso-bajo';
+                icono = '⚠️';
+                derivacion = 'Derivar a Medicina Familiar y Nutricionista';
+            } else if (imc <= rangos.max) {
+                estado = 'Peso normal';
+                clase = 'peso-normal';
+                icono = '✅';
+            } else if (imc <= rangos.max * 1.15) {
+                estado = 'Sobrepeso';
+                clase = 'sobrepeso';
+                icono = '⬆️';
+                derivacion = 'Derivar a EEMF y Nutricionista';
+            } else {
+                estado = 'Obesidad';
+                clase = 'obesidad';
+                icono = '🔴';
+                derivacion = 'Derivar a Medicina Familiar y Nutricionista';
+            }
+        }
+
+        // Mostrar resultado
+        estadoDiv.className = `nutrition-result ${clase}`;
+        estadoDiv.innerHTML = `
+            <div class="nutrition-icon">${icono}</div>
+            <h4>${estado}</h4>
+            <p>IMC: ${imc.toFixed(2)} kg/m²</p>
+            ${derivacion ? `
+                <div class="alerta-derivacion">
+                    <span class="icono">👨‍⚕️</span>
+                    <span class="texto">${derivacion}</span>
+                </div>
+            ` : ''}
+        `;
+
+        resultadoDiv.style.display = 'block';
+    }
+
+    // Event listeners
+    pesoInput.addEventListener('input', calcularIMC);
+    tallaInput.addEventListener('input', calcularIMC);
+    edadSelect.addEventListener('change', calcularIMC);
+
+    // Botón limpiar
+    document.getElementById('limpiarNutricion')?.addEventListener('click', function() {
+        if (confirm('¿Está seguro de que desea limpiar todos los campos?')) {
+            document.getElementById('nutricionForm').reset();
+            imcInput.value = '';
+            resultadoDiv.style.display = 'none';
+        }
+    });
+
+    // Botón guardar
+    document.getElementById('guardarNutricion')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const peso = pesoInput.value;
+        const talla = tallaInput.value;
+        const edad = edadSelect.value;
+        const fecha = document.getElementById('fecha_nutricion').value;
+        const imc = imcInput.value;
+
+        if (!peso || !talla || !edad || !fecha) {
+            alert('Por favor complete todos los campos obligatorios');
+            return;
+        }
+
+        // Agregar al historial
+        agregarAlHistorialNutricion({
+            peso: peso,
+            talla: talla,
+            edad: edad,
+            fecha: fecha,
+            imc: imc,
+            estado: estadoDiv.querySelector('h4')?.textContent || ''
+        });
+
+        alert('Evaluación nutricional guardada correctamente');
+        
+        // Limpiar formulario
+        document.getElementById('nutricionForm').reset();
+        imcInput.value = '';
+        resultadoDiv.style.display = 'none';
+    });
+
+    // Botón borrador
+    document.getElementById('guardarBorradorNut')?.addEventListener('click', function() {
+        alert('Borrador de evaluación nutricional guardado');
+    });
+});
+
+// Función para agregar al historial nutricional
+function agregarAlHistorialNutricion(datos) {
+    const container = document.getElementById('historialEvaluaciones');
+    
+    const historialItem = document.createElement('div');
+    historialItem.classList.add('historial-item');
+    historialItem.innerHTML = `
+        <div class="historial-content">
+            <div class="historial-title">📊 Evaluación Nutricional - ${datos.edad.replace('_', ' ')}</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 10px;">
+                <div><strong>Peso:</strong> ${datos.peso} kg</div>
+                <div><strong>Talla:</strong> ${datos.talla} cm</div>
+                <div><strong>IMC:</strong> ${datos.imc} kg/m²</div>
+                <div><strong>Estado:</strong> ${datos.estado}</div>
+                <div><strong>Fecha:</strong> ${datos.fecha}</div>
+            </div>
+        </div>
+        <div class="historial-actions">
+            <button type="button" class="btn-delete" onclick="eliminarEvaluacionNutricional(this)">🗑️ Eliminar</button>
+        </div>
+    `;
+
+    container.appendChild(historialItem);
+    document.getElementById('historialNutricion').style.display = 'block';
+}
+
+// Función para eliminar evaluación nutricional
+function eliminarEvaluacionNutricional(button) {
+    if (confirm('¿Está seguro de eliminar esta evaluación nutricional?')) {
+        button.closest('.historial-item').remove();
+        
+        // Ocultar sección si no hay elementos
+        const container = document.getElementById('historialEvaluaciones');
+        if (container.children.length === 0) {
+            document.getElementById('historialNutricion').style.display = 'none';
+        }
+    }
+}
+
+
 
     </script>
 </body>
