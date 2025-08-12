@@ -537,6 +537,64 @@
                         </div>
                     </div>
 
+                    <!-- Tipo de Alimentación -->
+                    <div class="form-section" style="margin-top: 40px;">
+                        <div class="section-header">
+                            <div class="section-icon">🍼</div>
+                            <div class="section-info">
+                                <h3>Tipo de Alimentación</h3>
+                                <p class="section-description">Registro de alimentación y lactancia materna</p>
+                            </div>
+                        </div>
+
+                        <div class="feeding-form">
+                            <div class="form-group">
+                                <label for="tipo_alimentacion" class="form-label">Tipo de Alimentación <span style="color: #e53e3e;">*</span></label>
+                                <select id="tipo_alimentacion" name="tipo_alimentacion" class="form-input" required>
+                                    <option value="">Selecciona el tipo de alimentación...</option>
+                                    <option value="lactancia_exclusiva" data-edad="0-6">Lactancia materna exclusiva (0 a 6 meses)</option>
+                                    <option value="lactancia_complementaria" data-edad="6-24">Lactancia materna complementaria (6 meses a 2 años)</option>
+                                    <option value="abandono_lactancia" data-edad="">Abandono de Lactancia materna</option>
+                                    <option value="lactancia_mixta" data-edad="">Lactancia materna mixta</option>
+                                    <option value="lactancia_mixta_complementaria" data-edad="">Lactancia materna mixta complementaria</option>
+                                    <option value="sin_lactancia_medica" data-edad="">Sin lactancia materna por razón médica</option>
+                                </select>
+                            </div>
+
+                            <div id="edad_info_alimentacion" class="age-info" style="display: none; margin-top: 15px;">
+                                <!-- Se mostrará la información de edad según la selección -->
+                            </div>
+
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label for="fecha_alimentacion" class="form-label">Fecha de la consulta/aplicación <span style="color: #e53e3e;">*</span></label>
+                                <input type="date" id="fecha_alimentacion" name="fecha_alimentacion" class="form-input" required>
+                            </div>
+
+                            <div id="rescate_section" class="form-group" style="display: none; margin-top: 20px;">
+                                <label class="form-label">
+                                    <input type="checkbox" id="registro_rescate" name="registro_rescate" style="margin-right: 8px;">
+                                    Registro de Rescate
+                                </label>
+                                <div class="card-description" style="margin-top: 8px; font-size: 13px; color: #718096;">
+                                    Marcar si este es un registro de rescate para casos especiales
+                                </div>
+                            </div>
+
+                            <!-- Información adicional según el tipo -->
+                            <div id="info_adicional_alimentacion" style="display: none; margin-top: 20px;">
+                                <div class="prevention-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">ℹ️</div>
+                                        <div class="card-title">Información Importante</div>
+                                    </div>
+                                    <div id="contenido_info_alimentacion" class="card-description">
+                                        <!-- Se llenará dinámicamente -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Botones de Acción -->
                     <div class="action-buttons">
                         <button type="button" class="btn btn-outline" id="limpiarPrevencion">
@@ -632,12 +690,24 @@
                 for (const [campo, valor] of Object.entries(datos)) {
                     const input = document.getElementById(campo);
                     if (input && valor) {
-                        input.value = valor;
-                        // Si tiene valor, mostrar el campo de fecha
-                        const fieldId = campo.replace('fecha_', '');
-                        const dateField = document.getElementById(fieldId + '-date');
-                        if (dateField) {
-                            dateField.classList.add('active');
+                        if (input.type === 'checkbox') {
+                            input.checked = valor;
+                        } else {
+                            input.value = valor;
+                        }
+                        
+                        // Si tiene valor, mostrar el campo de fecha para medidas preventivas
+                        if (campo.startsWith('fecha_') && campo !== 'fecha_alimentacion') {
+                            const fieldId = campo.replace('fecha_', '');
+                            const dateField = document.getElementById(fieldId + '-date');
+                            if (dateField) {
+                                dateField.classList.add('active');
+                            }
+                        }
+                        
+                        // Trigger change para tipo de alimentación
+                        if (campo === 'tipo_alimentacion') {
+                            input.dispatchEvent(new Event('change'));
                         }
                     }
                 }
@@ -653,18 +723,100 @@
                     datos[input.id] = input.value;
                 }
             });
+            
+            // Agregar datos de alimentación
+            const tipoAlimentacion = document.getElementById('tipo_alimentacion').value;
+            const fechaAlimentacion = document.getElementById('fecha_alimentacion').value;
+            const registroRescate = document.getElementById('registro_rescate').checked;
+            
+            if (tipoAlimentacion && fechaAlimentacion) {
+                datos.tipo_alimentacion = tipoAlimentacion;
+                datos.fecha_alimentacion = fechaAlimentacion;
+                datos.registro_rescate = registroRescate;
+            }
+            
             return datos;
         }
+
+        // Función para manejar cambios en tipo de alimentación
+        document.getElementById('tipo_alimentacion').addEventListener('change', function() {
+            const valor = this.value;
+            const edadInfo = document.getElementById('edad_info_alimentacion');
+            const infoAdicional = document.getElementById('info_adicional_alimentacion');
+            const contenidoInfo = document.getElementById('contenido_info_alimentacion');
+            const rescateSection = document.getElementById('rescate_section');
+            
+            if (valor) {
+                const option = this.querySelector(`option[value="${valor}"]`);
+                const edadRecomendada = option.dataset.edad;
+                
+                // Mostrar información de edad si existe
+                if (edadRecomendada) {
+                    let textoEdad = '';
+                    if (edadRecomendada === '0-6') {
+                        textoEdad = 'Recomendado de 0 a 6 meses de edad';
+                    } else if (edadRecomendada === '6-24') {
+                        textoEdad = 'Recomendado de 6 meses a 2 años de edad';
+                    }
+                    edadInfo.textContent = textoEdad;
+                    edadInfo.style.display = 'block';
+                } else {
+                    edadInfo.style.display = 'none';
+                }
+                
+                // Mostrar información adicional según el tipo
+                let infoTexto = '';
+                switch(valor) {
+                    case 'lactancia_exclusiva':
+                        infoTexto = 'La lactancia materna exclusiva proporciona todos los nutrientes necesarios durante los primeros 6 meses de vida. Es la alimentación ideal para el desarrollo óptimo del bebé.';
+                        break;
+                    case 'lactancia_complementaria':
+                        infoTexto = 'A partir de los 6 meses, se introduce alimentación complementaria junto con la lactancia materna, que debe continuar hasta los 2 años o más.';
+                        break;
+                    case 'abandono_lactancia':
+                        infoTexto = 'Registro cuando se ha interrumpido la lactancia materna. Es importante evaluar las razones y brindar apoyo nutricional alternativo.';
+                        break;
+                    case 'lactancia_mixta':
+                        infoTexto = 'Combinación de lactancia materna con fórmula infantil. Se debe promover el incremento de la lactancia materna cuando sea posible.';
+                        break;
+                    case 'lactancia_mixta_complementaria':
+                        infoTexto = 'Lactancia materna con fórmula y alimentos complementarios. Mantener la lactancia materna como base de la alimentación.';
+                        break;
+                    case 'sin_lactancia_medica':
+                        infoTexto = 'Ausencia de lactancia materna por indicación médica justificada. Requiere seguimiento nutricional especializado.';
+                        break;
+                }
+                
+                if (infoTexto) {
+                    contenidoInfo.textContent = infoTexto;
+                    infoAdicional.style.display = 'block';
+                } else {
+                    infoAdicional.style.display = 'none';
+                }
+                
+                // Mostrar opción de rescate para todos los tipos
+                rescateSection.style.display = 'block';
+            } else {
+                edadInfo.style.display = 'none';
+                infoAdicional.style.display = 'none';
+                rescateSection.style.display = 'none';
+            }
+        });
 
         // Función para guardar registro
         document.getElementById('guardarPrevencion').addEventListener('click', function(e) {
             e.preventDefault();
             
             const datos = recopilarDatosFormulario();
-            const hayDatos = Object.keys(datos).length > 0;
+            const tipoAlimentacion = document.getElementById('tipo_alimentacion').value;
+            const fechaAlimentacion = document.getElementById('fecha_alimentacion').value;
             
-            if (!hayDatos) {
-                mostrarAlerta('Por favor, registra al menos una medida preventiva', 'warning');
+            // Verificar que al menos haya datos de prevención O alimentación
+            const hayDatosPrevencion = Object.keys(datos).some(key => key.startsWith('fecha_') && key !== 'fecha_alimentacion');
+            const hayDatosAlimentacion = tipoAlimentacion && fechaAlimentacion;
+            
+            if (!hayDatosPrevencion && !hayDatosAlimentacion) {
+                mostrarAlerta('Por favor, registra al menos una medida preventiva o tipo de alimentación', 'warning');
                 return;
             }
 
@@ -686,6 +838,11 @@
             document.querySelectorAll('.date-field').forEach(field => {
                 field.classList.remove('active');
             });
+            
+            // Limpiar secciones dinámicas de alimentación
+            document.getElementById('edad_info_alimentacion').style.display = 'none';
+            document.getElementById('info_adicional_alimentacion').style.display = 'none';
+            document.getElementById('rescate_section').style.display = 'none';
         });
 
         // Función para mostrar alertas
@@ -725,9 +882,29 @@
                 
                 let contenido = `<strong>Fecha de registro: ${formatearFecha(registro.fecha_registro)}</strong><br>`;
                 
+                // Mostrar datos de alimentación primero si existen
+                if (registro.datos.tipo_alimentacion) {
+                    contenido += `<br><strong>📍 Alimentación:</strong>`;
+                    contenido += `<br>• Tipo: ${obtenerNombreTipoAlimentacion(registro.datos.tipo_alimentacion)}`;
+                    if (registro.datos.fecha_alimentacion) {
+                        contenido += `<br>• Fecha: ${formatearFecha(registro.datos.fecha_alimentacion)}`;
+                    }
+                    if (registro.datos.registro_rescate) {
+                        contenido += `<br>• ⚠️ Registro de Rescate`;
+                    }
+                }
+                
+                // Mostrar datos de prevención
+                let hayPrevencion = false;
                 for (const [campo, fecha] of Object.entries(registro.datos)) {
-                    const nombreCampo = obtenerNombreCampo(campo);
-                    contenido += `<br>• ${nombreCampo}: ${formatearFecha(fecha)}`;
+                    if (campo.startsWith('fecha_') && campo !== 'fecha_alimentacion') {
+                        if (!hayPrevencion) {
+                            contenido += `<br><br><strong>🛡️ Medidas Preventivas:</strong>`;
+                            hayPrevencion = true;
+                        }
+                        const nombreCampo = obtenerNombreCampo(campo);
+                        contenido += `<br>• ${nombreCampo}: ${formatearFecha(fecha)}`;
+                    }
                 }
 
                 item.innerHTML = contenido;
@@ -750,9 +927,24 @@
                 'fecha_aplicacionFluor': 'Aplicación de Flúor',
                 'fecha_hiloDental': 'Enseñanza Hilo Dental',
                 'fecha_autoFluor': 'Autoaplicación de Flúor',
-                'fecha_barnizFluor': 'Barniz de Flúor'
+                'fecha_barnizFluor': 'Barniz de Flúor',
+                'tipo_alimentacion': 'Tipo de Alimentación',
+                'fecha_alimentacion': 'Fecha de Alimentación',
+                'registro_rescate': 'Registro de Rescate'
             };
             return nombres[campo] || campo;
+        }
+
+        function obtenerNombreTipoAlimentacion(valor) {
+            const tipos = {
+                'lactancia_exclusiva': 'Lactancia materna exclusiva',
+                'lactancia_complementaria': 'Lactancia materna complementaria',
+                'abandono_lactancia': 'Abandono de Lactancia materna',
+                'lactancia_mixta': 'Lactancia materna mixta',
+                'lactancia_mixta_complementaria': 'Lactancia materna mixta complementaria',
+                'sin_lactancia_medica': 'Sin lactancia materna por razón médica'
+            };
+            return tipos[valor] || valor;
         }
 
         // Función para formatear fecha
