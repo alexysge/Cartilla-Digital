@@ -1995,7 +1995,7 @@
         }
 
         .btn-detalles {
-            background: #6c757d;
+            background: #84c0f5;
             color: white;
             border: none;
             border-radius: 50%;
@@ -2121,6 +2121,19 @@
                 flex: 1;
             }
         }
+
+        .esquema-especial {
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .esquema-especial h5 {
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -2186,6 +2199,7 @@
                     <span>💉</span>
                     <span>Vacunación</span>
                 </button>
+
             </div>
 
             <!-- TAB: Antecedentes -->
@@ -2319,8 +2333,8 @@
                         <div class="form-grid">
                             <!-- Complicaciones en el Embarazo -->
                             <div class="form-group">
-                                <label for="complicacionesEmbarazo" class="form-label">¿Hubo complicaciones en el
-                                    embarazo?</label>
+                                <label for="complicacionesEmbarazo" class="form-label">Complicaciones en el
+                                    embarazo</label>
                                 <select id="complicacionesEmbarazo" name="complicacionesEmbarazo" class="form-select">
                                     <option value="">Seleccione...</option>
                                     <option value="sin_complicaciones">Sin complicaciones</option>
@@ -2353,8 +2367,8 @@
 
                             <!-- Complicaciones al Nacimiento -->
                             <div class="form-group">
-                                <label for="complicacionesNacimiento" class="form-label">¿Hubo complicaciones al
-                                    nacimiento?</label>
+                                <label for="complicacionesNacimiento" class="form-label">Complicaciones en el
+                                    nacimiento</label>
                                 <select id="complicacionesNacimiento" name="complicacionesNacimiento"
                                     class="form-select">
                                     <option value="">Seleccione...</option>
@@ -2959,10 +2973,9 @@
                             <input type="date" id="fecha_evaluacion_desarrollo" name="fecha_evaluacion_desarrollo"
                                 class="date-input-large">
                         </div>
-
                         <!-- Selector de Edad -->
                         <div class="age-selector-section">
-                            <h4>🎂 Edad del Niño(a)</h4>
+                            <h4>📆Edad del Niño(a)</h4>
                             <select id="edad_nino" name="edad_nino" class="age-select">
                                 <option value="">Selecciona la edad...</option>
                                 <option value="1mes">1 mes</option>
@@ -3818,7 +3831,7 @@
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('bcg', 'unica')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('bcg', 'unica')">➕</button>
                                         </div>
                                     </div>
                                 </div>
@@ -3831,51 +3844,32 @@
                                     <span class="enfermedad-badge">Hepatitis B</span>
                                 </div>
                                 <div class="dosis-container">
-                                    <div class="dosis-item" data-vacuna="hepatitis_b" data-dosis="primera">
+                                    <div class="dosis-item" data-vacuna="hepatitis_b" data-dosis="unica">
                                         <div class="dosis-info">
-                                            <span class="dosis-numero">1era dosis</span>
+                                            <span class="dosis-numero">Única</span>
                                             <span class="edad-oportuna">Al nacer</span>
                                         </div>
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('hepatitis_b', 'primera')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('hepatitis_b', 'primera')">➕</button>
                                         </div>
                                     </div>
-                                    <div class="dosis-item" data-vacuna="hepatitis_b" data-dosis="segunda">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">2da dosis</span>
-                                            <span class="edad-oportuna">2 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('hepatitis_b', 'segunda')">⚙️</button>
-                                        </div>
-                                    </div>
-                                    <div class="dosis-item" data-vacuna="hepatitis_b" data-dosis="tercera">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">3ra dosis</span>
-                                            <span class="edad-oportuna">6 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('hepatitis_b', 'tercera')">⚙️</button>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
 
-                            <!-- Pentavalente -->
+
+                            <!-- HEXAVALENTE -->
                             <div class="vacuna-card">
                                 <div class="vacuna-header">
-                                    <h4>💉 Pentavalente</h4>
-                                    <span class="enfermedad-badge">Difteria, Tos ferina, Tétanos, Hepatitis B,
-                                        Haemophilus Influenzae tipo B</span>
+                                    <h4>💉 Hexavalente (DPaT + VPI + Hib + HepB)</h4>
+                                    <span class="enfermedad-badge">Difteria, Tos ferina, Tétanos, Poliomielitis,
+                                        Hepatitis B y Enfermedades graves por Haemophilus Influenzae tipo B (neumonía y
+                                        meningitis)</span>
                                 </div>
                                 <div class="dosis-container">
-                                    <div class="dosis-item" data-vacuna="pentavalente" data-dosis="primera">
+                                    <div class="dosis-item" data-vacuna="hexavalente" data-dosis="primera">
                                         <div class="dosis-info">
                                             <span class="dosis-numero">1era dosis</span>
                                             <span class="edad-oportuna">2 meses</span>
@@ -3883,10 +3877,10 @@
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('pentavalente', 'primera')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('hexavalente', 'primera')">➕</button>
                                         </div>
                                     </div>
-                                    <div class="dosis-item" data-vacuna="pentavalente" data-dosis="segunda">
+                                    <div class="dosis-item" data-vacuna="hexavalente" data-dosis="segunda">
                                         <div class="dosis-info">
                                             <span class="dosis-numero">2da dosis</span>
                                             <span class="edad-oportuna">4 meses</span>
@@ -3894,10 +3888,10 @@
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('pentavalente', 'segunda')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('hexavalente', 'segunda')">➕</button>
                                         </div>
                                     </div>
-                                    <div class="dosis-item" data-vacuna="pentavalente" data-dosis="tercera">
+                                    <div class="dosis-item" data-vacuna="hexavalente" data-dosis="tercera">
                                         <div class="dosis-info">
                                             <span class="dosis-numero">3ra dosis</span>
                                             <span class="edad-oportuna">6 meses</span>
@@ -3905,136 +3899,18 @@
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('pentavalente', 'tercera')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('hexavalente', 'tercera')">➕</button>
                                         </div>
                                     </div>
-                                    <div class="dosis-item" data-vacuna="pentavalente" data-dosis="refuerzo">
+                                    <div class="dosis-item" data-vacuna="hexavalente" data-dosis="cuarta">
                                         <div class="dosis-info">
-                                            <span class="dosis-numero">Refuerzo</span>
+                                            <span class="dosis-numero">4ta dosis</span>
                                             <span class="edad-oportuna">18 meses</span>
                                         </div>
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('pentavalente', 'refuerzo')">⚙️</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Rotavirus -->
-                            <div class="vacuna-card">
-                                <div class="vacuna-header">
-                                    <h4>💉 Rotavirus</h4>
-                                    <span class="enfermedad-badge">Diarrea por Rotavirus</span>
-                                </div>
-                                <div class="dosis-container">
-                                    <div class="dosis-item" data-vacuna="rotavirus" data-dosis="primera">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">1era dosis</span>
-                                            <span class="edad-oportuna">2 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('rotavirus', 'primera')">⚙️</button>
-                                        </div>
-                                    </div>
-                                    <div class="dosis-item" data-vacuna="rotavirus" data-dosis="segunda">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">2da dosis</span>
-                                            <span class="edad-oportuna">4 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('rotavirus', 'segunda')">⚙️</button>
-                                        </div>
-                                    </div>
-                                    <div class="dosis-item" data-vacuna="rotavirus" data-dosis="tercera">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">3ra dosis</span>
-                                            <span class="edad-oportuna">6 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('rotavirus', 'tercera')">⚙️</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Neumocócica conjugada -->
-                            <div class="vacuna-card">
-                                <div class="vacuna-header">
-                                    <h4>💉 Neumocócica conjugada</h4>
-                                    <span class="enfermedad-badge">Enfermedad neumocócica invasiva</span>
-                                </div>
-                                <div class="dosis-container">
-                                    <div class="dosis-item" data-vacuna="neumococica" data-dosis="primera">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">1era dosis</span>
-                                            <span class="edad-oportuna">2 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('neumococica', 'primera')">⚙️</button>
-                                        </div>
-                                    </div>
-                                    <div class="dosis-item" data-vacuna="neumococica" data-dosis="segunda">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">2da dosis</span>
-                                            <span class="edad-oportuna">4 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('neumococica', 'segunda')">⚙️</button>
-                                        </div>
-                                    </div>
-                                    <div class="dosis-item" data-vacuna="neumococica" data-dosis="refuerzo">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">Refuerzo</span>
-                                            <span class="edad-oportuna">12 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('neumococica', 'refuerzo')">⚙️</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- SRP -->
-                            <div class="vacuna-card">
-                                <div class="vacuna-header">
-                                    <h4>💉 SRP</h4>
-                                    <span class="enfermedad-badge">Sarampión, Rubéola y Parotiditis</span>
-                                </div>
-                                <div class="dosis-container">
-                                    <div class="dosis-item" data-vacuna="srp" data-dosis="primera">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">1era dosis</span>
-                                            <span class="edad-oportuna">12 meses</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('srp', 'primera')">⚙️</button>
-                                        </div>
-                                    </div>
-                                    <div class="dosis-item" data-vacuna="srp" data-dosis="segunda">
-                                        <div class="dosis-info">
-                                            <span class="dosis-numero">2da dosis</span>
-                                            <span class="edad-oportuna">6 años</span>
-                                        </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('srp', 'segunda')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('hexavalente', 'cuarta')">➕</button>
                                         </div>
                                     </div>
                                 </div>
@@ -4055,50 +3931,239 @@
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('dpt', 'refuerzo')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('dpt', 'refuerzo')">➕</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Virus de Papiloma Humano -->
+                            <!-- Rotavirus -->
                             <div class="vacuna-card">
                                 <div class="vacuna-header">
-                                    <h4>💉 Virus de Papiloma Humano</h4>
-                                    <span class="enfermedad-badge">Infecciones por VPH</span>
+                                    <h4>💉 Rotavirus</h4>
+                                    <span class="enfermedad-badge">Diarrea por Rotavirus</span>
                                 </div>
                                 <div class="dosis-container">
-                                    <div class="dosis-item" data-vacuna="vph" data-dosis="primera">
+                                    <div class="dosis-item" data-vacuna="rotavirus" data-dosis="primera">
                                         <div class="dosis-info">
                                             <span class="dosis-numero">1era dosis</span>
-                                            <span class="edad-oportuna">9 años (niñas)</span>
+                                            <span class="edad-oportuna">2 meses</span>
                                         </div>
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('vph', 'primera')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('rotavirus', 'primera')">➕</button>
                                         </div>
                                     </div>
-                                    <div class="dosis-item" data-vacuna="vph" data-dosis="segunda">
+                                    <div class="dosis-item" data-vacuna="rotavirus" data-dosis="segunda">
                                         <div class="dosis-info">
                                             <span class="dosis-numero">2da dosis</span>
-                                            <span class="edad-oportuna">6 meses después</span>
+                                            <span class="edad-oportuna">4 meses</span>
                                         </div>
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('vph', 'segunda')">⚙️</button>
+                                                onclick="abrirDetallesVacuna('rotavirus', 'segunda')">➕</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Neumocócica conjugada -->
+                            <div class="vacuna-card">
+                                <div class="vacuna-header">
+                                    <h4>💉 Neumocócica conjugada</h4>
+                                    <span class="enfermedad-badge">Neumonía, Meningitis y otras enfermedades graves
+                                        causadas por neumococo</span>
+                                </div>
+                                <div class="dosis-container">
+                                    <div class="dosis-item" data-vacuna="neumococica" data-dosis="primera">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">1era dosis</span>
+                                            <span class="edad-oportuna">2 meses</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('neumococica', 'primera')">➕</button>
+                                        </div>
+                                    </div>
+                                    <div class="dosis-item" data-vacuna="neumococica" data-dosis="segunda">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">2da dosis</span>
+                                            <span class="edad-oportuna">4 meses</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('neumococica', 'segunda')">➕</button>
+                                        </div>
+                                    </div>
+                                    <div class="dosis-item" data-vacuna="neumococica" data-dosis="refuerzo">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">Refuerzo</span>
+                                            <span class="edad-oportuna">12 meses</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('neumococica', 'refuerzo')">➕</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- INFLUENZA -->
+                            <div class="vacuna-card">
+                                <div class="vacuna-header">
+                                    <h4>💉 INFLUENZA</h4>
+                                    <span class="enfermedad-badge">Neumonía por virus de la Influenza A y B</span>
+                                </div>
+                                <div class="dosis-container">
+                                    <div class="dosis-item" data-vacuna="influenza" data-dosis="primera">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">1era dosis</span>
+                                            <span class="edad-oportuna">6 meses</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('influenza', 'primera')">➕</button>
+                                        </div>
+                                    </div>
+                                    <div class="dosis-item" data-vacuna="influenza" data-dosis="segunda">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">2da dosis</span>
+                                            <span class="edad-oportuna">1 mes después</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('influenza', 'segunda')">➕</button>
+                                        </div>
+                                    </div>
+                                    <div class="dosis-item" data-vacuna="influenza" data-dosis="anual">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">Dosis Anual</span>
+                                            <span class="edad-oportuna">Cada temporada invernal</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('influenza', 'anual')">➕</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SRP -->
+                            <div class="vacuna-card">
+                                <div class="vacuna-header">
+                                    <h4>💉 SRP</h4>
+                                    <span class="enfermedad-badge">Sarampión, Rubéola y Paperas</span>
+                                </div>
+                                <div class="dosis-container">
+                                    <div class="dosis-item" data-vacuna="srp" data-dosis="primera">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">1era dosis</span>
+                                            <span class="edad-oportuna">12 meses</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('srp', 'primera')">➕</button>
+                                        </div>
+                                    </div>
+                                    <div class="dosis-item" data-vacuna="srp" data-dosis="segunda">
+                                        <div class="dosis-info">
+                                            <span class="dosis-numero">2da dosis</span>
+                                            <span class="edad-oportuna">6 años</span>
+                                        </div>
+                                        <div class="fecha-aplicacion">
+                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                                            <button type="button" class="btn-detalles"
+                                                onclick="abrirDetallesVacuna('srp', 'segunda')">➕</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- COVID-19 -->
+                            <div class="vacuna-card">
+                                <div class="vacuna-header">
+                                    <h4>💉 COVID-19</h4>
+                                    <span class="enfermedad-badge">Formas graves de la COVID-19</span>
+                                </div>
+                                <div class="dosis-container">
+                                    <!-- Esquema Primario -->
+                                    <div class="esquema-especial">
+                                        <h5>📋 ESQUEMA PRIMARIO</h5>
+                                        <div class="dosis-item" data-vacuna="covid19" data-dosis="primera_primaria">
+                                            <div class="dosis-info">
+                                                <span class="dosis-numero">1era dosis</span>
+                                                <span class="edad-oportuna">Esquema primario</span>
+                                            </div>
+                                            <div class="fecha-aplicacion">
+                                                <input type="date" class="fecha-input"
+                                                    placeholder="Fecha de aplicación">
+                                                <button type="button" class="btn-detalles"
+                                                    onclick="abrirDetallesVacuna('covid19', 'primera_primaria')">➕</button>
+                                            </div>
+                                        </div>
+                                        <div class="dosis-item" data-vacuna="covid19" data-dosis="segunda_primaria">
+                                            <div class="dosis-info">
+                                                <span class="dosis-numero">2da dosis</span>
+                                                <span class="edad-oportuna">Esquema primario</span>
+                                            </div>
+                                            <div class="fecha-aplicacion">
+                                                <input type="date" class="fecha-input"
+                                                    placeholder="Fecha de aplicación">
+                                                <button type="button" class="btn-detalles"
+                                                    onclick="abrirDetallesVacuna('covid19', 'segunda_primaria')">➕</button>
+                                            </div>
+                                        </div>
+                                        <div class="dosis-item" data-vacuna="covid19" data-dosis="tercera_primaria">
+                                            <div class="dosis-info">
+                                                <span class="dosis-numero">3ra dosis</span>
+                                                <span class="edad-oportuna">Esquema primario</span>
+                                            </div>
+                                            <div class="fecha-aplicacion">
+                                                <input type="date" class="fecha-input"
+                                                    placeholder="Fecha de aplicación">
+                                                <button type="button" class="btn-detalles"
+                                                    onclick="abrirDetallesVacuna('covid19', 'tercera_primaria')">➕</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Refuerzo para niños con factores de riesgo -->
+                                    <div class="esquema-especial"
+                                        style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); border-color: #e17055;">
+                                        <h5>⚠️ NIÑAS Y NIÑOS CON FACTORES DE RIESGO</h5>
+                                        <div class="dosis-item" data-vacuna="covid19" data-dosis="refuerzo_riesgo">
+                                            <div class="dosis-info">
+                                                <span class="dosis-numero">Refuerzo</span>
+                                                <span class="edad-oportuna">Solo con factores de riesgo</span>
+                                            </div>
+                                            <div class="fecha-aplicacion">
+                                                <input type="date" class="fecha-input"
+                                                    placeholder="Fecha de aplicación">
+                                                <button type="button" class="btn-detalles"
+                                                    onclick="abrirDetallesVacuna('covid19', 'refuerzo_riesgo')">➕</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
                     <!-- Otras Vacunas -->
                     <div class="form-section">
                         <div class="section-header" style="border-bottom: 2px solid #9b59b6;">
-                            <div class="section-icon" style="background: linear-gradient(135deg, #9b59b6, #bb73e0);">➕
+                            <div class="section-icon" style="background: linear-gradient(135deg, #9b59b6, #bb73e0);">⭕
                             </div>
                             <div class="section-info">
                                 <h3 style="color: #9b59b6;">Otras Vacunas</h3>
@@ -4121,7 +4186,28 @@
                                         <option value="meningococo">Vacuna contra el Meningococo</option>
                                         <option value="fiebre_amarilla">Vacuna contra la Fiebre amarilla</option>
                                         <option value="tdpa">TDPA</option>
+                                        <option value="antihepatitis_a">Antihepatitis A</option>
+                                        <option value="neumococica_polisacarida">Neumocócica Polisacárida (23 valente)
+                                        </option>
+                                        <option value="antirrabica_humana">Antirrábica humana</option>
+                                        <option value="antivaricela">Antivaricela</option>
+                                        <option value="coccidioidina">Coccidioidina</option>
+                                        <option value="faboter_antialacrán">Faboterápico antialacrán</option>
+                                        <option value="faboter_antiaracnido">Faboterápico antiarácnido</option>
+                                        <option value="faboter_antiviperino">Faboterápico antiviperino</option>
+                                        <option value="histoplasmina">Histoplasmina</option>
+                                        <option value="inmunoglobulina_antirrabica">Inmunoglobulina Antirrábica</option>
+                                        <option value="inmunoglobulina_antitetanica">Inmunoglobulina Antitetánica
+                                        <option value="otra">Otra</option>
+                                        </option>
+                                        <option value="inmunoglobulina_simple">Inmunoglobulina Simple</option>
                                     </select>
+                                    <div class="form-group" id="otra_vacuna_texto_group" style="display: none;">
+                                        <label for="otra_vacuna_texto" class="form-label">Especificar vacuna <span
+                                                class="required">*</span></label>
+                                        <input type="text" id="otra_vacuna_texto" name="otra_vacuna_texto"
+                                            class="form-input" placeholder="Escriba el nombre de la vacuna">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -5755,6 +5841,29 @@
                 button.parentElement.remove();
             }
         }
+
+        // Event listener para mostrar/ocultar campo de texto de "otra vacuna"
+        document.getElementById('otra_vacuna_select').addEventListener('change', function () {
+            const otraVacunaGroup = document.getElementById('otra_vacuna_texto_group');
+            const otraVacunaInput = document.getElementById('otra_vacuna_texto');
+
+            if (this.value === 'otra') {
+                otraVacunaGroup.style.display = 'block';
+                otraVacunaInput.required = true;
+            } else {
+                otraVacunaGroup.style.display = 'none';
+                otraVacunaInput.required = false;
+                otraVacunaInput.value = '';
+            }
+        });
+
+        // Modificar la función agregarOtraVacunaALista para manejar "otra"
+        // Actualizar esta parte en tu función existente donde obtienes el texto de la vacuna:
+        /*
+        const vacunaTexto = vacunaSelect.value === 'otra' 
+            ? document.getElementById('otra_vacuna_texto').value 
+            : vacunaSelect.options[vacunaSelect.selectedIndex].text;
+        */
 
     </script>
 </body>

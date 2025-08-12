@@ -1,1007 +1,789 @@
-<!-- Agregar este botón de pestaña en la sección tabs-nav después del botón de nutrición -->
-<button class="tab-btn" data-tab="vacunacion">
-    <span>💉</span>
-    <span>Vacunación</span>
-</button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevención de Enfermedades</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Agregar este contenido de pestaña después del div con id="nutricion" -->
-<div class="tab-content" id="vacunacion">
-    <div class="form-section">
-        <div class="section-header">
-            <div class="section-icon">💉</div>
-            <div class="section-info">
-                <h3>Esquema de Vacunación</h3>
-                <p class="section-description">Control y registro de vacunas aplicadas según esquema nacional</p>
-            </div>
-        </div>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            padding: 20px;
+        }
 
-        <!-- Esquema Nacional de Vacunación -->
+        .tab-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section-icon {
+            font-size: 32px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .section-info h3 {
+            color: #2d3748;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .section-description {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .prevention-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .prevention-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .age-info {
+            background: #e6fffa;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #234e52;
+            margin-bottom: 15px;
+            border-left: 4px solid #38b2ac;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #2d3748;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+
+        .age-link {
+            color: #4facfe;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .age-link:hover {
+            color: #2b6cb0;
+        }
+
+        .date-field {
+            margin-top: 10px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .date-field.active {
+            opacity: 1;
+            max-height: 100px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-outline:hover {
+            background: #f7fafc;
+        }
+
+        .historial-container {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .historial-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4facfe;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: #f0fff4;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            color: #744210;
+            border: 1px solid #fbd38d;
+        }
+
+        @media (max-width: 768px) {
+            .prevention-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-content" id="prevencion">
         <div class="form-section">
-            <div class="section-header" style="border-bottom: 2px solid #3498db;">
-                <div class="section-icon" style="background: linear-gradient(135deg, #3498db, #5dade2);">📋</div>
+            <div class="section-header">
+                <div class="section-icon">🛡️</div>
                 <div class="section-info">
-                    <h3 style="color: #3498db;">Esquema Nacional de Vacunación</h3>
-                    <p class="section-description">Vacunas del esquema básico de inmunización</p>
+                    <h3>Prevención de Enfermedades</h3>
+                    <p class="section-description">Registro y seguimiento de medidas preventivas para el paciente</p>
                 </div>
             </div>
 
-            <div class="vacunas-grid">
-                <!-- BCG -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 BCG</h4>
-                        <span class="enfermedad-badge">Tuberculosis meníngea y miliar</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="bcg" data-dosis="unica">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">Única</span>
-                                <span class="edad-oportuna">Al nacer</span>
+            <form id="prevencionForm">
+                <div class="prevention-form">
+                    
+                    <div class="prevention-grid">
+                        <!-- Vitamina A -->
+                        <div class="prevention-card">
+                            <div class="card-header">
+                                <div class="card-icon">🥕</div>
+                                <div class="card-title">VITAMINA "A"</div>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('bcg', 'unica')">⚙️</button>
+                            <div class="card-description">
+                                Previene infecciones respiratorias agudas y diarreas.
+                            </div>
+                            <div class="age-info">
+                                <span class="age-link" onclick="toggleDateField('vitaminaA')">
+                                    Dar cada 6 meses hasta los 4 años
+                                </span>
+                            </div>
+                            <div class="date-field" id="vitaminaA-date">
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de aplicación:</label>
+                                    <input type="date" class="form-input" id="fecha_vitaminaA" name="fecha_vitaminaA">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Hepatitis B -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 Hepatitis B</h4>
-                        <span class="enfermedad-badge">Hepatitis B</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="hepatitis_b" data-dosis="primera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">1era dosis</span>
-                                <span class="edad-oportuna">Al nacer</span>
+                        <!-- Hierro Anemia -->
+                        <div class="prevention-card">
+                            <div class="card-header">
+                                <div class="card-icon">🩸</div>
+                                <div class="card-title">HIERRO ANEMIA</div>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('hepatitis_b', 'primera')">⚙️</button>
+                            <div class="card-description">
+                                En bebés prematuros con bajo peso al nacer a partir de los 2 meses y hasta los 23 meses de edad.
+                                En bebés con peso normal al nacer a partir de los 4 meses y hasta los 9 años.
                             </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="hepatitis_b" data-dosis="segunda">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">2da dosis</span>
-                                <span class="edad-oportuna">2 meses</span>
+                            <div class="age-info">
+                                <span class="age-link" onclick="toggleDateField('hierroAnemia')">
+                                    Ver edad recomendada según peso al nacer
+                                </span>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('hepatitis_b', 'segunda')">⚙️</button>
+                            <div class="date-field" id="hierroAnemia-date">
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de aplicación:</label>
+                                    <input type="date" class="form-input" id="fecha_hierroAnemia" name="fecha_hierroAnemia">
+                                </div>
                             </div>
                         </div>
-                        <div class="dosis-item" data-vacuna="hepatitis_b" data-dosis="tercera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">3ra dosis</span>
-                                <span class="edad-oportuna">6 meses</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('hepatitis_b', 'tercera')">⚙️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Pentavalente -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 Pentavalente</h4>
-                        <span class="enfermedad-badge">Difteria, Tos ferina, Tétanos, Hepatitis B, Haemophilus Influenzae tipo B</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="pentavalente" data-dosis="primera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">1era dosis</span>
-                                <span class="edad-oportuna">2 meses</span>
+                        <!-- Profilaxis -->
+                        <div class="prevention-card">
+                            <div class="card-header">
+                                <div class="card-icon">💊</div>
+                                <div class="card-title">PROFILAXIS</div>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('pentavalente', 'primera')">⚙️</button>
+                            <div class="card-description">
+                                En bebés prematuros con bajo peso al nacer a partir de los 2 meses y hasta los 23 meses de edad.
+                                En bebés con peso normal al nacer a partir de los 4 meses y hasta los 9 años.
                             </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="pentavalente" data-dosis="segunda">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">2da dosis</span>
-                                <span class="edad-oportuna">4 meses</span>
+                            <div class="age-info">
+                                <span class="age-link" onclick="toggleDateField('profilaxis')">
+                                    Ver edad recomendada según peso al nacer
+                                </span>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('pentavalente', 'segunda')">⚙️</button>
+                            <div class="date-field" id="profilaxis-date">
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de aplicación:</label>
+                                    <input type="date" class="form-input" id="fecha_profilaxis" name="fecha_profilaxis">
+                                </div>
                             </div>
                         </div>
-                        <div class="dosis-item" data-vacuna="pentavalente" data-dosis="tercera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">3ra dosis</span>
-                                <span class="edad-oportuna">6 meses</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('pentavalente', 'tercera')">⚙️</button>
-                            </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="pentavalente" data-dosis="refuerzo">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">Refuerzo</span>
-                                <span class="edad-oportuna">18 meses</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('pentavalente', 'refuerzo')">⚙️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Rotavirus -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 Rotavirus</h4>
-                        <span class="enfermedad-badge">Diarrea por Rotavirus</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="rotavirus" data-dosis="primera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">1era dosis</span>
-                                <span class="edad-oportuna">2 meses</span>
+                        <!-- Desparasitación -->
+                        <div class="prevention-card">
+                            <div class="card-header">
+                                <div class="card-icon">🐛</div>
+                                <div class="card-title">DESPARASITACIÓN INTESTINAL</div>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('rotavirus', 'primera')">⚙️</button>
+                            <div class="card-description">
+                                Los parásitos enferman el estómago de tu hija o hijo. Para prevenirlos acude a tu unidad de salud para que le den desparasitante.
                             </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="rotavirus" data-dosis="segunda">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">2da dosis</span>
-                                <span class="edad-oportuna">4 meses</span>
+                            <div class="age-info">
+                                <span class="age-link" onclick="toggleDateField('desparasitacion')">
+                                    Cada 6 meses, a partir de los 2 años y hasta los 9 años de edad
+                                </span>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('rotavirus', 'segunda')">⚙️</button>
+                            <div class="date-field" id="desparasitacion-date">
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de aplicación:</label>
+                                    <input type="date" class="form-input" id="fecha_desparasitacion" name="fecha_desparasitacion">
+                                </div>
                             </div>
                         </div>
-                        <div class="dosis-item" data-vacuna="rotavirus" data-dosis="tercera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">3ra dosis</span>
-                                <span class="edad-oportuna">6 meses</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('rotavirus', 'tercera')">⚙️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Neumocócica conjugada -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 Neumocócica conjugada</h4>
-                        <span class="enfermedad-badge">Enfermedad neumocócica invasiva</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="neumococica" data-dosis="primera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">1era dosis</span>
-                                <span class="edad-oportuna">2 meses</span>
+                        <!-- Vida Suero Oral -->
+                        <div class="prevention-card">
+                            <div class="card-header">
+                                <div class="card-icon">💧</div>
+                                <div class="card-title">DOTACIÓN DE VIDA SUERO ORAL</div>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('neumococica', 'primera')">⚙️</button>
+                            <div class="card-description">
+                                Suministro de suero oral para prevenir deshidratación por diarrea.
                             </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="neumococica" data-dosis="segunda">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">2da dosis</span>
-                                <span class="edad-oportuna">4 meses</span>
+                            <div class="age-info">
+                                <span class="age-link" onclick="toggleDateField('sueroOral')">
+                                    De 0 a 4 años de edad
+                                </span>
                             </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('neumococica', 'segunda')">⚙️</button>
-                            </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="neumococica" data-dosis="refuerzo">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">Refuerzo</span>
-                                <span class="edad-oportuna">12 meses</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('neumococica', 'refuerzo')">⚙️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SRP -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 SRP</h4>
-                        <span class="enfermedad-badge">Sarampión, Rubéola y Parotiditis</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="srp" data-dosis="primera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">1era dosis</span>
-                                <span class="edad-oportuna">12 meses</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('srp', 'primera')">⚙️</button>
-                            </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="srp" data-dosis="segunda">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">2da dosis</span>
-                                <span class="edad-oportuna">6 años</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('srp', 'segunda')">⚙️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DPT -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 DPT</h4>
-                        <span class="enfermedad-badge">Difteria, Tos ferina y Tétanos</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="dpt" data-dosis="refuerzo">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">Refuerzo</span>
-                                <span class="edad-oportuna">4 años</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('dpt', 'refuerzo')">⚙️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Virus de Papiloma Humano -->
-                <div class="vacuna-card">
-                    <div class="vacuna-header">
-                        <h4>💉 Virus de Papiloma Humano</h4>
-                        <span class="enfermedad-badge">Infecciones por VPH</span>
-                    </div>
-                    <div class="dosis-container">
-                        <div class="dosis-item" data-vacuna="vph" data-dosis="primera">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">1era dosis</span>
-                                <span class="edad-oportuna">9 años (niñas)</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('vph', 'primera')">⚙️</button>
-                            </div>
-                        </div>
-                        <div class="dosis-item" data-vacuna="vph" data-dosis="segunda">
-                            <div class="dosis-info">
-                                <span class="dosis-numero">2da dosis</span>
-                                <span class="edad-oportuna">6 meses después</span>
-                            </div>
-                            <div class="fecha-aplicacion">
-                                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                <button type="button" class="btn-detalles" onclick="abrirDetallesVacuna('vph', 'segunda')">⚙️</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Otras Vacunas -->
-        <div class="form-section">
-            <div class="section-header" style="border-bottom: 2px solid #9b59b6;">
-                <div class="section-icon" style="background: linear-gradient(135deg, #9b59b6, #bb73e0);">➕</div>
-                <div class="section-info">
-                    <h3 style="color: #9b59b6;">Otras Vacunas</h3>
-                    <p class="section-description">Vacunas adicionales y especiales</p>
-                </div>
-            </div>
-
-            <div class="otras-vacunas-form">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="otra_vacuna_select" class="form-label">Vacuna <span class="required">*</span></label>
-                        <select id="otra_vacuna_select" name="otra_vacuna" class="form-select">
-                            <option value="">Selecciona una vacuna...</option>
-                            <option value="faboter_anticoral">Faboterápico anticoral</option>
-                            <option value="faboter_antiloxoceles">Faboterápico antiloxoceles</option>
-                            <option value="vsr">Vacuna contra el Virus Sincicial Respiratorio (VSR)</option>
-                            <option value="herpes_zoster">Vacuna contra el Herpes Zoster</option>
-                            <option value="dengue">Vacuna contra el Dengue</option>
-                            <option value="meningococo">Vacuna contra el Meningococo</option>
-                            <option value="fiebre_amarilla">Vacuna contra la Fiebre amarilla</option>
-                            <option value="tdpa">TDPA</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="otra_dosis_select" class="form-label">Dosis <span class="required">*</span></label>
-                        <select id="otra_dosis_select" name="otra_dosis" class="form-select">
-                            <option value="">Selecciona dosis...</option>
-                            <option value="primera">Primera</option>
-                            <option value="segunda">Segunda</option>
-                            <option value="tercera">Tercera</option>
-                            <option value="refuerzo">Refuerzo</option>
-                            <option value="adicional">Adicional</option>
-                            <option value="unica">Única</option>
-                            <option value="profilactica">Profiláctica</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="otra_fecha_vacunacion" class="form-label">Fecha de Vacunación <span class="required">*</span></label>
-                        <input type="date" id="otra_fecha_vacunacion" name="otra_fecha_vacunacion" class="form-input" required>
-                    </div>
-                </div>
-
-                <div style="margin-top: 20px;">
-                    <button type="button" class="btn btn-outline" id="agregarOtraVacuna">➕ Agregar Vacuna</button>
-                </div>
-
-                <!-- Lista de otras vacunas agregadas -->
-                <div id="otrasVacunasAgregadas" style="margin-top: 20px;"></div>
-            </div>
-        </div>
-
-        <!-- Botones de Acción -->
-        <div class="action-buttons">
-            <button type="button" class="btn btn-outline" id="limpiarVacunacion">
-                <span>🗑️</span> Limpiar Formulario
-            </button>
-            <button type="button" class="btn btn-secondary" id="guardarBorradorVac">
-                <span>💾</span> Guardar Borrador
-            </button>
-            <button type="button" class="btn btn-primary" id="guardarVacunacion">
-                <span>✅</span> Guardar Esquema
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para detalles de vacuna -->
-<div class="popup-overlay" id="detallesVacunaModal">
-    <div class="popup-content" style="max-width: 800px;">
-        <div class="popup-header">
-            <h3 class="popup-title" id="tituloDetallesVacuna">Detalles de Vacunación</h3>
-            <button class="popup-close" onclick="cerrarDetallesVacuna()">×</button>
-        </div>
-        <div class="popup-body">
-            <form id="detallesVacunaForm">
-                <div class="form-grid">
-                    <!-- Rescate -->
-                    <div class="form-group">
-                        <label class="form-label">Rescate <span class="required">*</span></label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="rescate_si" name="rescate" value="si" class="radio-input">
-                                <label for="rescate_si" class="radio-label">Sí</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="rescate_no" name="rescate" value="no" class="radio-input">
-                                <label for="rescate_no" class="radio-label">No</label>
+                            <div class="date-field" id="sueroOral-date">
+                                <div class="form-group">
+                                    <label class="form-label">Fecha de dotación:</label>
+                                    <input type="date" class="form-input" id="fecha_sueroOral" name="fecha_sueroOral">
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Fecha de Registro -->
-                    <div class="form-group">
-                        <label for="fecha_registro" class="form-label">Fecha de Registro</label>
-                        <input type="date" id="fecha_registro" name="fecha_registro" class="form-input">
-                    </div>
-
-                    <!-- Fecha de Aplicación -->
-                    <div class="form-group">
-                        <label for="fecha_aplicacion_detalle" class="form-label">Fecha de Aplicación</label>
-                        <input type="date" id="fecha_aplicacion_detalle" name="fecha_aplicacion_detalle" class="form-input">
-                    </div>
-
-                    <!-- Grupo de Riesgo -->
-                    <div class="form-group">
-                        <label for="grupo_riesgo" class="form-label">Grupo de Riesgo</label>
-                        <select id="grupo_riesgo" name="grupo_riesgo" class="form-select">
-                            <option value="">Selecciona...</option>
-                            <option value="ninguno">Ninguno</option>
-                            <option value="inmunocompromiso">Inmunocompromiso</option>
-                            <option value="enfermedad_cronica">Enfermedad crónica</option>
-                            <option value="contacto_tb">Contacto TB</option>
-                            <option value="otros">Otros</option>
-                        </select>
-                    </div>
-
-                    <!-- Lote -->
-                    <div class="form-group">
-                        <label for="lote" class="form-label">Lote</label>
-                        <input type="text" id="lote" name="lote" class="form-input" placeholder="Número de lote">
-                    </div>
-
-                    <!-- Fecha de Caducidad -->
-                    <div class="form-group">
-                        <label for="fecha_caducidad" class="form-label">Fecha de Caducidad</label>
-                        <input type="date" id="fecha_caducidad" name="fecha_caducidad" class="form-input">
-                    </div>
-
-                    <!-- Lugar de Aplicación -->
-                    <div class="form-group">
-                        <label class="form-label">Lugar de Aplicación</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="intramuros" name="lugar_aplicacion" value="intramuros" class="radio-input">
-                                <label for="intramuros" class="radio-label">Intramuros</label>
+                    <!-- Salud Bucal -->
+                    <div class="form-section" style="margin-top: 40px;">
+                        <div class="section-header">
+                            <div class="section-icon">🦷</div>
+                            <div class="section-info">
+                                <h3>Salud Bucal</h3>
+                                <p class="section-description">Medidas preventivas para la salud dental</p>
                             </div>
-                            <div class="radio-item">
-                                <input type="radio" id="extramuros" name="lugar_aplicacion" value="extramuros" class="radio-input">
-                                <label for="extramuros" class="radio-label">Extramuros</label>
+                        </div>
+
+                        <div class="prevention-grid">
+                            <!-- Enseñanza Cepillado -->
+                            <div class="prevention-card">
+                                <div class="card-header">
+                                    <div class="card-icon">🪥</div>
+                                    <div class="card-title">ENSEÑANZA DE TÉCNICA DE CEPILLADO</div>
+                                </div>
+                                <div class="age-info">
+                                    <span class="age-link" onclick="toggleDateField('cepillado')">
+                                        Desde que aparece el primer diente
+                                    </span>
+                                </div>
+                                <div class="date-field" id="cepillado-date">
+                                    <div class="form-group">
+                                        <label class="form-label">Fecha de enseñanza:</label>
+                                        <input type="date" class="form-input" id="fecha_cepillado" name="fecha_cepillado">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detección Placa -->
+                            <div class="prevention-card">
+                                <div class="card-header">
+                                    <div class="card-icon">🔍</div>
+                                    <div class="card-title">DETECCIÓN DE PLACA BACTERIANA</div>
+                                </div>
+                                <div class="age-info">
+                                    <span class="age-link" onclick="toggleDateField('placaBacteriana')">
+                                        A partir de los 3 años
+                                    </span>
+                                </div>
+                                <div class="date-field" id="placaBacteriana-date">
+                                    <div class="form-group">
+                                        <label class="form-label">Fecha de detección:</label>
+                                        <input type="date" class="form-input" id="fecha_placaBacteriana" name="fecha_placaBacteriana">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Aplicación Flúor -->
+                            <div class="prevention-card">
+                                <div class="card-header">
+                                    <div class="card-icon">✨</div>
+                                    <div class="card-title">APLICACIÓN DE FLÚOR</div>
+                                </div>
+                                <div class="age-info">
+                                    <span class="age-link" onclick="toggleDateField('aplicacionFluor')">
+                                        A partir del primer año
+                                    </span>
+                                </div>
+                                <div class="date-field" id="aplicacionFluor-date">
+                                    <div class="form-group">
+                                        <label class="form-label">Fecha de aplicación:</label>
+                                        <input type="date" class="form-input" id="fecha_aplicacionFluor" name="fecha_aplicacionFluor">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Hilo Dental -->
+                            <div class="prevention-card">
+                                <div class="card-header">
+                                    <div class="card-icon">🧵</div>
+                                    <div class="card-title">ENSEÑANZA USO HILO DENTAL</div>
+                                </div>
+                                <div class="age-info">
+                                    <span class="age-link" onclick="toggleDateField('hiloDental')">
+                                        A partir de los 6 años
+                                    </span>
+                                </div>
+                                <div class="date-field" id="hiloDental-date">
+                                    <div class="form-group">
+                                        <label class="form-label">Fecha de enseñanza:</label>
+                                        <input type="date" class="form-input" id="fecha_hiloDental" name="fecha_hiloDental">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Autoaplicación Flúor -->
+                            <div class="prevention-card">
+                                <div class="card-header">
+                                    <div class="card-icon">🦷</div>
+                                    <div class="card-title">AUTOAPLICACIÓN DE FLÚOR</div>
+                                </div>
+                                <div class="age-info">
+                                    <span class="age-link" onclick="toggleDateField('autoFluor')">
+                                        Edad recomendada
+                                    </span>
+                                </div>
+                                <div class="date-field" id="autoFluor-date">
+                                    <div class="form-group">
+                                        <label class="form-label">Fecha de enseñanza:</label>
+                                        <input type="date" class="form-input" id="fecha_autoFluor" name="fecha_autoFluor">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Barniz Flúor -->
+                            <div class="prevention-card">
+                                <div class="card-header">
+                                    <div class="card-icon">🎨</div>
+                                    <div class="card-title">APLICACIÓN DE BARNIZ DE FLÚOR</div>
+                                </div>
+                                <div class="age-info">
+                                    <span class="age-link" onclick="toggleDateField('barnizFluor')">
+                                        Edad recomendada
+                                    </span>
+                                </div>
+                                <div class="date-field" id="barnizFluor-date">
+                                    <div class="form-group">
+                                        <label class="form-label">Fecha de aplicación:</label>
+                                        <input type="date" class="form-input" id="fecha_barnizFluor" name="fecha_barnizFluor">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Reacciones Adversas -->
-                    <div class="form-group" style="grid-column: 1 / -1;">
-                        <label class="form-label">¿Presentó reacciones adversas?</label>
-                        <div class="radio-group">
-                            <div class="radio-item">
-                                <input type="radio" id="reacciones_si" name="reacciones_adversas" value="si" class="radio-input">
-                                <label for="reacciones_si" class="radio-label">Sí</label>
-                            </div>
-                            <div class="radio-item">
-                                <input type="radio" id="reacciones_no" name="reacciones_adversas" value="no" class="radio-input">
-                                <label for="reacciones_no" class="radio-label">No</label>
-                            </div>
-                        </div>
+                    <!-- Botones de Acción -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-outline" id="limpiarPrevencion">
+                            <span>🗑️</span> Limpiar Formulario
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="guardarBorradorPrev">
+                            <span>💾</span> Guardar Borrador
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="guardarPrevencion">
+                            <span>✅</span> Guardar Registro
+                        </button>
                     </div>
 
-                    <!-- Molestias -->
-                    <div class="form-group" id="molestias_section" style="grid-column: 1 / -1; display: none;">
-                        <label class="form-label">Seleccione las molestias:</label>
-                        <div class="checkbox-grid">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="cefalea" name="molestias[]" value="cefalea" class="checkbox-input">
-                                <label for="cefalea" class="checkbox-label">Cefalea</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="fiebre" name="molestias[]" value="fiebre" class="checkbox-input">
-                                <label for="fiebre" class="checkbox-label">Fiebre</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="dolor_sitio" name="molestias[]" value="dolor_sitio" class="checkbox-input">
-                                <label for="dolor_sitio" class="checkbox-label">Dolor en el sitio de aplicación</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="malestar_general" name="molestias[]" value="malestar_general" class="checkbox-input">
-                                <label for="malestar_general" class="checkbox-label">Malestar general</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="escalofrio" name="molestias[]" value="escalofrio" class="checkbox-input">
-                                <label for="escalofrio" class="checkbox-label">Escalofrío</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="cansancio" name="molestias[]" value="cansancio" class="checkbox-input">
-                                <label for="cansancio" class="checkbox-label">Cansancio</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="inflamacion" name="molestias[]" value="inflamacion" class="checkbox-input">
-                                <label for="inflamacion" class="checkbox-label">Inflamación o enrojecimiento en el sitio</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="dolor_muscular" name="molestias[]" value="dolor_muscular" class="checkbox-input">
-                                <label for="dolor_muscular" class="checkbox-label">Dolor muscular y articular</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="otra_molestia" name="molestias[]" value="otra" class="checkbox-input">
-                                <label for="otra_molestia" class="checkbox-label">Otra</label>
+                    <!-- Historial de Registros -->
+                    <div class="form-section" id="historialPrevencion" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-icon">📋</div>
+                            <div class="section-info">
+                                <h3>Historial de Prevención</h3>
+                                <p class="section-description">Registros de medidas preventivas aplicadas</p>
                             </div>
                         </div>
-                        
-                        <!-- Campo para especificar "otra" molestia -->
-                        <div id="otra_molestia_detalle" style="display: none; margin-top: 10px;">
-                            <input type="text" id="otra_molestia_texto" name="otra_molestia_texto" class="form-input" placeholder="Especifique la molestia">
+
+                        <div id="historialRegistros" class="historial-container">
+                            <!-- Aquí se mostrarán los registros guardados -->
                         </div>
                     </div>
-                </div>
-
-                <div class="action-buttons" style="margin-top: 30px;">
-                    <button type="button" class="btn btn-secondary" onclick="cerrarDetallesVacuna()">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="guardarDetallesVacuna()">Guardar Detalles</button>
                 </div>
             </form>
         </div>
     </div>
-</div>
 
-<style>
-/* Estilos específicos para vacunación */
-.vacunas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
+    <script>
+        // Variables globales
+        let registrosPrevencion = JSON.parse(localStorage.getItem('registrosPrevencion')) || [];
+        
+        // Función para alternar campos de fecha
+        function toggleDateField(fieldId) {
+            const dateField = document.getElementById(fieldId + '-date');
+            const isActive = dateField.classList.contains('active');
+            
+            // Cerrar todos los campos de fecha primero
+            document.querySelectorAll('.date-field').forEach(field => {
+                field.classList.remove('active');
+            });
+            
+            // Abrir el campo seleccionado si no estaba activo
+            if (!isActive) {
+                dateField.classList.add('active');
+                const input = dateField.querySelector('input[type="date"]');
+                input.focus();
+                
+                // Configurar restricciones de fecha
+                setDateRestrictions(input);
+            }
+        }
 
-.vacuna-card {
-    background: white;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
+        // Función para configurar restricciones de fecha
+        function setDateRestrictions(input) {
+            const today = new Date().toISOString().split('T')[0];
+            input.max = today;
+            
+            // Aquí podrías agregar la fecha de nacimiento del paciente como mínimo
+            // const fechaNacimiento = obtenerFechaNacimientoPaciente();
+            // if (fechaNacimiento) {
+            //     input.min = fechaNacimiento;
+            // }
+        }
 
-.vacuna-card:hover {
-    border-color: #3498db;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
-}
-
-.vacuna-header {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    padding: 15px 20px;
-    border-bottom: 2px solid #dee2e6;
-}
-
-.vacuna-header h4 {
-    margin: 0 0 8px 0;
-    color: #2c3e50;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.enfermedad-badge {
-    background: #3498db;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.dosis-container {
-    padding: 15px 20px;
-}
-
-.dosis-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #f1f1f1;
-    transition: all 0.3s ease;
-}
-
-.dosis-item:last-child {
-    border-bottom: none;
-}
-
-.dosis-item:hover {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.dosis-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.dosis-numero {
-    font-weight: bold;
-    color: #2c3e50;
-    font-size: 14px;
-}
-
-.edad-oportuna {
-    color: #7f8c8d;
-    font-size: 12px;
-    font-style: italic;
-}
-
-.fecha-aplicacion {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.fecha-input {
-    padding: 6px 10px;
-    border: 2px solid #dee2e6;
-    border-radius: 6px;
-    font-size: 13px;
-    width: 140px;
-    transition: all 0.3s ease;
-}
-
-.fecha-input:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
-}
-
-.fecha-input.completada {
-    background: #d4edda;
-    border-color: #28a745;
-}
-
-.btn-detalles {
-    background: #6c757d;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-detalles:hover {
-    background: #5a6268;
-    transform: scale(1.1);
-}
-
-.btn-detalles.completado {
-    background: #28a745;
-}
-
-.btn-detalles.completado:hover {
-    background: #218838;
-}
-
-.otras-vacunas-form {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    border: 2px solid #e9ecef;
-}
-
-.vacuna-agregada {
-    background: #f8f9fa;
-    border: 2px solid #28a745;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.vacuna-agregada-info {
-    flex: 1;
-}
-
-.vacuna-agregada-titulo {
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 5px;
-}
-
-.vacuna-agregada-detalles {
-    font-size: 14px;
-    color: #6c757d;
-}
-
-.btn-eliminar-vacuna {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: all 0.3s ease;
-}
-
-.btn-eliminar-vacuna:hover {
-    background: #c0392b;
-    transform: scale(1.05);
-}
-
-/* Estilos para molestias en el modal */
-#molestias_section .checkbox-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-}
-
-#molestias_section .checkbox-item {
-    padding: 8px 12px;
-    font-size: 14px;
-}
-
-/* Indicador de vacuna completada */
-.dosis-item.completada {
-    background: linear-gradient(135deg, #d4edda, #c3e6cb);
-    border-radius: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.dosis-item.completada .dosis-numero {
-    color: #155724;
-}
-
-.dosis-item.completada .edad-oportuna {
-    color: #155724;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .vacunas-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .dosis-item {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-    
-    .fecha-aplicacion {
-        justify-content: space-between;
-    }
-    
-    .fecha-input {
-        width: auto;
-        flex: 1;
-    }
-}
-</style>
-
-<script>
-// Variables globales para el modal de detalles
-let vacunaActual = '';
-let dosisActual = '';
-
-// Función para abrir detalles de vacuna
-function abrirDetallesVacuna(vacuna, dosis) {
-    vacunaActual = vacuna;
-    dosisActual = dosis;
-    
-    // Configurar título del modal
-    const nombreVacuna = document.querySelector(`[data-vacuna="${vacuna}"][data-dosis="${dosis}"]`)
-        .closest('.vacuna-card').querySelector('h4').textContent;
-    document.getElementById('tituloDetallesVacuna').textContent = `${nombreVacuna} - ${dosis}`;
-    
-    // Copiar fecha si ya existe
-    const fechaExistente = document.querySelector(`[data-vacuna="${vacuna}"][data-dosis="${dosis}"] .fecha-input`).value;
-    if (fechaExistente) {
-        document.getElementById('fecha_aplicacion_detalle').value = fechaExistente;
-    }
-    
-    // Mostrar modal
-    document.getElementById('detallesVacunaModal').style.display = 'flex';
-}
-
-// Función para cerrar detalles de vacuna
-function cerrarDetallesVacuna() {
-    document.getElementById('detallesVacunaModal').style.display = 'none';
-    limpiarFormularioDetalles();
-}
-
-// Función para limpiar formulario de detalles
-function limpiarFormularioDetalles() {
-    document.getElementById('detallesVacunaForm').reset();
-    document.getElementById('molestias_section').style.display = 'none';
-    document.getElementById('otra_molestia_detalle').style.display = 'none';
-    
-    // Limpiar checkboxes
-    document.querySelectorAll('#molestias_section .checkbox-item').forEach(item => {
-        item.classList.remove('checked');
-    });
-}
-
-// Función para guardar detalles de vacuna
-function guardarDetallesVacuna() {
-    const fechaAplicacion = document.getElementById('fecha_aplicacion_detalle').value;
-    const rescate = document.querySelector('input[name="rescate"]:checked')?.value;
-    
-    if (!fechaAplicacion) {
-        alert('La fecha de aplicación es obligatoria');
-        return;
-    }
-    
-    if (!rescate) {
-        alert('Debe indicar si es rescate o no');
-        return;
-    }
-    
-    // Actualizar fecha en la tarjeta principal
-    const dosisElement = document.querySelector(`[data-vacuna="${vacunaActual}"][data-dosis="${dosisActual}"]`);
-    const fechaInput = dosisElement.querySelector('.fecha-input');
-    const btnDetalles = dosisElement.querySelector('.btn-detalles');
-    
-    fechaInput.value = fechaAplicacion;
-    fechaInput.classList.add('completada');
-    btnDetalles.classList.add('completado');
-    dosisElement.classList.add('completada');
-    
-    // Guardar datos de la vacuna (aquí puedes implementar el almacenamiento)
-    const datosVacuna = {
-        vacuna: vacunaActual,
-        dosis: dosisActual,
-        fechaAplicacion: fechaAplicacion,
-        rescate: rescate,
-        fechaRegistro: document.getElementById('fecha_registro').value,
-        grupoRiesgo: document.getElementById('grupo_riesgo').value,
-        lote: document.getElementById('lote').value,
-        fechaCaducidad: document.getElementById('fecha_caducidad').value,
-        lugarAplicacion: document.querySelector('input[name="lugar_aplicacion"]:checked')?.value,
-        reaccionesAdversas: document.querySelector('input[name="reacciones_adversas"]:checked')?.value,
-        molestias: Array.from(document.querySelectorAll('input[name="molestias[]"]:checked')).map(cb => cb.value),
-        otraMolestia: document.getElementById('otra_molestia_texto').value
-    };
-    
-    console.log('Datos de vacuna guardados:', datosVacuna);
-    
-    alert('Detalles de vacuna guardados correctamente');
-    cerrarDetallesVacuna();
-}
-
-// Event listeners
-document.addEventListener('DOMContentLoaded', function() {
-    // Mostrar/ocultar sección de molestias
-    document.querySelectorAll('input[name="reacciones_adversas"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const molestiaSection = document.getElementById('molestias_section');
-            if (this.value === 'si') {
-                molestiaSection.style.display = 'block';
-            } else {
-                molestiaSection.style.display = 'none';
-                // Limpiar molestias seleccionadas
-                document.querySelectorAll('input[name="molestias[]"]').forEach(cb => {
-                    cb.checked = false;
+        // Función para limpiar formulario
+        document.getElementById('limpiarPrevencion').addEventListener('click', function() {
+            if (confirm('¿Estás seguro de que deseas limpiar el formulario?')) {
+                document.getElementById('prevencionForm').reset();
+                document.querySelectorAll('.date-field').forEach(field => {
+                    field.classList.remove('active');
                 });
-                document.getElementById('otra_molestia_detalle').style.display = 'none';
+                mostrarAlerta('Formulario limpiado correctamente', 'success');
             }
         });
-    });
-    
-    // Mostrar/ocultar campo "otra molestia"
-    document.getElementById('otra_molestia').addEventListener('change', function() {
-        const otraDetalle = document.getElementById('otra_molestia_detalle');
-        if (this.checked) {
-            otraDetalle.style.display = 'block';
-        } else {
-            otraDetalle.style.display = 'none';
-            document.getElementById('otra_molestia_texto').value = '';
+
+        // Función para guardar borrador
+        document.getElementById('guardarBorradorPrev').addEventListener('click', function() {
+            const borrador = recopilarDatosFormulario();
+            localStorage.setItem('borradorPrevencion', JSON.stringify(borrador));
+            mostrarAlerta('Borrador guardado correctamente', 'success');
+        });
+
+        // Función para cargar borrador
+        function cargarBorrador() {
+            const borrador = localStorage.getItem('borradorPrevencion');
+            if (borrador) {
+                const datos = JSON.parse(borrador);
+                for (const [campo, valor] of Object.entries(datos)) {
+                    const input = document.getElementById(campo);
+                    if (input && valor) {
+                        input.value = valor;
+                        // Si tiene valor, mostrar el campo de fecha
+                        const fieldId = campo.replace('fecha_', '');
+                        const dateField = document.getElementById(fieldId + '-date');
+                        if (dateField) {
+                            dateField.classList.add('active');
+                        }
+                    }
+                }
+            }
         }
-    });
-    
-    // Funcionalidad para checkboxes de molestias
-    document.querySelectorAll('#molestias_section .checkbox-item').forEach(item => {
-        const checkbox = item.querySelector('.checkbox-input');
-        if (checkbox) {
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    item.classList.add('checked');
-                } else {
-                    item.classList.remove('checked');
+
+        // Función para recopilar datos del formulario
+        function recopilarDatosFormulario() {
+            const datos = {};
+            const inputs = document.querySelectorAll('input[type="date"]');
+            inputs.forEach(input => {
+                if (input.value) {
+                    datos[input.id] = input.value;
                 }
             });
+            return datos;
         }
-    });
-    
-    // Agregar otra vacuna
-    document.getElementById('agregarOtraVacuna')?.addEventListener('click', function() {
-        const vacunaSelect = document.getElementById('otra_vacuna_select');
-        const dosisSelect = document.getElementById('otra_dosis_select');
-        const fechaInput = document.getElementById('otra_fecha_vacunacion');
-        
-        if (!vacunaSelect.value || !dosisSelect.value || !fechaInput.value) {
-            alert('Por favor complete todos los campos para agregar la vacuna');
-            return;
-        }
-        
-        const vacunaTexto = vacunaSelect.options[vacunaSelect.selectedIndex].text;
-        const dosisTexto = dosisSelect.options[dosisSelect.selectedIndex].text;
-        const fecha = fechaInput.value;
-        
-        agregarOtraVacunaALista(vacunaTexto, dosisTexto, fecha);
-        
-        // Limpiar campos
-        vacunaSelect.value = '';
-        dosisSelect.value = '';
-        fechaInput.value = '';
-    });
-    
-    // Cerrar modal al hacer clic fuera
-    document.getElementById('detallesVacunaModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            cerrarDetallesVacuna();
-        }
-    });
-    
-    // Botón limpiar
-    document.getElementById('limpiarVacunacion')?.addEventListener('click', function() {
-        if (confirm('¿Está seguro de que desea limpiar todos los datos de vacunación?')) {
-            // Limpiar fechas de vacunas del esquema
-            document.querySelectorAll('.fecha-input').forEach(input => {
-                input.value = '';
-                input.classList.remove('completada');
-            });
+
+        // Función para guardar registro
+        document.getElementById('guardarPrevencion').addEventListener('click', function(e) {
+            e.preventDefault();
             
-            // Limpiar estados visuales
-            document.querySelectorAll('.dosis-item').forEach(item => {
-                item.classList.remove('completada');
-            });
+            const datos = recopilarDatosFormulario();
+            const hayDatos = Object.keys(datos).length > 0;
             
-            document.querySelectorAll('.btn-detalles').forEach(btn => {
-                btn.classList.remove('completado');
-            });
+            if (!hayDatos) {
+                mostrarAlerta('Por favor, registra al menos una medida preventiva', 'warning');
+                return;
+            }
+
+            const registro = {
+                id: Date.now(),
+                fecha_registro: new Date().toISOString().split('T')[0],
+                datos: datos
+            };
+
+            registrosPrevencion.push(registro);
+            localStorage.setItem('registrosPrevencion', JSON.stringify(registrosPrevencion));
             
-            // Limpiar otras vacunas
-            document.getElementById('otrasVacunasAgregadas').innerHTML = '';
-            document.getElementById('otra_vacuna_select').value = '';
-            document.getElementById('otra_dosis_select').value = '';
-            document.getElementById('otra_fecha_vacunacion').value = '';
-        }
-    });
-    
-    // Botón guardar
-    document.getElementById('guardarVacunacion')?.addEventListener('click', function() {
-        // Recopilar datos de vacunación
-        const vacunasCompletadas = [];
-        
-        document.querySelectorAll('.dosis-item.completada').forEach(item => {
-            const vacuna = item.dataset.vacuna;
-            const dosis = item.dataset.dosis;
-            const fecha = item.querySelector('.fecha-input').value;
+            // Limpiar borrador
+            localStorage.removeItem('borradorPrevencion');
             
-            vacunasCompletadas.push({
-                vacuna: vacuna,
-                dosis: dosis,
-                fecha: fecha
+            mostrarAlerta('Registro de prevención guardado correctamente', 'success');
+            actualizarHistorial();
+            document.getElementById('prevencionForm').reset();
+            document.querySelectorAll('.date-field').forEach(field => {
+                field.classList.remove('active');
             });
         });
-        
-        console.log('Esquema de vacunación:', vacunasCompletadas);
-        alert(`Esquema de vacunación guardado. ${vacunasCompletadas.length} vacuna(s) registrada(s).`);
-    });
-    
-    // Botón borrador
-    document.getElementById('guardarBorradorVac')?.addEventListener('click', function() {
-        alert('Borrador de esquema de vacunación guardado');
-    });
-});
 
-// Función para agregar otra vacuna a la lista
-function agregarOtraVacunaALista(vacuna, dosis, fecha) {
-    const container = document.getElementById('otrasVacunasAgregadas');
-    
-    const vacunaItem = document.createElement('div');
-    vacunaItem.classList.add('vacuna-agregada');
-    vacunaItem.innerHTML = `
-        <div class="vacuna-agregada-info">
-            <div class="vacuna-agregada-titulo">💉 ${vacuna}</div>
-            <div class="vacuna-agregada-detalles">
-                <strong>Dosis:</strong> ${dosis} • <strong>Fecha:</strong> ${fecha}
-            </div>
-        </div>
-        <button type="button" class="btn-eliminar-vacuna" onclick="eliminarOtraVacuna(this)">
-            🗑️ Eliminar
-        </button>
-    `;
-    
-    container.appendChild(vacunaItem);
-}
+        // Función para mostrar alertas
+        function mostrarAlerta(mensaje, tipo) {
+            // Remover alertas existentes
+            const alertasExistentes = document.querySelectorAll('.alert');
+            alertasExistentes.forEach(alerta => alerta.remove());
 
-// Función para eliminar otra vacuna
-function eliminarOtraVacuna(button) {
-    if (confirm('¿Está seguro de eliminar esta vacuna?')) {
-        button.parentElement.remove();
-    }
-}
-</script>
+            const alerta = document.createElement('div');
+            alerta.className = `alert alert-${tipo}`;
+            alerta.textContent = mensaje;
+
+            const form = document.getElementById('prevencionForm');
+            form.insertBefore(alerta, form.firstChild);
+
+            setTimeout(() => {
+                alerta.remove();
+            }, 5000);
+        }
+
+        // Función para actualizar historial
+        function actualizarHistorial() {
+            const historialDiv = document.getElementById('historialRegistros');
+            const historialSection = document.getElementById('historialPrevencion');
+
+            if (registrosPrevencion.length === 0) {
+                historialSection.style.display = 'none';
+                return;
+            }
+
+            historialSection.style.display = 'block';
+            historialDiv.innerHTML = '';
+
+            registrosPrevencion.reverse().forEach(registro => {
+                const item = document.createElement('div');
+                item.className = 'historial-item';
+                
+                let contenido = `<strong>Fecha de registro: ${formatearFecha(registro.fecha_registro)}</strong><br>`;
+                
+                for (const [campo, fecha] of Object.entries(registro.datos)) {
+                    const nombreCampo = obtenerNombreCampo(campo);
+                    contenido += `<br>• ${nombreCampo}: ${formatearFecha(fecha)}`;
+                }
+
+                item.innerHTML = contenido;
+                historialDiv.appendChild(item);
+            });
+
+            registrosPrevencion.reverse(); // Restaurar orden original
+        }
+
+        // Función para obtener nombre legible del campo
+        function obtenerNombreCampo(campo) {
+            const nombres = {
+                'fecha_vitaminaA': 'Vitamina A',
+                'fecha_hierroAnemia': 'Hierro Anemia',
+                'fecha_profilaxis': 'Profilaxis',
+                'fecha_desparasitacion': 'Desparasitación',
+                'fecha_sueroOral': 'Vida Suero Oral',
+                'fecha_cepillado': 'Enseñanza de Cepillado',
+                'fecha_placaBacteriana': 'Detección de Placa Bacteriana',
+                'fecha_aplicacionFluor': 'Aplicación de Flúor',
+                'fecha_hiloDental': 'Enseñanza Hilo Dental',
+                'fecha_autoFluor': 'Autoaplicación de Flúor',
+                'fecha_barnizFluor': 'Barniz de Flúor'
+            };
+            return nombres[campo] || campo;
+        }
+
+        // Función para formatear fecha
+        function formatearFecha(fecha) {
+            const [año, mes, dia] = fecha.split('-');
+            return `${dia}/${mes}/${año}`;
+        }
+
+        // Validación en tiempo real de fechas
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'date') {
+                const fecha = new Date(e.target.value);
+                const hoy = new Date();
+                
+                if (fecha > hoy) {
+                    mostrarAlerta('No se puede registrar una fecha mayor a la actual', 'warning');
+                    e.target.value = '';
+                }
+            }
+        });
+
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarBorrador();
+            actualizarHistorial();
+            
+            // Configurar fecha máxima para todos los campos de fecha
+            document.querySelectorAll('input[type="date"]').forEach(input => {
+                setDateRestrictions(input);
+            });
+        });
+    </script>
+</body>
+</html>
