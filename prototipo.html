@@ -3760,6 +3760,62 @@
                                 </div>
                             </div>
 
+                            <div class="form-section" style="margin-top: 30px;">
+                                <div class="section-header">
+                                    <div class="section-icon">🍼</div>
+                                    <div class="section-info">
+                                        <h3>Tipo de Alimentación</h3>
+                                        <p class="section-description">Registro obligatorio del tipo de alimentación del
+                                            paciente</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="tipo_alimentacion" class="form-label">Tipo de Alimentación <span
+                                                class="required">*</span></label>
+                                        <select id="tipo_alimentacion" name="tipo_alimentacion" class="form-input"
+                                            required>
+                                            <option value="">Selecciona el tipo de alimentación...</option>
+                                            <option value="lactancia_exclusiva" data-edad-min="0" data-edad-max="6">
+                                                Lactancia materna exclusiva</option>
+                                            <option value="lactancia_complementaria" data-edad-min="6"
+                                                data-edad-max="24">Lactancia materna complementaria</option>
+                                            <option value="abandono_lactancia">Abandono de Lactancia materna</option>
+                                            <option value="lactancia_mixta">Lactancia materna mixta</option>
+                                            <option value="lactancia_mixta_complementaria">Lactancia materna mixta
+                                                complementaria</option>
+                                            <option value="sin_lactancia_medica">Sin lactancia materna por razón médica
+                                            </option>
+                                        </select>
+                                        <div class="form-help" id="alimentacion_help"
+                                            style="display: none; margin-top: 8px; font-size: 0.875rem; color: #666;">
+                                            <!-- Aquí se mostrarán las restricciones de edad -->
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fecha_alimentacion" class="form-label">Fecha de Registro <span
+                                                class="required">*</span></label>
+                                        <input type="date" id="fecha_alimentacion" name="fecha_alimentacion"
+                                            class="form-input" required>
+                                    </div>
+                                </div>
+
+                                <!-- Información adicional según el tipo seleccionado -->
+                                <div id="info_alimentacion" class="nutrition-info"
+                                    style="display: none; margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #007bff;">
+                                    <div id="contenido_info_alimentacion">
+                                        <!-- Aquí se mostrará información específica según el tipo seleccionado -->
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
                             <!-- Botones de Acción -->
                             <div class="action-buttons">
                                 <button type="button" class="btn btn-outline" id="limpiarNutricion">
@@ -3852,7 +3908,7 @@
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
                                             <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('hepatitis_b', 'primera')">➕</button>
+                                                onclick="abrirDetallesVacuna('hepatitis_b', 'unica')">➕</button>
                                         </div>
                                     </div>
 
@@ -4047,10 +4103,22 @@
                                             <span class="dosis-numero">Dosis Anual</span>
                                             <span class="edad-oportuna">Cada temporada invernal</span>
                                         </div>
-                                        <div class="fecha-aplicacion">
-                                            <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
-                                            <button type="button" class="btn-detalles"
-                                                onclick="abrirDetallesVacuna('influenza', 'anual')">➕</button>
+                                        <div class="fecha-aplicacion"
+                                            style="flex-direction: column; align-items: stretch; gap: 10px;">
+                                            <div style="display: flex; gap: 10px; align-items: center;">
+                                                <select id="anio_influenza" class="form-select"
+                                                    style="flex: 1; padding: 6px 10px; font-size: 13px;">
+                                                    <option value="">Seleccionar año...</option>
+                                                    <option value="1_ano">1 AÑO</option>
+                                                    <option value="2_anos">2 AÑOS</option>
+                                                    <option value="3_anos">3 AÑOS</option>
+                                                    <option value="4_anos">4 AÑOS</option>
+                                                </select>
+                                                <button type="button" class="btn btn-outline"
+                                                    onclick="agregarDosisAnualInfluenza()"
+                                                    style="padding: 6px 12px; font-size: 12px;">➕ Agregar</button>
+                                            </div>
+                                            <div id="dosis_anuales_agregadas" style="margin-top: 10px;"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -4101,7 +4169,7 @@
                                         <div class="dosis-item" data-vacuna="covid19" data-dosis="primera_primaria">
                                             <div class="dosis-info">
                                                 <span class="dosis-numero">1era dosis</span>
-                                                <span class="edad-oportuna">Esquema primario</span>
+                                                <span class="edad-oportuna">A partir de los 5 años</span>
                                             </div>
                                             <div class="fecha-aplicacion">
                                                 <input type="date" class="fecha-input"
@@ -4113,7 +4181,7 @@
                                         <div class="dosis-item" data-vacuna="covid19" data-dosis="segunda_primaria">
                                             <div class="dosis-info">
                                                 <span class="dosis-numero">2da dosis</span>
-                                                <span class="edad-oportuna">Esquema primario</span>
+                                                <span class="edad-oportuna">A partir de los 5 años</span>
                                             </div>
                                             <div class="fecha-aplicacion">
                                                 <input type="date" class="fecha-input"
@@ -4125,7 +4193,7 @@
                                         <div class="dosis-item" data-vacuna="covid19" data-dosis="tercera_primaria">
                                             <div class="dosis-info">
                                                 <span class="dosis-numero">3ra dosis</span>
-                                                <span class="edad-oportuna">Esquema primario</span>
+                                                <span class="edad-oportuna">A partir de los 5 años</span>
                                             </div>
                                             <div class="fecha-aplicacion">
                                                 <input type="date" class="fecha-input"
@@ -4138,12 +4206,12 @@
 
                                     <!-- Refuerzo para niños con factores de riesgo -->
                                     <div class="esquema-especial"
-                                        style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); border-color: #e17055;">
+                                        style="background: linear-gradient(135deg, #ffeaa7, #ffda94); border-color: #e17055;">
                                         <h5>⚠️ NIÑAS Y NIÑOS CON FACTORES DE RIESGO</h5>
                                         <div class="dosis-item" data-vacuna="covid19" data-dosis="refuerzo_riesgo">
                                             <div class="dosis-info">
                                                 <span class="dosis-numero">Refuerzo</span>
-                                                <span class="edad-oportuna">Solo con factores de riesgo</span>
+                                                <span class="edad-oportuna">12 meses después de la última dosis</span>
                                             </div>
                                             <div class="fecha-aplicacion">
                                                 <input type="date" class="fecha-input"
@@ -4255,6 +4323,22 @@
                             <span>✅</span> Guardar Esquema
                         </button>
                     </div>
+
+                    <!-- Historial de Vacunación -->
+                    <div class="form-section" id="historialVacunacion" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-icon">📊</div>
+                            <div class="section-info">
+                                <h3>Historial de Vacunación</h3>
+                                <p class="section-description">Vacunas aplicadas y registradas previamente</p>
+                            </div>
+                        </div>
+
+                        <div id="historialVacunas" class="historial-container">
+                            <!-- Aquí se mostrarán las vacunas guardadas -->
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -4438,6 +4522,7 @@
 
 
     <script>
+
         // Funcionalidad de pestañas
         document.addEventListener('DOMContentLoaded', function () {
             const tabButtons = document.querySelectorAll('.tab-btn');
@@ -4580,11 +4665,7 @@
                 if (confirm('¿Está seguro de que desea limpiar todos los campos del formulario de promoción?')) {
                     limpiarFormularioPromocion();
 
-                    // También limpiar historial si se desea
-                    if (confirm('¿También desea limpiar el historial de promociones guardadas?')) {
-                        document.getElementById('historialPromociones').innerHTML = '';
-                        document.getElementById('historialPromocion').style.display = 'none';
-                    }
+
                 }
             });
 
@@ -4780,19 +4861,6 @@
                         }
                     }
                 });
-            });
-
-
-            document.getElementById('limpiarPromocion')?.addEventListener('click', function () {
-                if (confirm('¿Está seguro de que desea limpiar todos los campos del formulario de promoción?')) {
-                    limpiarFormularioPromocion();
-
-                    // También limpiar historial si se desea
-                    if (confirm('¿También desea limpiar el historial de promociones guardadas?')) {
-                        document.getElementById('historialPromociones').innerHTML = '';
-                        document.getElementById('historialPromocion').style.display = 'none';
-                    }
-                }
             });
         });
 
@@ -5598,94 +5666,6 @@
             }
         }
 
-        // Variables globales para el modal de detalles
-        let vacunaActual = '';
-        let dosisActual = '';
-
-        // Función para abrir detalles de vacuna
-        function abrirDetallesVacuna(vacuna, dosis) {
-            vacunaActual = vacuna;
-            dosisActual = dosis;
-
-            // Configurar título del modal
-            const nombreVacuna = document.querySelector(`[data-vacuna="${vacuna}"][data-dosis="${dosis}"]`)
-                .closest('.vacuna-card').querySelector('h4').textContent;
-            document.getElementById('tituloDetallesVacuna').textContent = `${nombreVacuna} - ${dosis}`;
-
-            // Copiar fecha si ya existe
-            const fechaExistente = document.querySelector(`[data-vacuna="${vacuna}"][data-dosis="${dosis}"] .fecha-input`).value;
-            if (fechaExistente) {
-                document.getElementById('fecha_aplicacion_detalle').value = fechaExistente;
-            }
-
-            // Mostrar modal
-            document.getElementById('detallesVacunaModal').style.display = 'flex';
-        }
-
-        // Función para cerrar detalles de vacuna
-        function cerrarDetallesVacuna() {
-            document.getElementById('detallesVacunaModal').style.display = 'none';
-            limpiarFormularioDetalles();
-        }
-
-        // Función para limpiar formulario de detalles
-        function limpiarFormularioDetalles() {
-            document.getElementById('detallesVacunaForm').reset();
-            document.getElementById('molestias_section').style.display = 'none';
-            document.getElementById('otra_molestia_detalle').style.display = 'none';
-
-            // Limpiar checkboxes
-            document.querySelectorAll('#molestias_section .checkbox-item').forEach(item => {
-                item.classList.remove('checked');
-            });
-        }
-
-        // Función para guardar detalles de vacuna
-        function guardarDetallesVacuna() {
-            const fechaAplicacion = document.getElementById('fecha_aplicacion_detalle').value;
-            const rescate = document.querySelector('input[name="rescate"]:checked')?.value;
-
-            if (!fechaAplicacion) {
-                alert('La fecha de aplicación es obligatoria');
-                return;
-            }
-
-            if (!rescate) {
-                alert('Debe indicar si es rescate o no');
-                return;
-            }
-
-            // Actualizar fecha en la tarjeta principal
-            const dosisElement = document.querySelector(`[data-vacuna="${vacunaActual}"][data-dosis="${dosisActual}"]`);
-            const fechaInput = dosisElement.querySelector('.fecha-input');
-            const btnDetalles = dosisElement.querySelector('.btn-detalles');
-
-            fechaInput.value = fechaAplicacion;
-            fechaInput.classList.add('completada');
-            btnDetalles.classList.add('completado');
-            dosisElement.classList.add('completada');
-
-            // Guardar datos de la vacuna (aquí puedes implementar el almacenamiento)
-            const datosVacuna = {
-                vacuna: vacunaActual,
-                dosis: dosisActual,
-                fechaAplicacion: fechaAplicacion,
-                rescate: rescate,
-                fechaRegistro: document.getElementById('fecha_registro').value,
-                grupoRiesgo: document.getElementById('grupo_riesgo').value,
-                lote: document.getElementById('lote').value,
-                fechaCaducidad: document.getElementById('fecha_caducidad').value,
-                lugarAplicacion: document.querySelector('input[name="lugar_aplicacion"]:checked')?.value,
-                reaccionesAdversas: document.querySelector('input[name="reacciones_adversas"]:checked')?.value,
-                molestias: Array.from(document.querySelectorAll('input[name="molestias[]"]:checked')).map(cb => cb.value),
-                otraMolestia: document.getElementById('otra_molestia_texto').value
-            };
-
-            console.log('Datos de vacuna guardados:', datosVacuna);
-
-            alert('Detalles de vacuna guardados correctamente');
-            cerrarDetallesVacuna();
-        }
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function () {
@@ -5763,7 +5743,7 @@
 
             // Botón limpiar
             document.getElementById('limpiarVacunacion')?.addEventListener('click', function () {
-                if (confirm('¿Está seguro de que desea limpiar todos los datos de vacunación?')) {
+                if (confirm('¿Está seguro de que desea limpiar todos los datos de vacunación incluyendo los detalles guardados?')) {
                     // Limpiar fechas de vacunas del esquema
                     document.querySelectorAll('.fecha-input').forEach(input => {
                         input.value = '';
@@ -5776,37 +5756,17 @@
                     });
 
                     document.querySelectorAll('.btn-detalles').forEach(btn => {
-                        btn.classList.remove('completado');
+                        btn.classList.remove('completado', 'con-detalles');
+                        btn.innerHTML = '➕';
+                        btn.title = '';
                     });
 
-                    // Limpiar otras vacunas
-                    document.getElementById('otrasVacunasAgregadas').innerHTML = '';
-                    document.getElementById('otra_vacuna_select').value = '';
-                    document.getElementById('otra_dosis_select').value = '';
-                    document.getElementById('otra_fecha_vacunacion').value = '';
+                    // Limpiar detalles guardados
+                    detallesVacunas = {};
                 }
             });
 
-            // Botón guardar
-            document.getElementById('guardarVacunacion')?.addEventListener('click', function () {
-                // Recopilar datos de vacunación
-                const vacunasCompletadas = [];
 
-                document.querySelectorAll('.dosis-item.completada').forEach(item => {
-                    const vacuna = item.dataset.vacuna;
-                    const dosis = item.dataset.dosis;
-                    const fecha = item.querySelector('.fecha-input').value;
-
-                    vacunasCompletadas.push({
-                        vacuna: vacuna,
-                        dosis: dosis,
-                        fecha: fecha
-                    });
-                });
-
-                console.log('Esquema de vacunación:', vacunasCompletadas);
-                alert(`Esquema de vacunación guardado. ${vacunasCompletadas.length} vacuna(s) registrada(s).`);
-            });
 
             // Botón borrador
             document.getElementById('guardarBorradorVac')?.addEventListener('click', function () {
@@ -5864,6 +5824,727 @@
             ? document.getElementById('otra_vacuna_texto').value 
             : vacunaSelect.options[vacunaSelect.selectedIndex].text;
         */
+
+        // Script para manejar las validaciones y restricciones
+        document.addEventListener('DOMContentLoaded', function () {
+            const tipoAlimentacion = document.getElementById('tipo_alimentacion');
+            const fechaAlimentacion = document.getElementById('fecha_alimentacion');
+            const edadNutricion = document.getElementById('edad_nutricion');
+            const alimentacionHelp = document.getElementById('alimentacion_help');
+            const infoAlimentacion = document.getElementById('info_alimentacion');
+            const contenidoInfo = document.getElementById('contenido_info_alimentacion');
+
+            // Establecer fecha máxima como hoy
+            const hoy = new Date().toISOString().split('T')[0];
+            fechaAlimentacion.setAttribute('max', hoy);
+
+            // Manejar cambios en el tipo de alimentación
+            tipoAlimentacion.addEventListener('change', function () {
+                const selectedOption = this.options[this.selectedIndex];
+                const edadMin = selectedOption.getAttribute('data-edad-min');
+                const edadMax = selectedOption.getAttribute('data-edad-max');
+
+                // Mostrar información de restricciones de edad
+                if (edadMin !== null || edadMax !== null) {
+                    let restriccionTexto = '';
+                    if (edadMin && edadMax) {
+                        restriccionTexto = `Registro válido de ${edadMin} a ${edadMax} meses de edad`;
+                    } else if (edadMin) {
+                        restriccionTexto = `Registro válido desde ${edadMin} meses de edad`;
+                    } else if (edadMax) {
+                        restriccionTexto = `Registro válido hasta ${edadMax} meses de edad`;
+                    }
+
+                    alimentacionHelp.textContent = restriccionTexto;
+                    alimentacionHelp.style.display = 'block';
+                } else {
+                    alimentacionHelp.style.display = 'none';
+                }
+
+                // Mostrar información adicional
+                mostrarInfoAlimentacion(this.value);
+            });
+
+            function mostrarInfoAlimentacion(tipo) {
+                let info = '';
+
+                switch (tipo) {
+                    case 'lactancia_exclusiva':
+                        info = `
+                    <h4 style="margin: 0 0 10px 0; color: #007bff;">🍼 Lactancia Materna Exclusiva</h4>
+                    <p><strong>Edad recomendada:</strong> 0 a 6 meses</p>
+                    <p><strong>Descripción:</strong> El lactante recibe únicamente leche materna, sin otros líquidos o sólidos, excepto medicamentos o vitaminas.</p>
+                `;
+                        break;
+                    case 'lactancia_complementaria':
+                        info = `
+                    <h4 style="margin: 0 0 10px 0; color: #28a745;">🥄 Lactancia Materna Complementaria</h4>
+                    <p><strong>Edad recomendada:</strong> 6 meses a 2 años</p>
+                    <p><strong>Descripción:</strong> Lactancia materna junto con alimentación complementaria apropiada para la edad.</p>
+                `;
+                        break;
+                    case 'abandono_lactancia':
+                        info = `
+                    <h4 style="margin: 0 0 10px 0; color: #ffc107;">⚠️ Abandono de Lactancia Materna</h4>
+                    <p><strong>Descripción:</strong> Cese completo de la lactancia materna antes del tiempo recomendado.</p>
+                `;
+                        break;
+                    case 'lactancia_mixta':
+                        info = `
+                    <h4 style="margin: 0 0 10px 0; color: #17a2b8;">🍼 Lactancia Materna Mixta</h4>
+                    <p><strong>Descripción:</strong> Combinación de lactancia materna con fórmula artificial.</p>
+                `;
+                        break;
+                    case 'lactancia_mixta_complementaria':
+                        info = `
+                    <h4 style="margin: 0 0 10px 0; color: #6f42c1;">🍼🥄 Lactancia Materna Mixta Complementaria</h4>
+                    <p><strong>Descripción:</strong> Lactancia materna, fórmula artificial y alimentación complementaria.</p>
+                `;
+                        break;
+                    case 'sin_lactancia_medica':
+                        info = `
+                    <h4 style="margin: 0 0 10px 0; color: #dc3545;">🏥 Sin Lactancia Materna por Razón Médica</h4>
+                    <p><strong>Descripción:</strong> Ausencia de lactancia materna debido a contraindicaciones médicas.</p>
+                `;
+                        break;
+                }
+
+                if (info) {
+                    contenidoInfo.innerHTML = info;
+                    infoAlimentacion.style.display = 'block';
+                } else {
+                    infoAlimentacion.style.display = 'none';
+                }
+            }
+
+            // Validar edad según tipo de alimentación seleccionado
+            function validarEdadAlimentacion() {
+                const tipoSeleccionado = tipoAlimentacion.value;
+                const edadSeleccionada = edadNutricion.value;
+
+                if (!tipoSeleccionado || !edadSeleccionada) return true;
+
+                const selectedOption = tipoAlimentacion.options[tipoAlimentacion.selectedIndex];
+                const edadMin = selectedOption.getAttribute('data-edad-min');
+                const edadMax = selectedOption.getAttribute('data-edad-max');
+
+                // Convertir edad seleccionada a meses para comparación
+                const edadEnMeses = convertirEdadAMeses(edadSeleccionada);
+
+                if (edadMin && edadEnMeses < parseInt(edadMin)) {
+                    return false;
+                }
+
+                if (edadMax && edadEnMeses > parseInt(edadMax)) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            function convertirEdadAMeses(edad) {
+                if (edad === 'al_nacer') return 0;
+                if (edad.includes('mes')) return parseInt(edad);
+                if (edad.includes('ano')) return parseInt(edad) * 12;
+                return 0;
+            }
+
+            // Validar al cambiar la edad
+            edadNutricion.addEventListener('change', function () {
+                if (tipoAlimentacion.value && !validarEdadAlimentacion()) {
+                    alert('La edad seleccionada no es compatible con el tipo de alimentación elegido.');
+                    tipoAlimentacion.value = '';
+                    alimentacionHelp.style.display = 'none';
+                    infoAlimentacion.style.display = 'none';
+                }
+            });
+        });
+
+        //script Vacunas
+        // Objeto para almacenar los detalles de las vacunas
+        let detallesVacunas = {};
+
+        // Variables globales para el modal de detalles
+        let vacunaActual = '';
+        let dosisActual = '';
+
+        // Función para abrir detalles de vacuna
+        function abrirDetallesVacuna(vacuna, dosis) {
+            vacunaActual = vacuna;
+            dosisActual = dosis;
+
+            // Configurar título del modal
+            const dosisElement = document.querySelector(`[data-vacuna="${vacuna}"][data-dosis="${dosis}"]`);
+            let nombreVacuna, dosisTexto;
+
+            if (dosisElement) {
+                nombreVacuna = dosisElement.closest('.vacuna-card').querySelector('h4').textContent;
+
+                // Para dosis anuales de influenza, obtener el texto del span dosis-numero
+                if (vacuna === 'influenza' && dosis.startsWith('anual_')) {
+                    dosisTexto = dosisElement.querySelector('.dosis-numero').textContent;
+                } else {
+                    dosisTexto = dosis;
+                }
+            } else {
+                nombreVacuna = "Vacuna";
+                dosisTexto = dosis;
+            }
+
+            document.getElementById('tituloDetallesVacuna').textContent = `${nombreVacuna} - ${dosisTexto}`;
+
+            // Cargar datos existentes si los hay
+            cargarDetallesExistentes(vacuna, dosis);
+
+            // Mostrar modal
+            document.getElementById('detallesVacunaModal').style.display = 'flex';
+        }
+
+        // Función para cargar detalles existentes
+        function cargarDetallesExistentes(vacuna, dosis) {
+            const clave = `${vacuna}_${dosis}`;
+            const detalles = detallesVacunas[clave];
+
+            if (detalles) {
+                // Cargar datos básicos
+                document.getElementById('fecha_aplicacion_detalle').value = detalles.fechaAplicacion || '';
+                document.getElementById('fecha_registro').value = detalles.fechaRegistro || '';
+                document.getElementById('grupo_riesgo').value = detalles.grupoRiesgo || '';
+                document.getElementById('lote').value = detalles.lote || '';
+                document.getElementById('fecha_caducidad').value = detalles.fechaCaducidad || '';
+
+                // Cargar radio buttons
+                if (detalles.rescate) {
+                    const rescateRadio = document.querySelector(`input[name="rescate"][value="${detalles.rescate}"]`);
+                    if (rescateRadio) rescateRadio.checked = true;
+                }
+
+                if (detalles.lugarAplicacion) {
+                    const lugarRadio = document.querySelector(`input[name="lugar_aplicacion"][value="${detalles.lugarAplicacion}"]`);
+                    if (lugarRadio) lugarRadio.checked = true;
+                }
+
+                if (detalles.reaccionesAdversas) {
+                    const reaccionRadio = document.querySelector(`input[name="reacciones_adversas"][value="${detalles.reaccionesAdversas}"]`);
+                    if (reaccionRadio) {
+                        reaccionRadio.checked = true;
+                        // Mostrar sección de molestias si es necesario
+                        if (detalles.reaccionesAdversas === 'si') {
+                            document.getElementById('molestias_section').style.display = 'block';
+                        }
+                    }
+                }
+
+                // Cargar molestias
+                if (detalles.molestias && detalles.molestias.length > 0) {
+                    detalles.molestias.forEach(molestia => {
+                        const checkbox = document.querySelector(`input[name="molestias[]"][value="${molestia}"]`);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            checkbox.closest('.checkbox-item').classList.add('checked');
+                        }
+                    });
+                }
+
+                // Cargar "otra molestia"
+                if (detalles.otraMolestia) {
+                    const otraCheckbox = document.querySelector(`input[name="molestias[]"][value="otra"]`);
+                    if (otraCheckbox) {
+                        otraCheckbox.checked = true;
+                        otraCheckbox.closest('.checkbox-item').classList.add('checked');
+                        document.getElementById('otra_molestia_detalle').style.display = 'block';
+                        document.getElementById('otra_molestia_texto').value = detalles.otraMolestia;
+                    }
+                }
+            } else {
+                // Si no hay detalles previos, copiar fecha si ya existe en el input principal
+                const fechaExistente = document.querySelector(`[data-vacuna="${vacuna}"][data-dosis="${dosis}"] .fecha-input`).value;
+                if (fechaExistente) {
+                    document.getElementById('fecha_aplicacion_detalle').value = fechaExistente;
+                }
+            }
+        }
+
+        // Función para cerrar detalles de vacuna
+        function cerrarDetallesVacuna() {
+            document.getElementById('detallesVacunaModal').style.display = 'none';
+            limpiarFormularioDetalles();
+        }
+
+        // Función para limpiar formulario de detalles
+        function limpiarFormularioDetalles() {
+            document.getElementById('detallesVacunaForm').reset();
+            document.getElementById('molestias_section').style.display = 'none';
+            document.getElementById('otra_molestia_detalle').style.display = 'none';
+
+            // Limpiar checkboxes
+            document.querySelectorAll('#molestias_section .checkbox-item').forEach(item => {
+                item.classList.remove('checked');
+            });
+        }
+
+        // Función para guardar detalles de vacuna
+        function guardarDetallesVacuna() {
+            const fechaAplicacion = document.getElementById('fecha_aplicacion_detalle').value;
+            const rescate = document.querySelector('input[name="rescate"]:checked')?.value;
+
+            if (!fechaAplicacion) {
+                alert('La fecha de aplicación es obligatoria');
+                return;
+            }
+
+            if (!rescate) {
+                alert('Debe indicar si es rescate o no');
+                return;
+            }
+
+            // Recopilar todos los datos del formulario
+            const datosVacuna = {
+                vacuna: vacunaActual,
+                dosis: dosisActual,
+                fechaAplicacion: fechaAplicacion,
+                rescate: rescate,
+                fechaRegistro: document.getElementById('fecha_registro').value,
+                grupoRiesgo: document.getElementById('grupo_riesgo').value,
+                lote: document.getElementById('lote').value,
+                fechaCaducidad: document.getElementById('fecha_caducidad').value,
+                lugarAplicacion: document.querySelector('input[name="lugar_aplicacion"]:checked')?.value,
+                reaccionesAdversas: document.querySelector('input[name="reacciones_adversas"]:checked')?.value,
+                molestias: Array.from(document.querySelectorAll('input[name="molestias[]"]:checked')).map(cb => cb.value),
+                otraMolestia: document.getElementById('otra_molestia_texto').value
+            };
+
+            // Guardar en el objeto global
+            const clave = `${vacunaActual}_${dosisActual}`;
+            detallesVacunas[clave] = datosVacuna;
+
+            // Actualizar fecha en la tarjeta principal
+            const dosisElement = document.querySelector(`[data-vacuna="${vacunaActual}"][data-dosis="${dosisActual}"]`);
+            const fechaInput = dosisElement.querySelector('.fecha-input');
+            const btnDetalles = dosisElement.querySelector('.btn-detalles');
+
+            fechaInput.value = fechaAplicacion;
+            fechaInput.classList.add('completada');
+            btnDetalles.classList.add('con-detalles');
+            dosisElement.classList.add('completada');
+
+            // Cambiar icono del botón para indicar que tiene detalles
+            btnDetalles.innerHTML = '📋';
+            btnDetalles.title = 'Ver/Editar detalles';
+
+            console.log('Datos de vacuna guardados:', datosVacuna);
+
+            alert('Detalles de vacuna guardados correctamente');
+            cerrarDetallesVacuna();
+        }
+
+        // Función para obtener resumen de vacunas con detalles
+        function obtenerResumenVacunas() {
+            const resumen = [];
+
+            for (const [clave, detalles] of Object.entries(detallesVacunas)) {
+                resumen.push({
+                    vacuna: detalles.vacuna,
+                    dosis: detalles.dosis,
+                    fechaAplicacion: detalles.fechaAplicacion,
+                    rescate: detalles.rescate,
+                    tieneDetallesCompletos: Boolean(detalles.lote || detalles.grupoRiesgo || detalles.reaccionesAdversas)
+                });
+            }
+
+            return resumen;
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mostrar/ocultar sección de molestias
+            document.querySelectorAll('input[name="reacciones_adversas"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const molestiaSection = document.getElementById('molestias_section');
+                    if (this.value === 'si') {
+                        molestiaSection.style.display = 'block';
+                    } else {
+                        molestiaSection.style.display = 'none';
+                        // Limpiar molestias seleccionadas
+                        document.querySelectorAll('input[name="molestias[]"]').forEach(cb => {
+                            cb.checked = false;
+                            cb.closest('.checkbox-item').classList.remove('checked');
+                        });
+                        document.getElementById('otra_molestia_detalle').style.display = 'none';
+                        document.getElementById('otra_molestia_texto').value = '';
+                    }
+                });
+            });
+
+            // Mostrar/ocultar campo "otra molestia"
+            document.getElementById('otra_molestia').addEventListener('change', function () {
+                const otraDetalle = document.getElementById('otra_molestia_detalle');
+                if (this.checked) {
+                    otraDetalle.style.display = 'block';
+                } else {
+                    otraDetalle.style.display = 'none';
+                    document.getElementById('otra_molestia_texto').value = '';
+                }
+            });
+
+            // Funcionalidad para checkboxes de molestias
+            document.querySelectorAll('#molestias_section .checkbox-item').forEach(item => {
+                const checkbox = item.querySelector('.checkbox-input');
+                if (checkbox) {
+                    checkbox.addEventListener('change', function () {
+                        if (this.checked) {
+                            item.classList.add('checked');
+                        } else {
+                            item.classList.remove('checked');
+                        }
+                    });
+                }
+            });
+
+            // Cerrar modal al hacer clic fuera
+            document.getElementById('detallesVacunaModal').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    cerrarDetallesVacuna();
+                }
+            });
+
+
+            // Botón guardar
+            document.getElementById('guardarVacunacion')?.addEventListener('click', function () {
+                const resumen = obtenerResumenVacunas();
+                console.log('Esquema de vacunación completo:', resumen);
+                console.log('Detalles completos:', detallesVacunas);
+
+                if (resumen.length > 0) {
+                    alert(`Esquema de vacunación guardado. ${resumen.length} vacuna(s) registrada(s) con detalles.`);
+                } else {
+                    alert('No hay vacunas registradas para guardar.');
+                }
+
+                // Guardar en el historial
+                guardarVacunasAlHistorial();
+
+                // Limpiar formulario después de guardar exitosamente
+                limpiarFormularioVacunacion();
+            });
+
+            function limpiarFormularioVacunacion() {
+                // Limpiar fechas de vacunas del esquema
+                document.querySelectorAll('.fecha-input').forEach(input => {
+                    input.value = '';
+                    input.classList.remove('completada');
+                });
+
+                // Limpiar estados visuales
+                document.querySelectorAll('.dosis-item').forEach(item => {
+                    item.classList.remove('completada');
+                });
+
+                document.querySelectorAll('.btn-detalles').forEach(btn => {
+                    btn.classList.remove('completado', 'con-detalles');
+                    btn.innerHTML = '➕';
+                    btn.title = '';
+                });
+
+                // Limpiar otras vacunas
+                document.getElementById('otrasVacunasAgregadas').innerHTML = '';
+                document.getElementById('otra_vacuna_select').value = '';
+                document.getElementById('otra_dosis_select').value = '';
+                document.getElementById('otra_fecha_vacunacion').value = '';
+
+                // Limpiar dosis anuales de influenza
+                document.getElementById('dosis_anuales_agregadas').innerHTML = '';
+                document.getElementById('anio_influenza').value = '';
+
+                // Limpiar detalles guardados
+                detallesVacunas = {};
+            }
+
+            // Botón borrador
+            document.getElementById('guardarBorradorVac')?.addEventListener('click', function () {
+                alert('Borrador de esquema de vacunación guardado');
+            });
+
+            // Actualizar fecha principal cuando se cambia en el modal
+            document.getElementById('fecha_aplicacion_detalle').addEventListener('change', function () {
+                if (vacunaActual && dosisActual) {
+                    const dosisElement = document.querySelector(`[data-vacuna="${vacunaActual}"][data-dosis="${dosisActual}"]`);
+                    const fechaInput = dosisElement.querySelector('.fecha-input');
+                    fechaInput.value = this.value;
+                }
+            });
+
+            // Sincronizar fecha principal con el modal cuando se cambia directamente
+            document.querySelectorAll('.fecha-input').forEach(input => {
+                input.addEventListener('change', function () {
+                    const dosisItem = this.closest('.dosis-item');
+                    const vacuna = dosisItem.dataset.vacuna;
+                    const dosis = dosisItem.dataset.dosis;
+                    const clave = `${vacuna}_${dosis}`;
+
+                    // Si ya existen detalles, actualizar la fecha
+                    if (detallesVacunas[clave]) {
+                        detallesVacunas[clave].fechaAplicacion = this.value;
+                    }
+
+                    // Actualizar estado visual
+                    if (this.value) {
+                        this.classList.add('completada');
+                        dosisItem.classList.add('completada');
+                    } else {
+                        this.classList.remove('completada');
+                        dosisItem.classList.remove('completada');
+                        // Si se borra la fecha, eliminar los detalles también
+                        delete detallesVacunas[clave];
+                        const btnDetalles = dosisItem.querySelector('.btn-detalles');
+                        btnDetalles.classList.remove('con-detalles');
+                        btnDetalles.innerHTML = '➕';
+                        btnDetalles.title = '';
+                    }
+                });
+            });
+        });
+
+        //Solo para Influenza 
+        // Función para agregar dosis anual de influenza
+        function agregarDosisAnualInfluenza() {
+            const select = document.getElementById('anio_influenza');
+            const container = document.getElementById('dosis_anuales_agregadas');
+
+            if (!select.value) {
+                alert('Por favor seleccione un año');
+                return;
+            }
+
+            const año = select.value;
+            const textoAño = select.options[select.selectedIndex].text;
+
+            // Verificar que no esté duplicado
+            const existente = container.querySelector(`[data-año="${año}"]`);
+            if (existente) {
+                alert('Este año ya ha sido agregado');
+                return;
+            }
+
+            // Crear nuevo elemento
+            const dosisItem = document.createElement('div');
+            dosisItem.className = 'dosis-item';
+            dosisItem.setAttribute('data-vacuna', 'influenza');
+            dosisItem.setAttribute('data-dosis', `anual_${año}`);
+            dosisItem.setAttribute('data-año', año);
+            dosisItem.style.backgroundColor = '#f8f9fa';
+            dosisItem.style.borderRadius = '8px';
+            dosisItem.style.padding = '10px';
+            dosisItem.style.marginBottom = '8px';
+
+            dosisItem.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div class="dosis-info">
+                <span class="dosis-numero">Dosis Anual - ${textoAño}</span>
+                <span class="edad-oportuna">Temporada invernal</span>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
+                <button type="button" class="btn-detalles"
+                    onclick="abrirDetallesVacuna('influenza', 'anual_${año}')">➕</button>
+                <button type="button" class="btn btn-outline" 
+                        onclick="eliminarDosisAnualInfluenza('${año}')"
+                        style="padding: 4px 8px; font-size: 11px; background: #e74c3c; color: white; border: none;">🗑️</button>
+            </div>
+        </div>
+    `;
+
+            container.appendChild(dosisItem);
+
+            // Limpiar selector
+            select.value = '';
+
+            // Agregar event listener para la fecha
+            const fechaInput = dosisItem.querySelector('.fecha-input');
+            fechaInput.addEventListener('change', function () {
+                if (this.value) {
+                    this.classList.add('completada');
+                    dosisItem.classList.add('completada');
+                } else {
+                    this.classList.remove('completada');
+                    dosisItem.classList.remove('completada');
+                }
+            });
+        }
+
+        // Función para eliminar dosis anual de influenza
+        function eliminarDosisAnualInfluenza(año) {
+            if (confirm('¿Está seguro de eliminar esta dosis anual?')) {
+                const container = document.getElementById('dosis_anuales_agregadas');
+                const elemento = container.querySelector(`[data-año="${año}"]`);
+                if (elemento) {
+                    elemento.remove();
+
+                    // Eliminar también de los detalles guardados
+                    const clave = `influenza_anual_${año}`;
+                    delete detallesVacunas[clave];
+                }
+            }
+        }
+
+
+        //Historial de vacunacion
+        // Funciones para el historial de vacunación
+        function guardarVacunasAlHistorial() {
+            let vacunasGuardadas = [];
+
+            // Obtener vacunas del esquema nacional completadas
+            document.querySelectorAll('.dosis-item').forEach(item => {
+                const fechaInput = item.querySelector('.fecha-input');
+                if (fechaInput && fechaInput.value) {
+                    const vacuna = item.dataset.vacuna;
+                    const dosis = item.dataset.dosis;
+                    const fecha = fechaInput.value;
+
+                    // Obtener nombre de la vacuna
+                    const vacunaCard = item.closest('.vacuna-card');
+                    const nombreVacuna = vacunaCard ? vacunaCard.querySelector('h4').textContent : vacuna;
+
+                    // Obtener texto de la dosis
+                    const dosisInfo = item.querySelector('.dosis-numero');
+                    const textosDosis = dosisInfo ? dosisInfo.textContent : dosis;
+
+                    vacunasGuardadas.push({
+                        titulo: `${nombreVacuna} - ${textosDosis}`,
+                        fecha: fecha,
+                        tipo: 'esquema_nacional'
+                    });
+                }
+            });
+
+            // Obtener otras vacunas agregadas
+            document.querySelectorAll('.vacuna-agregada').forEach(item => {
+                const titulo = item.querySelector('.vacuna-agregada-titulo').textContent;
+                const detallesText = item.querySelector('.vacuna-agregada-detalles').textContent;
+                // Extraer fecha del texto de detalles
+                const fechaMatch = detallesText.match(/Fecha:\s*(\d{4}-\d{2}-\d{2})/);
+                const fecha = fechaMatch ? fechaMatch[1] : '';
+
+                if (fecha) {
+                    vacunasGuardadas.push({
+                        titulo: titulo,
+                        fecha: fecha,
+                        tipo: 'otra_vacuna'
+                    });
+                }
+            });
+
+            if (vacunasGuardadas.length === 0) {
+                alert('No hay vacunas registradas para guardar en el historial');
+                return;
+            }
+
+            // Agregar al historial
+            vacunasGuardadas.forEach(vacuna => {
+                agregarAlHistorialVacuna(vacuna);
+            });
+
+            // Mostrar sección de historial
+            document.getElementById('historialVacunacion').style.display = 'block';
+
+            alert(`${vacunasGuardadas.length} vacuna(s) guardada(s) en el historial`);
+        }
+
+        function agregarAlHistorialVacuna(vacuna) {
+            const container = document.getElementById('historialVacunas');
+
+            // Buscar si ya existe una vacuna con el mismo título
+            const vacunaExistente = Array.from(container.children).find(item => {
+                const titulo = item.querySelector('.historial-title').textContent;
+                return titulo === vacuna.titulo;
+            });
+
+            if (vacunaExistente) {
+                // Si existe, agregar la fecha al contenedor de fechas
+                agregarFechaAVacuna(vacunaExistente, vacuna.fecha);
+            } else {
+                // Si no existe, crear nueva vacuna
+                crearNuevaVacunaHistorial(vacuna);
+            }
+        }
+
+        function crearNuevaVacunaHistorial(vacuna) {
+            const container = document.getElementById('historialVacunas');
+
+            const historialItem = document.createElement('div');
+            historialItem.classList.add('historial-item');
+            historialItem.innerHTML = `
+        <div class="historial-content">
+            <div class="actividad-info">
+                <div class="actividad-titulo">
+                    <span class="historial-title">${vacuna.titulo}</span>
+                    <span class="fechas-contador">1</span>
+                </div>
+                <div class="fechas-scroll-compacto">
+                    <div class="fecha-item-compacto">
+                        ${vacuna.fecha}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+            container.appendChild(historialItem);
+        }
+
+        function agregarFechaAVacuna(vacunaItem, nuevaFecha) {
+            const fechasScroll = vacunaItem.querySelector('.fechas-scroll-compacto');
+            const contador = vacunaItem.querySelector('.fechas-contador');
+
+            // Verificar que la fecha no esté duplicada
+            const fechasExistentes = Array.from(fechasScroll.children).map(item =>
+                item.textContent.replace('×', '').trim()
+            );
+            if (fechasExistentes.includes(nuevaFecha)) {
+                alert('Esta fecha ya está registrada para esta vacuna');
+                return;
+            }
+
+            // Crear nuevo elemento de fecha
+            const fechaItem = document.createElement('div');
+            fechaItem.classList.add('fecha-item-compacto');
+            fechaItem.innerHTML = `${nuevaFecha}`;
+
+            fechasScroll.appendChild(fechaItem);
+
+            // Actualizar contador
+            const totalFechas = fechasScroll.children.length;
+            contador.textContent = totalFechas;
+
+            // Hacer scroll automático al final
+            fechasScroll.scrollTop = fechasScroll.scrollHeight;
+        }
+
+        function eliminarFechaVacuna(button) {
+            if (confirm('¿Está seguro de eliminar esta fecha?')) {
+                const fechaItem = button.parentElement;
+                const fechasScroll = fechaItem.parentElement;
+                const contador = fechasScroll.parentElement.querySelector('.fechas-contador');
+
+                fechaItem.remove();
+
+                // Actualizar contador
+                const totalFechas = fechasScroll.children.length;
+                contador.textContent = totalFechas;
+
+                // Si no quedan fechas, eliminar toda la vacuna
+                if (totalFechas === 0) {
+                    const vacunaCompleta = fechasScroll.closest('.historial-item');
+                    vacunaCompleta.remove();
+
+                    // Ocultar sección de historial si no hay elementos
+                    const container = document.getElementById('historialVacunas');
+                    if (container.children.length === 0) {
+                        document.getElementById('historialVacunacion').style.display = 'none';
+                    }
+                }
+            }
+        }
 
     </script>
 </body>
