@@ -2134,6 +2134,16 @@
             font-size: 14px;
             font-weight: bold;
         }
+
+        /* Estilos específicos para prevención de enfermedades si los necesitas */
+        #prevencion .form-section:nth-child(5) .section-header {
+            border-bottom: 2px solid #e91e63;
+        }
+
+        #prevencion .form-section:nth-child(5) .section-info h3 {
+            color: #e91e63;
+        }
+    </style>
     </style>
 </head>
 
@@ -2198,6 +2208,21 @@
                 <button class="tab-btn" data-tab="vacunacion">
                     <span>💉</span>
                     <span>Vacunación</span>
+                </button>
+
+                <button class="tab-btn" data-tab="prevencion">
+                    <span>🛡️</span>
+                    <span>Prevención</span>
+                </button>
+
+                <button class="tab-btn" data-tab="prevencion">
+                    <span>🔎</span>
+                    <span>Detección</span>
+                </button>
+
+                <button class="tab-btn" data-tab="prevencion">
+                    <span>📄</span>
+                    <span>Derivación</span>
                 </button>
 
             </div>
@@ -2337,31 +2362,31 @@
                                     embarazo</label>
                                 <select id="complicacionesEmbarazo" name="complicacionesEmbarazo" class="form-select">
                                     <option value="">Seleccione...</option>
-                                    <option value="sin_complicaciones">Sin complicaciones</option>
-                                    <option value="embarazo_ectopico_tubarico">Embarazo ectópico tubárico</option>
-                                    <option value="huevo_muerto_retenido">Huevo muerto retenido</option>
                                     <option value="aborto_espontaneo_no_especificado">Aborto espontáneo no especificado
                                     </option>
-                                    <option value="hiperemesis_gravidica_leve">Hiperemesis gravídica leve</option>
-                                    <option value="infeccion_tracto_urinario">Infección del tracto urinario</option>
-                                    <option value="otras_complicaciones_obstetricas">Otras complicaciones obstétricas
-                                        especificadas</option>
-                                    <option value="hemorragia_primer_trimestre">Hemorragia del primer trimestre</option>
-                                    <option value="preeclampsia_leve_moderada">Preeclampsia leve a moderada</option>
-                                    <option value="hipertension_gestacional">Hipertensión gestacional</option>
-                                    <option value="itu_segundo_trimestre">ITU segundo trimestre</option>
-                                    <option value="diabetes_gestacional">Diabetes gestacional</option>
-                                    <option value="crecimiento_fetal_retardado">Crecimiento fetal retardado</option>
                                     <option value="anomalias_uterinas">Anomalías uterinas complicando el embarazo
                                     </option>
+                                    <option value="crecimiento_fetal_retardado">Crecimiento fetal retardado</option>
+                                    <option value="diabetes_gestacional">Diabetes gestacional</option>
+                                    <option value="embarazo_ectopico_tubarico">Embarazo ectópico tubárico</option>
+                                    <option value="embolia_liquido_amniotico">Embolia por líquido amniótico</option>
+                                    <option value="hemorragia_primer_trimestre">Hemorragia del primer trimestre</option>
+                                    <option value="hiperemesis_gravidica_leve">Hiperemesis gravídica leve</option>
+                                    <option value="hipertension_gestacional">Hipertensión gestacional</option>
+                                    <option value="huevo_muerto_retenido">Huevo muerto retenido</option>
+                                    <option value="infeccion_tracto_urinario">Infección del tracto urinario</option>
+                                    <option value="itu_segundo_trimestre">ITU segundo trimestre</option>
+                                    <option value="otras_complicaciones_obstetricas">Otras complicaciones obstétricas
+                                        especificadas</option>
                                     <option value="parto_pretermino_espontaneo">Parto pretérmino espontáneo</option>
-                                    <option value="rotura_prematura_membranas">Rotura prematura de membranas</option>
                                     <option value="placenta_previa_sin_hemorragia">Placenta previa sin hemorragia
                                     </option>
-                                    <option value="preeclampsia_severa">Preeclampsia severa</option>
-                                    <option value="embolia_liquido_amniotico">Embolia por líquido amniótico</option>
-                                    <option value="retraso_trabajo_parto">Retraso del trabajo de parto</option>
                                     <option value="polihidramnios">Polihidramnios</option>
+                                    <option value="preeclampsia_leve_moderada">Preeclampsia leve a moderada</option>
+                                    <option value="preeclampsia_severa">Preeclampsia severa</option>
+                                    <option value="retraso_trabajo_parto">Retraso del trabajo de parto</option>
+                                    <option value="rotura_prematura_membranas">Rotura prematura de membranas</option>
+                                    <option value="sin_complicaciones">Sin complicaciones</option>
                                 </select>
                             </div>
 
@@ -4286,6 +4311,7 @@
                                         <option value="primera">Primera</option>
                                         <option value="segunda">Segunda</option>
                                         <option value="tercera">Tercera</option>
+                                        <option value="cuarta">Cuarta</option>
                                         <option value="refuerzo">Refuerzo</option>
                                         <option value="adicional">Adicional</option>
                                         <option value="unica">Única</option>
@@ -4516,6 +4542,435 @@
                     </div>
                 </div>
             </div>
+
+            <!-- TAB: Prevención -->
+            <div class="tab-content" id="prevencion">
+                <form id="prevencionForm">
+                    <!-- VITAMINA A -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🍊</div>
+                            <div class="section-info">
+                                <h3>Vitamina "A"</h3>
+                                <p class="section-description">Previene infecciones respiratorias agudas y diarreas</p>
+                            </div>
+                        </div>
+
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="vitamina_a" name="prevencion[]" value="vitamina_a"
+                                        class="promocion-checkbox">
+                                    <label for="vitamina_a" class="promocion-title">🍊 Administración de Vitamina
+                                        "A"</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_vitamina_a" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_vitamina_a" name="fecha_vitamina_a"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HIERRO -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🩸</div>
+                            <div class="section-info">
+                                <h3>Hierro</h3>
+                                <p class="section-description">Suplementación de hierro para prevención y tratamiento
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ANEMIA -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="hierro_anemia" name="prevencion[]" value="hierro_anemia"
+                                        class="promocion-checkbox">
+                                    <label for="hierro_anemia" class="promocion-title">🩸 HIERRO - ANEMIA</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_hierro_anemia" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_hierro_anemia" name="fecha_hierro_anemia"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PROFILAXIS -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="hierro_profilaxis" name="prevencion[]"
+                                        value="hierro_profilaxis" class="promocion-checkbox">
+                                    <label for="hierro_profilaxis" class="promocion-title">💊 HIERRO -
+                                        PROFILAXIS</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_hierro_profilaxis" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_hierro_profilaxis" name="fecha_hierro_profilaxis"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DESPARASITACIÓN INTESTINAL -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🐛</div>
+                            <div class="section-info">
+                                <h3>Desparasitación Intestinal</h3>
+                                <p class="section-description">Los parásitos enferman el estómago de tu hija o hijo.
+                                    Para prevenirlos acude a tu unidad de salud para que le den desparasitante</p>
+                            </div>
+                        </div>
+
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="desparasitacion" name="prevencion[]"
+                                        value="desparasitacion" class="promocion-checkbox">
+                                    <label for="desparasitacion" class="promocion-title">💊 Desparasitación
+                                        Intestinal</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_desparasitacion" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_desparasitacion" name="fecha_desparasitacion"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DOTACIÓN DE VIDA SUERO ORAL -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">💧</div>
+                            <div class="section-info">
+                                <h3>Dotación de Vida Suero Oral</h3>
+                                <p class="section-description">Suministro de vida suero oral para prevención y
+                                    tratamiento de deshidratación</p>
+                            </div>
+                        </div>
+
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="vida_suero_oral" name="prevencion[]"
+                                        value="vida_suero_oral" class="promocion-checkbox">
+                                    <label for="vida_suero_oral" class="promocion-title">💧 Dotación de Vida Suero
+                                        Oral</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_vida_suero_oral" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_vida_suero_oral" name="fecha_vida_suero_oral"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SALUD BUCAL -->
+                    <div class="form-section">
+                        <div class="section-header" style="border-bottom: 2px solid #e91e63;">
+                            <div class="section-icon" style="background: linear-gradient(135deg, #e91e63, #f06292);">🦷
+                            </div>
+                            <div class="section-info">
+                                <h3 style="color: #e91e63;">Salud Bucal</h3>
+                                <p class="section-description">Actividades de prevención y cuidado de la salud bucal</p>
+                            </div>
+                        </div>
+
+                        <!-- Enseñanza de técnica del cepillado dental -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="ensenanza_cepillado" name="prevencion[]"
+                                        value="ensenanza_cepillado" class="promocion-checkbox">
+                                    <label for="ensenanza_cepillado" class="promocion-title">🪥 Enseñanza de técnica del
+                                        cepillado dental</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_ensenanza_cepillado" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_ensenanza_cepillado" name="fecha_ensenanza_cepillado"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detección de placa bacteriana -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="deteccion_placa" name="prevencion[]"
+                                        value="deteccion_placa" class="promocion-checkbox">
+                                    <label for="deteccion_placa" class="promocion-title">🔍 Detección de placa
+                                        bacteriana</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_deteccion_placa" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_deteccion_placa" name="fecha_deteccion_placa"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aplicación de flúor -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="aplicacion_fluor" name="prevencion[]"
+                                        value="aplicacion_fluor" class="promocion-checkbox">
+                                    <label for="aplicacion_fluor" class="promocion-title">✨ Aplicación de flúor</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_aplicacion_fluor" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_aplicacion_fluor" name="fecha_aplicacion_fluor"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Enseñanza de uso del hilo dental -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="ensenanza_hilo_dental" name="prevencion[]"
+                                        value="ensenanza_hilo_dental" class="promocion-checkbox">
+                                    <label for="ensenanza_hilo_dental" class="promocion-title">🧵 Enseñanza de uso del
+                                        hilo dental</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_ensenanza_hilo_dental" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_ensenanza_hilo_dental"
+                                        name="fecha_ensenanza_hilo_dental" class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Autoaplicación de flúor -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="autoaplicacion_fluor" name="prevencion[]"
+                                        value="autoaplicacion_fluor" class="promocion-checkbox">
+                                    <label for="autoaplicacion_fluor" class="promocion-title">💪 Autoaplicación de
+                                        flúor</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_autoaplicacion_fluor" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_autoaplicacion_fluor" name="fecha_autoaplicacion_fluor"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aplicación de barniz de flúor -->
+                        <div class="promocion-item">
+                            <div class="promocion-header-with-date">
+                                <div class="promocion-check-title">
+                                    <input type="checkbox" id="barniz_fluor" name="prevencion[]" value="barniz_fluor"
+                                        class="promocion-checkbox">
+                                    <label for="barniz_fluor" class="promocion-title">🎨 Aplicación de barniz de
+                                        flúor</label>
+                                </div>
+                                <div class="promocion-date-inline">
+                                    <label for="fecha_barniz_fluor" class="date-label">Fecha:</label>
+                                    <input type="date" id="fecha_barniz_fluor" name="fecha_barniz_fluor"
+                                        class="date-input-header">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-outline" id="limpiarPrevencion">
+                            <span>🗑️</span> Limpiar Formulario
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="guardarBorradorPrev">
+                            <span>💾</span> Guardar Borrador
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="guardarPrevencion">
+                            <span>✅</span> Guardar Prevención
+                        </button>
+                    </div>
+
+                    <!-- Historial de Prevención -->
+                    <div class="form-section" id="historialPrevencion" style="display: none;">
+                        <div class="section-header">
+                            <div class="section-icon">📚</div>
+                            <div class="section-info">
+                                <h3>Historial de Prevención de Enfermedades</h3>
+                                <p class="section-description">Actividades de prevención registradas previamente</p>
+                            </div>
+                        </div>
+
+                        <div id="historialPrevenciones" class="historial-container">
+                            <!-- Aquí se mostrarán las prevenciones guardadas -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- TAB: Detección de enfermedades -->
+            <div class="tab-content" id="detección"> 
+                 <!-- Sección: Tamizajes -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <div class="section-icon">🔍</div>
+                            <div class="section-info">
+                                <h3>Tamizajes Neonatales</h3>
+                                <p class="section-description">Indique qué tamizajes se realizaron al recién nacido</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <span>⚠️</span>
+                            <div><strong>Importante:</strong> Los tamizajes neonatales son fundamentales para la
+                                detección temprana de enfermedades.</div>
+                        </div>
+
+                        <div class="tamizajes-grid">
+                            <!-- Tamiz Metabólico -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_metabolico" name="tamizajes[]"
+                                        value="tamiz_metabolico" class="tamiz-checkbox">
+                                    <label for="tamiz_metabolico" class="tamiz-label">🧪 Tamiz metabólico
+                                        neonatal</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_metabolico">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_metabolico" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_metabolico" name="fecha_tamiz_metabolico"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_metabolico"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_metabolico"
+                                                name="observaciones_tamiz_metabolico" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Auditivo -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_auditivo" name="tamizajes[]" value="tamiz_auditivo"
+                                        class="tamiz-checkbox">
+                                    <label for="tamiz_auditivo" class="tamiz-label">👂 Tamiz auditivo</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_auditivo">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_auditivo" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_auditivo" name="fecha_tamiz_auditivo"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_auditivo"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_auditivo"
+                                                name="observaciones_tamiz_auditivo" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Oftalmológico -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_oftalmologico" name="tamizajes[]"
+                                        value="tamiz_oftalmologico" class="tamiz-checkbox">
+                                    <label for="tamiz_oftalmologico" class="tamiz-label">👁️ Tamiz oftalmológico</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_oftalmologico">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_oftalmologico" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_oftalmologico"
+                                                name="fecha_tamiz_oftalmologico" class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_oftalmologico"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_oftalmologico"
+                                                name="observaciones_tamiz_oftalmologico" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz Cardíaco -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_cardiaco" name="tamizajes[]" value="tamiz_cardiaco"
+                                        class="tamiz-checkbox">
+                                    <label for="tamiz_cardiaco" class="tamiz-label">❤️ Tamiz cardíaco</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_cardiaco">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_cardiaco" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_cardiaco" name="fecha_tamiz_cardiaco"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_cardiaco"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_cardiaco"
+                                                name="observaciones_tamiz_cardiaco" class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tamiz de Cadera -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="tamiz_cadera" name="tamizajes[]" value="tamiz_cadera"
+                                        class="tamiz-checkbox">
+                                    <label for="tamiz_cadera" class="tamiz-label">🦴 Tamiz de cadera</label>
+                                </div>
+                                <div class="tamiz-details" id="details_tamiz_cadera">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="fecha_tamiz_cadera" class="form-label">Fecha de
+                                                realización:</label>
+                                            <input type="date" id="fecha_tamiz_cadera" name="fecha_tamiz_cadera"
+                                                class="form-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="observaciones_tamiz_cadera"
+                                                class="form-label">Observaciones/Resultados:</label>
+                                            <textarea id="observaciones_tamiz_cadera" name="observaciones_tamiz_cadera"
+                                                class="form-input" rows="2"
+                                                placeholder="Escriba aquí observaciones o resultados..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
         </div>
     </div>
 
@@ -5441,7 +5896,7 @@
                     if (errores.length > 0) {
                         alert('Errores encontrados:\n' + errores.join('\n'));
                         return;
-                    }           
+                    }
                 });
             }
         });
@@ -5625,7 +6080,50 @@
             });
         });
 
-        // Función para agregar al historial nutricional
+        // 1. Modificar la función guardarNutricion para incluir tipo de alimentación
+        document.getElementById('guardarNutricion')?.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const peso = pesoInput.value;
+            const talla = tallaInput.value;
+            const edad = edadSelect.value;
+            const fecha = document.getElementById('fecha_nutricion').value;
+            const imc = imcInput.value;
+
+            // Obtener tipo de alimentación (opcional)
+            const tipoAlimentacion = document.getElementById('tipo_alimentacion').value;
+            const tipoAlimentacionTexto = tipoAlimentacion ?
+                document.getElementById('tipo_alimentacion').options[document.getElementById('tipo_alimentacion').selectedIndex].text : '';
+
+            if (!peso || !talla || !edad || !fecha) {
+                alert('Por favor complete todos los campos obligatorios');
+                return;
+            }
+
+            // Agregar al historial
+            agregarAlHistorialNutricion({
+                peso: peso,
+                talla: talla,
+                edad: edad,
+                fecha: fecha,
+                imc: imc,
+                estado: estadoDiv.querySelector('h4')?.textContent || '',
+                tipoAlimentacion: tipoAlimentacion,
+                tipoAlimentacionTexto: tipoAlimentacionTexto
+            });
+
+            alert('Evaluación nutricional guardada correctamente');
+
+            // Limpiar formulario
+            document.getElementById('nutricionForm').reset();
+            imcInput.value = '';
+            resultadoDiv.style.display = 'none';
+            // Limpiar también la información de alimentación
+            document.getElementById('info_alimentacion').style.display = 'none';
+            document.getElementById('alimentacion_help').style.display = 'none';
+        });
+
+        // 2. Modificar la función agregarAlHistorialNutricion
         function agregarAlHistorialNutricion(datos) {
             const container = document.getElementById('historialEvaluaciones');
 
@@ -5640,6 +6138,11 @@
                 <div><strong>IMC:</strong> ${datos.imc} kg/m²</div>
                 <div><strong>Estado:</strong> ${datos.estado}</div>
                 <div><strong>Fecha:</strong> ${datos.fecha}</div>
+                ${datos.tipoAlimentacionTexto ? `
+                    <div style="grid-column: 1 / -1; margin-top: 8px; padding: 8px; background: #f0f8f0; border-radius: 6px; border-left: 3px solid #27ae60;">
+                        <strong>🍼 Tipo de Alimentación:</strong> ${datos.tipoAlimentacionTexto}
+                    </div>
+                ` : ''}
             </div>
         </div>
         <div class="historial-actions">
@@ -5649,19 +6152,6 @@
 
             container.appendChild(historialItem);
             document.getElementById('historialNutricion').style.display = 'block';
-        }
-
-        // Función para eliminar evaluación nutricional
-        function eliminarEvaluacionNutricional(button) {
-            if (confirm('¿Está seguro de eliminar esta evaluación nutricional?')) {
-                button.closest('.historial-item').remove();
-
-                // Ocultar sección si no hay elementos
-                const container = document.getElementById('historialEvaluaciones');
-                if (container.children.length === 0) {
-                    document.getElementById('historialNutricion').style.display = 'none';
-                }
-            }
         }
 
 
@@ -6541,6 +7031,196 @@
             }
         }
 
+        // JavaScript para el TAB de Prevención de Enfermedades
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Event listeners para checkboxes de prevención (similar a promoción)
+            const prevencionCheckboxes = document.querySelectorAll('#prevencion .promocion-checkbox');
+            prevencionCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const parentItem = this.closest('.promocion-item');
+                    const dateInput = parentItem.querySelector('.date-input-header');
+
+                    if (this.checked) {
+                        parentItem.classList.add('selected');
+                        // Opcional: enfocar el campo de fecha cuando se marca el checkbox
+                        if (dateInput) {
+                            dateInput.focus();
+                        }
+                    } else {
+                        parentItem.classList.remove('selected');
+                        // Limpiar la fecha cuando se desmarca
+                        if (dateInput) {
+                            dateInput.value = '';
+                        }
+                    }
+                });
+            });
+
+            // Botón limpiar
+            document.getElementById('limpiarPrevencion')?.addEventListener('click', function () {
+                if (confirm('¿Está seguro de que desea limpiar todos los campos del formulario de prevención?')) {
+                    limpiarFormularioPrevencion();
+                }
+            });
+
+            // Botón guardar
+            document.getElementById('guardarPrevencion')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                guardarPrevencionesAlHistorial();
+            });
+
+            // Botón borrador
+            document.getElementById('guardarBorradorPrev')?.addEventListener('click', function () {
+                alert('Borrador de prevención guardado');
+            });
+        });
+
+        // Función para limpiar formulario de prevención
+        function limpiarFormularioPrevencion() {
+            // Desmarcar checkboxes y limpiar fechas
+            document.querySelectorAll('#prevencion .promocion-item').forEach(item => {
+                const checkbox = item.querySelector('.promocion-checkbox');
+                const dateInput = item.querySelector('.date-input-header');
+
+                if (checkbox) checkbox.checked = false;
+                if (dateInput) dateInput.value = '';
+                item.classList.remove('selected');
+            });
+        }
+
+        // Función para guardar prevenciones al historial
+        function guardarPrevencionesAlHistorial() {
+            let prevencionesSeleccionadas = [];
+
+            // Obtener prevenciones seleccionadas
+            const prevencionCheckboxes = document.querySelectorAll('#prevencion .promocion-checkbox');
+            prevencionCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    // Buscar el item padre
+                    const parentItem = checkbox.closest('.promocion-item');
+
+                    // Obtener el texto del label
+                    const labelElement = parentItem.querySelector('.promocion-title');
+                    const label = labelElement ? labelElement.textContent : '';
+
+                    // Buscar el input de fecha correspondiente
+                    const dateInput = parentItem.querySelector('.date-input-header');
+                    const fecha = dateInput ? dateInput.value : '';
+
+                    if (fecha) {
+                        prevencionesSeleccionadas.push({
+                            titulo: label,
+                            fecha: fecha
+                        });
+                    }
+                }
+            });
+
+            if (prevencionesSeleccionadas.length === 0) {
+                alert('Por favor seleccione al menos una actividad de prevención con su fecha');
+                return;
+            }
+
+            // Agregar al historial
+            prevencionesSeleccionadas.forEach(prevencion => {
+                agregarAlHistorialPrevencion(prevencion);
+            });
+
+            // Limpiar formulario después de guardar
+            limpiarFormularioPrevencion();
+
+            alert(`${prevencionesSeleccionadas.length} actividad(es) de prevención guardada(s) correctamente`);
+
+            // Mostrar sección de historial
+            document.getElementById('historialPrevencion').style.display = 'block';
+        }
+
+        // Función para agregar al historial de prevención (reutiliza la estructura de promoción)
+        function agregarAlHistorialPrevencion(prevencion) {
+            const container = document.getElementById('historialPrevenciones');
+
+            // Buscar si ya existe una actividad con el mismo título
+            const actividadExistente = Array.from(container.children).find(item => {
+                const titulo = item.querySelector('.historial-title').textContent;
+                return titulo === prevencion.titulo;
+            });
+
+            if (actividadExistente) {
+                // Si existe, agregar la fecha al contenedor de fechas
+                agregarFechaAActividadPrevencion(actividadExistente, prevencion.fecha);
+            } else {
+                // Si no existe, crear nueva actividad
+                crearNuevaActividadHistorialPrevencion(prevencion);
+            }
+        }
+
+        // Función para crear nueva actividad en el historial de prevención
+        function crearNuevaActividadHistorialPrevencion(prevencion) {
+            const container = document.getElementById('historialPrevenciones');
+
+            const historialItem = document.createElement('div');
+            historialItem.classList.add('historial-item');
+            historialItem.innerHTML = `
+        <div class="historial-content">
+            <div class="actividad-info">
+                <div class="actividad-titulo">
+                    <span class="historial-title">${prevencion.titulo}</span>
+                    <span class="fechas-contador">1</span>
+                </div>
+                <div class="fechas-scroll-compacto">
+                    <div class="fecha-item-compacto">${prevencion.fecha}</div>
+                </div>
+            </div>
+        </div>
+        <div class="historial-actions">
+            <button type="button" class="btn-delete" onclick="eliminarDelHistorialPrevencion(this)">🗑️ Eliminar</button>
+        </div>
+    `;
+
+            container.appendChild(historialItem);
+        }
+
+        // Función para agregar fecha a una actividad existente de prevención
+        function agregarFechaAActividadPrevencion(actividadItem, nuevaFecha) {
+            const fechasScroll = actividadItem.querySelector('.fechas-scroll-compacto');
+            const contador = actividadItem.querySelector('.fechas-contador');
+
+            // Verificar que la fecha no esté duplicada
+            const fechasExistentes = Array.from(fechasScroll.children).map(item => item.textContent.replace('×', '').trim());
+            if (fechasExistentes.includes(nuevaFecha)) {
+                alert('Esta fecha ya está registrada para esta actividad');
+                return;
+            }
+
+            // Crear nuevo elemento de fecha
+            const fechaItem = document.createElement('div');
+            fechaItem.classList.add('fecha-item-compacto');
+            fechaItem.innerHTML = `${nuevaFecha}`;
+
+            fechasScroll.appendChild(fechaItem);
+
+            // Actualizar contador
+            const totalFechas = fechasScroll.children.length;
+            contador.textContent = totalFechas;
+
+            // Hacer scroll automático al final
+            fechasScroll.scrollTop = fechasScroll.scrollHeight;
+        }
+
+        // Función para eliminar del historial de prevención
+        function eliminarDelHistorialPrevencion(button) {
+            if (confirm('¿Está seguro de eliminar esta actividad completa con todas sus fechas?')) {
+                const historialItem = button.closest('.historial-item');
+                historialItem.remove();
+
+                // Ocultar sección de historial si no hay elementos
+                const container = document.getElementById('historialPrevenciones');
+                if (container.children.length === 0) {
+                    document.getElementById('historialPrevencion').style.display = 'none';
+                }
+            }
+        }
     </script>
 </body>
 
