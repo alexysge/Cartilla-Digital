@@ -5441,9 +5441,7 @@
                     if (errores.length > 0) {
                         alert('Errores encontrados:\n' + errores.join('\n'));
                         return;
-                    }
-
-                    alert('Antecedentes guardados correctamente');
+                    }           
                 });
             }
         });
@@ -6217,10 +6215,7 @@
 
                 if (resumen.length > 0) {
                     alert(`Esquema de vacunación guardado. ${resumen.length} vacuna(s) registrada(s) con detalles.`);
-                } else {
-                    alert('No hay vacunas registradas para guardar.');
                 }
-
                 // Guardar en el historial
                 guardarVacunasAlHistorial();
 
