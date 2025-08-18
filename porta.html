@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección de Agudeza Visual</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .tamiz-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tamiz-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tamiz-checkbox {
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .tamiz-label {
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .tamiz-details {
+            display: none;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 20px;
+            margin-top: 15px;
+        }
+
+        .tamiz-details.active {
+            display: block;
+        }
+
+        .registro-item {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .registro-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .registro-numero {
+            font-weight: bold;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .btn-eliminar {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-eliminar:hover {
+            background: #c82333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #80bdff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
+
+        /* Estilos para radio buttons */
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: normal;
+            color: #495057;
+        }
+
+        .radio-option input[type="radio"]:focus {
+            box-shadow: 0 0 0 2px rgba(0,123,255,.25);
+        }
+
+        .btn-agregar {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-agregar:hover {
+            background: #218838;
+        }
+
+        .btn-agregar:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .no-registros {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .contador-registros {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Detección de defectos de agudeza visual -->
+    <div class="tamiz-item">
+        <div class="tamiz-header">
+            <input type="checkbox" id="agudeza_visual" name="enfermedades[]"
+                value="agudeza_visual" class="tamiz-checkbox">
+            <label for="agudeza_visual" class="tamiz-label">
+                👁️ Detección de defectos de agudeza visual (4 a 6 años)
+                <span class="contador-registros" id="contador_registros" style="display: none;">0</span>
+            </label>
+        </div>
+        <div class="tamiz-details" id="details_agudeza_visual">
+            <div class="agudeza-visual-container">
+                <div class="registros-agudeza" id="registros_agudeza">
+                    <div class="no-registros" id="no_registros">
+                        📝 No hay registros. Haz clic en "Agregar Registro" para comenzar.
+                    </div>
+                </div>
+                <button type="button" class="btn-agregar" id="btn_agregar_registro">
+                    ➕ Agregar Registro
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class AgudezaVisualManager {
+            constructor() {
+                this.checkbox = document.getElementById('agudeza_visual');
+                this.details = document.getElementById('details_agudeza_visual');
+                this.registrosContainer = document.getElementById('registros_agudeza');
+                this.btnAgregar = document.getElementById('btn_agregar_registro');
+                this.contadorElement = document.getElementById('contador_registros');
+                this.noRegistrosElement = document.getElementById('no_registros');
+                
+                this.registroCounter = 0;
+                this.registros = [];
+                
+                this.init();
+            }
+            
+            init() {
+                // Event listener para el checkbox principal
+                this.checkbox.addEventListener('change', () => {
+                    this.toggleDetails();
+                });
+                
+                // Event listener para agregar registro
+                this.btnAgregar.addEventListener('click', () => {
+                    this.agregarRegistro();
+                });
+                
+                // Inicializar estado
+                this.toggleDetails();
+            }
+            
+            toggleDetails() {
+                if (this.checkbox.checked) {
+                    this.details.classList.add('active');
+                    this.contadorElement.style.display = 'inline-block';
+                    
+                    // Si no hay registros, agregar uno automáticamente
+                    if (this.registros.length === 0) {
+                        this.agregarRegistro();
+                    }
+                } else {
+                    this.details.classList.remove('active');
+                    this.contadorElement.style.display = 'none';
+                    // Limpiar todos los registros cuando se desmarca
+                    this.limpiarTodosLosRegistros();
+                }
+            }
+            
+            agregarRegistro() {
+                this.registroCounter++;
+                const registroId = `registro_${this.registroCounter}`;
+                
+                const registroElement = this.crearElementoRegistro(registroId, this.registroCounter);
+                
+                // Ocultar mensaje de "no registros"
+                this.noRegistrosElement.style.display = 'none';
+                
+                // Agregar al contenedor
+                this.registrosContainer.appendChild(registroElement);
+                
+                // Agregar al array de registros
+                this.registros.push({
+                    id: registroId,
+                    numero: this.registroCounter,
+                    element: registroElement
+                });
+                
+                // Actualizar contador
+                this.actualizarContador();
+                
+                // Focus en el primer campo
+                const primerInput = registroElement.querySelector('input[type="date"]');
+                if (primerInput) {
+                    setTimeout(() => primerInput.focus(), 100);
+                }
+            }
+            
+            crearElementoRegistro(registroId, numero) {
+                const div = document.createElement('div');
+                div.className = 'registro-item';
+                div.setAttribute('data-registro-id', registroId);
+                
+                div.innerHTML = `
+                    <div class="registro-header">
+                        <span class="registro-numero">Registro #${numero}</span>
+                        <button type="button" class="btn-eliminar" onclick="agudezaManager.eliminarRegistro('${registroId}')">
+                            🗑️ Eliminar
+                        </button>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fecha_${registroId}">Fecha de Examen *</label>
+                            <input type="date" 
+                                   id="fecha_${registroId}" 
+                                   name="agudeza_visual_fecha[]" 
+                                   required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Resultado</label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" 
+                                           id="normal_${registroId}" 
+                                           name="agudeza_visual_resultado_${registroId}" 
+                                           value="normal">
+                                    <label for="normal_${registroId}">Normal</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" 
+                                           id="anormal_${registroId}" 
+                                           name="agudeza_visual_resultado_${registroId}" 
+                                           value="anormal">
+                                    <label for="anormal_${registroId}">Anormal</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="observaciones_${registroId}">Observaciones</label>
+                        <input type="text" 
+                               id="observaciones_${registroId}" 
+                               name="agudeza_visual_observaciones[]" 
+                               placeholder="Observaciones adicionales (opcional)">
+                    </div>
+                `;
+                
+                return div;
+            }
+            
+            eliminarRegistro(registroId) {
+                // Confirmar eliminación
+                if (this.registros.length === 1) {
+                    const confirmar = confirm('¿Estás seguro de eliminar este registro? Al eliminar el único registro, se desmarcará la opción.');
+                    if (!confirmar) return;
+                } else {
+                    const confirmar = confirm('¿Estás seguro de eliminar este registro?');
+                    if (!confirmar) return;
+                }
+                
+                // Encontrar y eliminar el registro
+                const index = this.registros.findIndex(r => r.id === registroId);
+                if (index !== -1) {
+                    const registro = this.registros[index];
+                    registro.element.remove();
+                    this.registros.splice(index, 1);
+                }
+                
+                // Actualizar contador
+                this.actualizarContador();
+                
+                // Si no quedan registros, desmarcar checkbox y mostrar mensaje
+                if (this.registros.length === 0) {
+                    this.checkbox.checked = false;
+                    this.toggleDetails();
+                    this.noRegistrosElement.style.display = 'block';
+                }
+            }
+            
+            limpiarTodosLosRegistros() {
+                // Eliminar todos los elementos del DOM
+                this.registros.forEach(registro => {
+                    registro.element.remove();
+                });
+                
+                // Limpiar array
+                this.registros = [];
+                this.registroCounter = 0;
+                
+                // Mostrar mensaje de no registros
+                this.noRegistrosElement.style.display = 'block';
+                
+                // Actualizar contador
+                this.actualizarContador();
+            }
+            
+            actualizarContador() {
+                this.contadorElement.textContent = this.registros.length;
+            }
+            
+            // Método para obtener todos los datos de los registros
+            obtenerDatos() {
+                if (!this.checkbox.checked) {
+                    return null;
+                }
+                
+                const datos = [];
+                this.registros.forEach(registro => {
+                    const element = registro.element;
+                    const fecha = element.querySelector('input[type="date"]').value;
+                    const radioSeleccionado = element.querySelector('input[type="radio"]:checked');
+                    const resultado = radioSeleccionado ? radioSeleccionado.value : '';
+                    const observaciones = element.querySelector('input[type="text"]').value;
+                    
+                    datos.push({
+                        fecha: fecha,
+                        resultado: resultado,
+                        observaciones: observaciones
+                    });
+                });
+                
+                return {
+                    activo: true,
+                    registros: datos
+                };
+            }
+        }
+        
+        // Inicializar el manager
+        let agudezaManager;
+        document.addEventListener('DOMContentLoaded', function() {
+            agudezaManager = new AgudezaVisualManager();
+        });
+        
+        // Función de demostración para ver los datos
+        function mostrarDatos() {
+            const datos = agudezaManager.obtenerDatos();
+            console.log('Datos de Agudeza Visual:', datos);
+            alert('Datos guardados en consola. Presiona F12 para verlos.');
+        }
+    </script>
+    
+    <!-- Botón de demo para probar la funcionalidad -->
+    <div style="margin-top: 20px; text-align: center;">
+        <button onclick="mostrarDatos()" style="background: #17a2b8; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">
+            🔍 Ver Datos (Demo)
+        </button>
+    </div>
+</body>
+</html>

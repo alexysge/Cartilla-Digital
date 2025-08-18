@@ -1926,6 +1926,15 @@
             font-weight: 600;
         }
 
+        .prevencion-badge {
+            background: #9d06f4ff;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
         .dosis-container {
             padding: 15px 20px;
         }
@@ -2190,62 +2199,64 @@
         }
 
         /* Estilos específicos para combos/selects */
-select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e1e8ed;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: all 0.3s ease;
-    background-color: #fafbfc;
-    color: #333;
-    appearance: none; /* Remueve el estilo por defecto del navegador */
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 16px;
-    padding-right: 45px; /* Espacio para la flecha */
-}
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+            background-color: #fafbfc;
+            color: #333;
+            appearance: none;
+            /* Remueve el estilo por defecto del navegador */
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 45px;
+            /* Espacio para la flecha */
+        }
 
-/* Estados de focus para combos */
-select:focus {
-    outline: none;
-    border-color: #3498db;
-    background-color: white;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
+        /* Estados de focus para combos */
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
 
-/* Estado disabled para combos */
-select:disabled {
-    background-color: #f8f9fa;
-    color: #6c757d;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
+        /* Estado disabled para combos */
+        select:disabled {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
 
-/* Hover effect para combos */
-select:hover:not(:disabled) {
-    border-color: #3498db;
-    background-color: white;
-}
+        /* Hover effect para combos */
+        select:hover:not(:disabled) {
+            border-color: #3498db;
+            background-color: white;
+        }
 
-/* Estilos para las opciones del select */
-select option {
-    padding: 10px;
-    background-color: white;
-    color: #333;
-    font-size: 14px;
-}
+        /* Estilos para las opciones del select */
+        select option {
+            padding: 10px;
+            background-color: white;
+            color: #333;
+            font-size: 14px;
+        }
 
-select option:hover {
-    background-color: #f8f9fa;
-}
+        select option:hover {
+            background-color: #f8f9fa;
+        }
 
-select option:checked {
-    background-color: #3498db;
-    color: white;
-}
+        select option:checked {
+            background-color: #3498db;
+            color: white;
+        }
     </style>
 
 </head>
@@ -2931,88 +2942,90 @@ select option:checked {
                             <div class="age-selector-section">
                                 <select class="age-select" id="otrosSelect">
                                     <option value="">Selecciona</option>
-                                    <option value="incorporacion-programa-salud">Incorporación a programa de salud
-                                    </option>
-                                    <option value="primera-visita-medico">Primera visita al médico</option>
-                                    <option value="tamiz-neonatal">Tamiz Neonatal: Enfermedades Metabólicas Congénitas
-                                    </option>
-                                    <option value="prevencion-muerte-subita">Prevención de la muerte súbita de la y el
-                                        lactante</option>
-                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías
-                                        biliares</option>
-                                    <option value="prevencion-raquitismo">Prevención de raquitismo</option>
-                                    <option value="cuidados-nino-enfermo">Cuidados de la niña y el niño enfermo</option>
-                                    <option value="crecimiento-desarrollo">Crecimiento y desarrollo de la niña y niño
-                                    </option>
-                                    <option value="control-esfinteres">Control de esfínteres</option>
-                                    <option value="vigilancia-estado-nutricional">Vigilancia y evaluación del estado
-                                        nutricional</option>
-                                    <option value="prevencion-desnutricion">Prevención de desnutrición</option>
-                                    <option value="prevencion-adicciones">Prevención de adicciones</option>
-                                    <option value="vacunacion">Vacunación</option>
-                                    <option value="control-fiebre">Control de fiebre</option>
-                                    <option value="prevencion-enfermedades-respiratorias">Prevención y control de
-                                        enfermedades respiratorias no transmisibles: Asma</option>
-                                    <option value="ojo-seco">Ojo seco</option>
+                                    <option value="acciones-prevencion-colapso-cuidador">Acciones de prevención de
+                                        colapso del cuidador</option>
+                                    <option value="acciones-mejoramiento-conducta-comportamiento">Acciones para el
+                                        mejoramiento en la conducta del comportamiento</option>
+                                    <option value="administracion-vitamina-a">Administración de vitamina "A"</option>
+                                    <option value="alimentacion-saludable">Alimentación saludable</option>
+                                    <option value="consejos-crianza">Consejos de Crianza</option>
                                     <option value="consejos-crianza-salud-mental">Consejos de crianza (salud mental)
                                     </option>
-                                    <option value="entorno-favorable-salud">Entorno favorable a la salud</option>
-                                    <option value="duenos-responsables-animales">Dueños responsables con animales de
-                                        compañía</option>
-                                    <option value="salud-mental">Salud mental</option>
-                                    <option value="higiene-sueno">Higiene del sueño</option>
-                                    <option value="prevencion-acoso-escolar">Prevención de Acoso escolar</option>
-                                    <option value="cultura-donacion-organos">Cultura para la donación de órganos y
-                                        tejidos</option>
-                                    <option value="desparasitacion-intestinal">Desparasitación intestinal</option>
+                                    <option value="consejos-salud-visual-tiempo-pantalla">Consejos sobre Salud Visual:
+                                        Tiempo de pantalla</option>
+                                    <option value="control-esfinteres">Control de esfínteres</option>
+                                    <option value="control-fiebre">Control de fiebre</option>
+                                    <option value="crecimiento-desarrollo-nina-nino">Crecimiento y desarrollo de la niña
+                                        y niño</option>
+                                    <option value="cuidados-nina-nino-enfermo">Cuidados de la niña y el niño enfermo
+                                    </option>
                                     <option value="cuidados-embarazo">Cuidados del embarazo</option>
-                                    <option value="administracion-vitamina-a">Administración de vitamina "A"</option>
-                                    <option value="prevencion-anemia">Prevención anemia</option>
                                     <option value="cuidados-despues-parto">Cuidados después del parto</option>
-                                    <option value="guia-cuidado-salud-prevenimss">Guía para el Cuidado de la Salud
-                                        PrevenIMSS Familiar</option>
-                                    <option value="prevencion-colapso-cuidador">Acciones de prevención de colapso del
-                                        cuidador</option>
+                                    <option value="cultura-donacion-organos-tejidos">Cultura para la donación de órganos
+                                        y tejidos</option>
+                                    <option value="desarrollo-infantil-temprano">Desarrollo Infantil Temprano:</option>
+                                    <option value="desparasitacion-intestinal">Desparasitación intestinal</option>
+                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías
+                                        biliares</option>
+                                    <option value="duenos-responsables-animales-compania">Dueños responsables con
+                                        animales de compañía</option>
                                     <option value="educacion-duelo">Educación del duelo</option>
-                                    <option value="prevencion-posvencion">Prevención en la Posvención</option>
-                                    <option value="tecnicas-relajacion-olvidos">Técnicas de relajación, autocuidado y
-                                        autocontrol emocional (Trastorno psicológico - Olvidos)</option>
-                                    <option value="tecnicas-relajacion-irritabilidad">Técnicas de relajación,
-                                        autocuidado y autocontrol emocional (Trastorno psicológico - Irritable o enojos)
-                                    </option>
-                                    <option value="tecnicas-relajacion-ansiedad">Técnicas de relajación, autocuidado y
-                                        autocontrol emocional (Trastornos psicológicos - Ansiedad)</option>
-                                    <option value="orientacion-emociones-depresion">Orientación sobre emociones,
-                                        autoestima y apoyo emocional (Trastornos psicológicos - Depresión o Tristeza)
-                                    </option>
-                                    <option value="prevencion-autolesion-suicida">Prevención en la Autolesión y conducta
-                                        suicida</option>
-                                    <option value="mejoramiento-conducta-comportamiento">Acciones para el mejoramiento
-                                        en la conducta del comportamiento</option>
-                                    <option value="resolucion-problemas-familiar">Resolución de problemas en el núcleo
-                                        familiar</option>
-                                    <option value="orientacion-consejeria-padres">Orientación/Consejería para madres,
-                                        padres o tutores o representante legal</option>
-                                    <option value="consejos-crianza">Consejos de Crianza</option>
-                                    <option value="prevencion-acoso-escolar-2">Prevención de Acoso Escolar</option>
-                                    <option value="desarrollo-infantil-temprano">Desarrollo Infantil Temprano:
-                                        Evaluación del Neurodesarrollo</option>
-                                    <option value="consejos-salud-visual">Consejos sobre Salud Visual: Tiempo de
-                                        pantalla</option>
-                                    <option value="tamiz-visual">Tamiz visual</option>
-                                    <option value="tamiz-cadera">Tamiz de Cadera: Displasia de la Cadera en Desarrollo
-                                    </option>
-                                    <option value="tamiz-auditivo">Tamiz Auditivo: Detección de hipoacusia</option>
+                                    <option value="ensenanza-tecnica-cepillado-dental">Enseñanza de la técnica de
+                                        Cepillado Dental</option>
+                                    <option value="ensenanza-uso-hilo-dental">Enseñanza del uso del Hilo Dental (a
+                                        partir de los 6 años)</option>
+                                    <option value="entorno-favorable-salud">Entorno favorable a la salud</option>
+                                    <option value="evaluacion-neurodesarrollo">Evaluación del Neurodesarrollo</option>
                                     <option value="factores-riesgo-salud-bucal">Factores de riesgo que afectan la salud
                                         bucal</option>
+                                    <option value="guia-cuidado-salud">Guía para el Cuidado de la Salud</option>
+                                    <option value="higiene-bucal">Higiene bucal</option>
+                                    <option value="higiene-sueno">Higiene del sueño</option>
+                                    <option value="ojo-seco">Ojo seco</option>
+                                    <option value="orientacion-emociones-autoestima-apoyo-emocional">Orientación sobre
+                                        emociones, autoestima y apoyo emocional (Trastornos psicológicos - Depresión o
+                                        Tristeza)</option>
+                                    <option value="orientacion-consejeria-madres-padres-tutores">Orientación/Consejería
+                                        para madres, padres o tutores o representante legal</option>
+                                    <option value="prevencion-anemia">Prevención anemia</option>
+                                    <option value="prevencion-acoso-escolar">Prevención de Acoso escolar</option>
+                                    <option value="prevencion-acoso-escolar-2">Prevención de Acoso Escolar</option>
+                                    <option value="prevencion-adicciones">Prevención de adicciones</option>
+                                    <option value="prevencion-desnutricion">Prevención de desnutrición</option>
                                     <option value="prevencion-enfermedades-bucales">Prevención de enfermedades bucales
                                     </option>
-                                    <option value="alimentacion-saludable">Alimentación saludable</option>
-                                    <option value="higiene-bucal-otros">Higiene bucal</option>
-                                    <option value="tecnica-cepillado-dental">Enseñanza de la técnica de Cepillado Dental
-                                    </option>
-                                    <option value="uso-hilo-dental">Enseñanza del uso del Hilo Dental (a partir de los 6
-                                        años)</option>
+                                    <option value="prevencion-muerte-subita-lactante">Prevención de la muerte súbita de
+                                        la y el lactante</option>
+                                    <option value="prevencion-raquitismo">Prevención de raquitismo</option>
+                                    <option value="prevencion-autolesion-conducta-suicida">Prevención en la Autolesión y
+                                        conducta suicida</option>
+                                    <option value="prevencion-posvencion">Prevención en la Posvención</option>
+                                    <option value="prevencion-control-enfermedades-respiratorias-asma">Prevención y
+                                        control de enfermedades respiratorias no transmisibles: Asma</option>
+                                    <option value="prevenimss-familiar">PrevenIMSS Familiar</option>
+                                    <option value="primera-visita-medico">Primera visita al médico</option>
+                                    <option value="resolucion-problemas-nucleo-familiar">Resolución de problemas en el
+                                        núcleo familiar</option>
+                                    <option value="salud-mental">Salud mental</option>
+                                    <option value="tamiz-auditivo-deteccion-hipoacusia">Tamiz Auditivo: Detección de
+                                        hipoacusia</option>
+                                    <option value="tamiz-cadera-displasia-cadera-desarrollo">Tamiz de Cadera: Displasia
+                                        de la Cadera en Desarrollo</option>
+                                    <option value="tamiz-neonatal-enfermedades-metabolicas-congenitas">Tamiz Neonatal:
+                                        Enfermedades Metabólicas Congénitas</option>
+                                    <option value="tamiz-visual">Tamiz visual</option>
+                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-irritable">
+                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno
+                                        psicológico - Irritable o enojos)</option>
+                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-olvidos">
+                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno
+                                        psicológico - Olvidos)</option>
+                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-ansiedad">
+                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastornos
+                                        psicológicos - Ansiedad)</option>
+                                    <option value="vacunacion">Vacunación</option>
+                                    <option value="vigilancia-evaluacion-estado-nutricional">Vigilancia y evaluación del
+                                        estado nutricional</option>
                                 </select>
                             </div>
 
@@ -4273,7 +4286,7 @@ select option:checked {
                                     <div class="dosis-item" data-vacuna="srp" data-dosis="segunda">
                                         <div class="dosis-info">
                                             <span class="dosis-numero">2da dosis</span>
-                                            <span class="edad-oportuna">18 meses</span>
+                                            <span class="edad-oportuna">13 meses y 6 años</span>
                                         </div>
                                         <div class="fecha-aplicacion">
                                             <input type="date" class="fecha-input" placeholder="Fecha de aplicación">
@@ -4309,7 +4322,7 @@ select option:checked {
                                         <div class="dosis-item" data-vacuna="covid19" data-dosis="segunda_primaria">
                                             <div class="dosis-info">
                                                 <span class="dosis-numero">2da dosis</span>
-                                                <span class="edad-oportuna">A partir de los 5 años</span>
+                                                <span class="edad-oportuna">21 días después de la 1ra dosis</span>
                                             </div>
                                             <div class="fecha-aplicacion">
                                                 <input type="date" class="fecha-input"
@@ -4321,7 +4334,7 @@ select option:checked {
                                         <div class="dosis-item" data-vacuna="covid19" data-dosis="tercera_primaria">
                                             <div class="dosis-info">
                                                 <span class="dosis-numero">3ra dosis</span>
-                                                <span class="edad-oportuna">A partir de los 5 años</span>
+                                                <span class="edad-oportuna">21 días después de la 1ra dosis</span>
                                             </div>
                                             <div class="fecha-aplicacion">
                                                 <input type="date" class="fecha-input"
@@ -4374,29 +4387,29 @@ select option:checked {
                                             class="required">*</span></label>
                                     <select id="otra_vacuna_select" name="otra_vacuna" class="form-select">
                                         <option value="">Selecciona una vacuna...</option>
-                                        <option value="faboter_anticoral">Faboterápico anticoral</option>
-                                        <option value="faboter_antiloxoceles">Faboterápico antiloxoceles</option>
-                                        <option value="vsr">Vacuna contra el Virus Sincicial Respiratorio (VSR)</option>
-                                        <option value="herpes_zoster">Vacuna contra el Herpes Zoster</option>
-                                        <option value="dengue">Vacuna contra el Dengue</option>
-                                        <option value="meningococo">Vacuna contra el Meningococo</option>
-                                        <option value="fiebre_amarilla">Vacuna contra la Fiebre amarilla</option>
-                                        <option value="tdpa">TDPA</option>
                                         <option value="antihepatitis_a">Antihepatitis A</option>
-                                        <option value="neumococica_polisacarida">Neumocócica Polisacárida (23 valente)
-                                        </option>
                                         <option value="antirrabica_humana">Antirrábica humana</option>
                                         <option value="antivaricela">Antivaricela</option>
                                         <option value="coccidioidina">Coccidioidina</option>
                                         <option value="faboter_antialacrán">Faboterápico antialacrán</option>
                                         <option value="faboter_antiaracnido">Faboterápico antiarácnido</option>
+                                        <option value="faboter_anticoral">Faboterápico anticoral</option>
+                                        <option value="faboter_antiloxoceles">Faboterápico antiloxoceles</option>
                                         <option value="faboter_antiviperino">Faboterápico antiviperino</option>
                                         <option value="histoplasmina">Histoplasmina</option>
                                         <option value="inmunoglobulina_antirrabica">Inmunoglobulina Antirrábica</option>
                                         <option value="inmunoglobulina_antitetanica">Inmunoglobulina Antitetánica
-                                        <option value="otra">Otra</option>
                                         </option>
                                         <option value="inmunoglobulina_simple">Inmunoglobulina Simple</option>
+                                        <option value="neumococica_polisacarida">Neumocócica Polisacárida (23 valente)
+                                        </option>
+                                        <option value="otra">Otra</option>
+                                        <option value="tdpa">TDPA</option>
+                                        <option value="dengue">Vacuna contra el Dengue</option>
+                                        <option value="herpes_zoster">Vacuna contra el Herpes Zoster</option>
+                                        <option value="fiebre_amarilla">Vacuna contra la Fiebre amarilla</option>
+                                        <option value="meningococo">Vacuna contra el Meningococo</option>
+                                        <option value="vsr">Vacuna contra el Virus Sincicial Respiratorio (VSR)</option>
                                     </select>
                                     <div class="form-group" id="otra_vacuna_texto_group" style="display: none;">
                                         <label for="otra_vacuna_texto" class="form-label">Especificar vacuna <span
@@ -4675,6 +4688,7 @@ select option:checked {
                                     class="promocion-checkbox">
                                 <label for="vitamina_a" class="promocion-title">🍊 Administración de Vitamina
                                     "A"</label>
+                                <span class="prevencion-badge">Dar cada 6 meses hasta los 4 años.</span>
                             </div>
                             <div class="promocion-date-inline">
                                 <label for="fecha_vitamina_a" class="date-label">Fecha:</label>
@@ -4702,7 +4716,12 @@ select option:checked {
                                     <input type="checkbox" id="hierro_anemia" name="prevencion[]" value="hierro_anemia"
                                         class="promocion-checkbox">
                                     <label for="hierro_anemia" class="promocion-title">🩸 ANEMIA</label>
+                                    <span class="prevencion-badge">En bebés prematuros con bajo peso al nacer a partir
+                                        de los 2 meses y hasta los 23 meses de edad.
+                                        En bebés con peso normal al nacer a partir de los 4 meses y hasta los 9
+                                        años.</span>
                                 </div>
+
                                 <div class="promocion-date-inline">
                                     <label for="fecha_hierro_anemia" class="date-label">Fecha:</label>
                                     <input type="date" id="fecha_hierro_anemia" name="fecha_hierro_anemia"
@@ -4718,6 +4737,10 @@ select option:checked {
                                     <input type="checkbox" id="hierro_profilaxis" name="prevencion[]"
                                         value="hierro_profilaxis" class="promocion-checkbox">
                                     <label for="hierro_profilaxis" class="promocion-title">💊 PROFILAXIS</label>
+                                    <span class="prevencion-badge">En bebés prematuros con bajo peso al nacer a partir
+                                        de los 2 meses y hasta los 23 meses de edad.
+                                        En bebés con peso normal al nacer a partir de los 4 meses y hasta los 9
+                                        años.</span>
                                 </div>
                                 <div class="promocion-date-inline">
                                     <label for="fecha_hierro_profilaxis" class="date-label">Fecha:</label>
@@ -4736,6 +4759,8 @@ select option:checked {
                                     class="promocion-checkbox">
                                 <label for="desparasitacion" class="promocion-title">💊 Desparasitación
                                     Intestinal</label>
+                                <span class="prevencion-badge">Cada 6 meses, a partir de los 2 años y hasta los 9 años
+                                    de edad.</span>
                             </div>
                             <div class="promocion-date-inline">
                                 <label for="fecha_desparasitacion" class="date-label">Fecha:</label>
@@ -4753,6 +4778,7 @@ select option:checked {
                                     class="promocion-checkbox">
                                 <label for="vida_suero_oral" class="promocion-title">💧 Dotación de Vida Suero
                                     Oral</label>
+                                <span class="prevencion-badge">De 0 a 4 años de edad.</span>
                             </div>
                             <div class="promocion-date-inline">
                                 <label for="fecha_vida_suero_oral" class="date-label">Fecha:</label>
@@ -4781,6 +4807,7 @@ select option:checked {
                                         value="ensenanza_cepillado" class="promocion-checkbox">
                                     <label for="ensenanza_cepillado" class="promocion-title">🦷 Enseñanza de técnica del
                                         cepillado dental</label>
+                                    <span class="prevencion-badge">Desde que aparece el primer diente</span>
                                 </div>
                                 <div class="promocion-date-inline">
                                     <label for="fecha_ensenanza_cepillado" class="date-label">Fecha:</label>
@@ -4798,6 +4825,7 @@ select option:checked {
                                         value="deteccion_placa" class="promocion-checkbox">
                                     <label for="deteccion_placa" class="promocion-title">🔍 Detección de placa
                                         bacteriana</label>
+                                    <span class="prevencion-badge">A partir de los 3 años</span>
                                 </div>
                                 <div class="promocion-date-inline">
                                     <label for="fecha_deteccion_placa" class="date-label">Fecha:</label>
@@ -4814,6 +4842,7 @@ select option:checked {
                                     <input type="checkbox" id="aplicacion_fluor" name="prevencion[]"
                                         value="aplicacion_fluor" class="promocion-checkbox">
                                     <label for="aplicacion_fluor" class="promocion-title">✨ Aplicación de flúor</label>
+                                    <span class="prevencion-badge">A partir del primer año</span>
                                 </div>
                                 <div class="promocion-date-inline">
                                     <label for="fecha_aplicacion_fluor" class="date-label">Fecha:</label>
@@ -4831,6 +4860,7 @@ select option:checked {
                                         value="ensenanza_hilo_dental" class="promocion-checkbox">
                                     <label for="ensenanza_hilo_dental" class="promocion-title">🧵 Enseñanza de uso del
                                         hilo dental</label>
+                                    <span class="prevencion-badge">A partir de los 6 años</span>
                                 </div>
                                 <div class="promocion-date-inline">
                                     <label for="fecha_ensenanza_hilo_dental" class="date-label">Fecha:</label>
@@ -5056,6 +5086,45 @@ select option:checked {
                                 </div>
                             </div>
 
+                            <!-- Atresia de vias biliares -->
+                            <div class="tamiz-item">
+                                <div class="tamiz-header">
+                                    <input type="checkbox" id="atresia-biliares" name="enfermedades[]"
+                                        value="atresia-biliares" class="tamiz-checkbox">
+                                    <label for="atresia-biliares" class="tamiz-label">💛 Atresia de vías
+                                        biliares</label>
+                                </div>
+                                <div class="tamiz-details" id="details_atresia-biliares">
+                                    <div class="atresia-container">
+                                        <div class="registros-atresia" id="registros_atresia">
+                                            <!-- Aquí se agregarán los registros -->
+
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label class="form-label">Fecha de detección:</label>
+                                                    <input type="date" name="fecha_atresia[]"
+                                                        class="form-input fecha-atresia" data-registro="${registroId}"
+                                                        required>
+                                                    <small class="error-message"
+                                                        style="color: #e74c3c; font-size: 12px; display: none;"></small>
+                                                </div>
+                                                <div class="radio-item">
+                                                    <input type="radio" id="atresianormal" name="tipoatresia" value="normal"
+                                                        class="radio-input" required>
+                                                    <label for="atresianormal" class="radio-label">Normal</label>
+                                                </div>
+                                                <div class="radio-item">
+                                                    <input type="radio" id="atresiaanormal" name="tipoatresia" value="anormal"
+                                                        class="radio-input" required>
+                                                    <label for="atresiaanormal" class="radio-label">Anormal</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Detección de defectos de agudeza visual -->
                             <div class="tamiz-item">
                                 <div class="tamiz-header">
@@ -5156,7 +5225,7 @@ select option:checked {
                             <div class="section-icon" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
                                 👨‍⚕️</div>
                             <div class="section-info">
-                                <h3 style="color: #27ae60;">Especialista para Derivar</h3>
+                                <h3 style="color: #27ae60;">Derivar con</h3>
                                 <p class="section-description">Seleccione el área o especialista de destino</p>
                             </div>
                         </div>
@@ -6237,7 +6306,7 @@ select option:checked {
                                 estado = 'Sobrepeso';
                                 clase = 'sobrepeso';
                                 icono = '⬆️';
-                                derivacion = 'Derivar a EEMF y Nutricionista';
+                                derivacion = 'Derivar a EEMF, Nutricionista o Medicina Familiar';
                             } else {
                                 estado = 'Obesidad';
                                 clase = 'obesidad';
@@ -6381,9 +6450,60 @@ select option:checked {
                 ` : ''}
             </div>
         </div>
-        <div class="historial-actions">
-            <button type="button" class="btn-delete" onclick="eliminarEvaluacionNutricional(this)">🗑️ Eliminar</button>
-        </div>
+        <option value="acciones-prevencion-colapso-cuidador">Acciones de prevención de colapso del cuidador</option>
+                                    <option value="acciones-mejoramiento-conducta-comportamiento">Acciones para el mejoramiento en la conducta del comportamiento</option>
+                                    <option value="administracion-vitamina-a">Administración de vitamina "A"</option>
+                                    <option value="alimentacion-saludable">Alimentación saludable</option>
+                                    <option value="consejos-crianza">Consejos de Crianza</option>
+                                    <option value="consejos-crianza-salud-mental">Consejos de crianza (salud mental)</option>
+                                    <option value="consejos-salud-visual-tiempo-pantalla">Consejos sobre Salud Visual: Tiempo de pantalla</option>
+                                    <option value="control-esfinteres">Control de esfínteres</option>
+                                    <option value="control-fiebre">Control de fiebre</option>
+                                    <option value="crecimiento-desarrollo-nina-nino">Crecimiento y desarrollo de la niña y niño</option>
+                                    <option value="cuidados-nina-nino-enfermo">Cuidados de la niña y el niño enfermo</option>
+                                    <option value="cuidados-embarazo">Cuidados del embarazo</option>
+                                    <option value="cuidados-despues-parto">Cuidados después del parto</option>
+                                    <option value="cultura-donacion-organos-tejidos">Cultura para la donación de órganos y tejidos</option>
+                                    <option value="desarrollo-infantil-temprano">Desarrollo Infantil Temprano:</option>
+                                    <option value="desparasitacion-intestinal">Desparasitación intestinal</option>
+                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías biliares</option>
+                                    <option value="duenos-responsables-animales-compania">Dueños responsables con animales de compañía</option>
+                                    <option value="educacion-duelo">Educación del duelo</option>
+                                    <option value="ensenanza-tecnica-cepillado-dental">Enseñanza de la técnica de Cepillado Dental</option>
+                                    <option value="ensenanza-uso-hilo-dental">Enseñanza del uso del Hilo Dental (a partir de los 6 años)</option>
+                                    <option value="entorno-favorable-salud">Entorno favorable a la salud</option>
+                                    <option value="evaluacion-neurodesarrollo">Evaluación del Neurodesarrollo</option>
+                                    <option value="factores-riesgo-salud-bucal">Factores de riesgo que afectan la salud bucal</option>
+                                    <option value="guia-cuidado-salud">Guía para el Cuidado de la Salud</option>
+                                    <option value="higiene-bucal">Higiene bucal</option>
+                                    <option value="higiene-sueno">Higiene del sueño</option>
+                                    <option value="ojo-seco">Ojo seco</option>
+                                    <option value="orientacion-emociones-autoestima-apoyo-emocional">Orientación sobre emociones, autoestima y apoyo emocional (Trastornos psicológicos - Depresión o Tristeza)</option>
+                                    <option value="orientacion-consejeria-madres-padres-tutores">Orientación/Consejería para madres, padres o tutores o representante legal</option>
+                                    <option value="prevencion-anemia">Prevención anemia</option>
+                                    <option value="prevencion-acoso-escolar">Prevención de Acoso escolar</option>
+                                    <option value="prevencion-acoso-escolar-2">Prevención de Acoso Escolar</option>
+                                    <option value="prevencion-adicciones">Prevención de adicciones</option>
+                                    <option value="prevencion-desnutricion">Prevención de desnutrición</option>
+                                    <option value="prevencion-enfermedades-bucales">Prevención de enfermedades bucales</option>
+                                    <option value="prevencion-muerte-subita-lactante">Prevención de la muerte súbita de la y el lactante</option>
+                                    <option value="prevencion-raquitismo">Prevención de raquitismo</option>
+                                    <option value="prevencion-autolesion-conducta-suicida">Prevención en la Autolesión y conducta suicida</option>
+                                    <option value="prevencion-posvencion">Prevención en la Posvención</option>
+                                    <option value="prevencion-control-enfermedades-respiratorias-asma">Prevención y control de enfermedades respiratorias no transmisibles: Asma</option>
+                                    <option value="prevenimss-familiar">PrevenIMSS Familiar</option>
+                                    <option value="primera-visita-medico">Primera visita al médico</option>
+                                    <option value="resolucion-problemas-nucleo-familiar">Resolución de problemas en el núcleo familiar</option>
+                                    <option value="salud-mental">Salud mental</option>
+                                    <option value="tamiz-auditivo-deteccion-hipoacusia">Tamiz Auditivo: Detección de hipoacusia</option>
+                                    <option value="tamiz-cadera-displasia-cadera-desarrollo">Tamiz de Cadera: Displasia de la Cadera en Desarrollo</option>
+                                    <option value="tamiz-neonatal-enfermedades-metabolicas-congenitas">Tamiz Neonatal: Enfermedades Metabólicas Congénitas</option>
+                                    <option value="tamiz-visual">Tamiz visual</option>
+                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-irritable">Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno psicológico - Irritable o enojos)</option>
+                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-olvidos">Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno psicológico - Olvidos)</option>
+                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-ansiedad">Técnicas de relajación, autocuidado y autocontrol emocional (Trastornos psicológicos - Ansiedad)</option>
+                                    <option value="vacunacion">Vacunación</option>
+                                    <option value="vigilancia-evaluacion-estado-nutricional">Vigilancia y evaluación del estado nutricional</option>
     `;
 
                     container.appendChild(historialItem);
@@ -7409,9 +7529,6 @@ select option:checked {
                 </div>
             </div>
         </div>
-        <div class="historial-actions">
-            <button type="button" class="btn-delete" onclick="eliminarDelHistorialPrevencion(this)">🗑️ Eliminar</button>
-        </div>
     `;
 
                     container.appendChild(historialItem);
@@ -7510,14 +7627,16 @@ select option:checked {
                                    data-registro="${registroId}" required>
                             <small class="error-message" style="color: #e74c3c; font-size: 12px; display: none;"></small>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Resultado:</label>
-                            <select name="resultado_agudeza_visual[]" class="resultado-select" required>
-                                <option value="">Seleccionar resultado...</option>
-                                <option value="normal">Normal</option>
-                                <option value="anormal">Anormal</option>
-                            </select>
-                        </div>
+                        <div class="radio-item">
+                                        <input type="radio" id="normal" name="tipovisual" value="normal"
+                                            class="radio-input" required>
+                                        <label for="normal" class="radio-label">Normal</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="anormal" name="tipovisual" value="anormal"
+                                            class="radio-input" required>
+                                        <label for="anormal" class="radio-label">Anormal</label>
+                                    </div>
                     </div>
                 `;
 
@@ -7936,6 +8055,8 @@ select option:checked {
                         });
                     }
                 };
+
+
             </script>
 </body>
 
