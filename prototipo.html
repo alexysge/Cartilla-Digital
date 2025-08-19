@@ -2257,6 +2257,252 @@
             background-color: #3498db;
             color: white;
         }
+
+        /* ESTILOS CSS PARA HISTORIAL DE VACUNACIÓN CON DETALLES */
+        .fecha-item-compacto.con-detalles-disponibles {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-color: #2196f3;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .fecha-item-compacto.con-detalles-disponibles:hover {
+            background: linear-gradient(135deg, #bbdefb, #90caf9);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        .fecha-item-compacto .icono-detalles {
+            font-size: 14px;
+            margin-left: 6px;
+            opacity: 0.8;
+        }
+
+        .fecha-item-compacto.con-detalles-disponibles .icono-detalles {
+            animation: pulsoIcono 2s infinite ease-in-out;
+        }
+
+        @keyframes pulsoIcono {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* Estilos para el modal de detalles */
+        .detalles-vacuna-container {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .detalle-header h4 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .detalles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .detalle-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .detalle-item:hover {
+            background: #e9ecef;
+            transform: translateY(-1px);
+        }
+
+        .detalle-item strong {
+            display: block;
+            color: #495057;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .detalle-valor {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            padding: 4px 8px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Estilos específicos para valores */
+        .rescate-si, .reaccion-si {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .rescate-no, .reaccion-no {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        /* Sección de molestias */
+        .molestias-section {
+            animation: slideInMolestias 0.3s ease-out;
+        }
+
+        @keyframes slideInMolestias {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .molestias-lista {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .molestia-badge {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid #f5c6cb;
+            transition: all 0.3s ease;
+        }
+
+        .molestia-badge:hover {
+            background: #f1b0b7;
+            transform: scale(1.05);
+        }
+
+        /* Mejorar el indicador visual en el historial */
+        .fecha-item-compacto .fecha-texto {
+            display: inline-block;
+            flex: 1;
+        }
+
+        /* Tooltip mejorado */
+        .fecha-item-compacto.con-detalles-disponibles::after {
+            content: "Clic para ver detalles";
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .fecha-item-compacto.con-detalles-disponibles:hover::after {
+            opacity: 1;
+        }
+
+        /* Responsive para el modal de detalles */
+        @media (max-width: 768px) {
+            .detalles-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .popup-content {
+                max-width: 95vw;
+                margin: 10px;
+            }
+            
+            .detalle-item {
+                padding: 10px;
+            }
+            
+            .molestias-lista {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .molestia-badge {
+                text-align: center;
+            }
+        }
+
+        /* Animación para el modal */
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        #modalDetallesHistorial .popup-content {
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        /* Mejorar la apariencia del botón de cerrar */
+        #modalDetallesHistorial .popup-close {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #modalDetallesHistorial .popup-close:hover {
+            background: #c0392b;
+            transform: rotate(90deg);
+        }
+
+        /* Indicador visual mejorado para fechas con detalles */
+        .fecha-item-compacto.con-detalles-disponibles {
+            background: linear-gradient(135deg, #e8f5e8, #d4edda);
+            border: 2px solid #28a745;
+            position: relative;
+        }
+
+        .fecha-item-compacto.con-detalles-disponibles::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            background: #007bff;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
     </style>
 
 </head>
@@ -2949,35 +3195,25 @@
                                     <option value="administracion-vitamina-a">Administración de vitamina "A"</option>
                                     <option value="alimentacion-saludable">Alimentación saludable</option>
                                     <option value="consejos-crianza">Consejos de Crianza</option>
-                                    <option value="consejos-crianza-salud-mental">Consejos de crianza (salud mental)
-                                    </option>
-                                    <option value="consejos-salud-visual-tiempo-pantalla">Consejos sobre Salud Visual:
-                                        Tiempo de pantalla</option>
+                                    <option value="consejos-crianza-salud-mental">Consejos de crianza (salud mental)</option>
+                                    <option value="consejos-salud-visual-tiempo-pantalla">Consejos sobre Salud Visual:Tiempo de pantalla</option>
                                     <option value="control-esfinteres">Control de esfínteres</option>
                                     <option value="control-fiebre">Control de fiebre</option>
-                                    <option value="crecimiento-desarrollo-nina-nino">Crecimiento y desarrollo de la niña
-                                        y niño</option>
-                                    <option value="cuidados-nina-nino-enfermo">Cuidados de la niña y el niño enfermo
-                                    </option>
+                                    <option value="crecimiento-desarrollo-nina-nino">Crecimiento y desarrollo de la niña y niño</option>
+                                    <option value="cuidados-nina-nino-enfermo">Cuidados de la niña y el niño enfermo</option>
                                     <option value="cuidados-embarazo">Cuidados del embarazo</option>
                                     <option value="cuidados-despues-parto">Cuidados después del parto</option>
-                                    <option value="cultura-donacion-organos-tejidos">Cultura para la donación de órganos
-                                        y tejidos</option>
+                                    <option value="cultura-donacion-organos-tejidos">Cultura para la donación de órganos y tejidos</option>
                                     <option value="desarrollo-infantil-temprano">Desarrollo Infantil Temprano:</option>
                                     <option value="desparasitacion-intestinal">Desparasitación intestinal</option>
-                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías
-                                        biliares</option>
-                                    <option value="duenos-responsables-animales-compania">Dueños responsables con
-                                        animales de compañía</option>
+                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías biliares</option>
+                                    <option value="duenos-responsables-animales-compania">Dueños responsables con animales de compañía</option>
                                     <option value="educacion-duelo">Educación del duelo</option>
-                                    <option value="ensenanza-tecnica-cepillado-dental">Enseñanza de la técnica de
-                                        Cepillado Dental</option>
-                                    <option value="ensenanza-uso-hilo-dental">Enseñanza del uso del Hilo Dental (a
-                                        partir de los 6 años)</option>
+                                    <option value="ensenanza-tecnica-cepillado-dental">Enseñanza de la técnica de Cepillado Dental</option>
+                                    <option value="ensenanza-uso-hilo-dental">Enseñanza del uso del Hilo Dental (a partir de los 6 años)</option>
                                     <option value="entorno-favorable-salud">Entorno favorable a la salud</option>
                                     <option value="evaluacion-neurodesarrollo">Evaluación del Neurodesarrollo</option>
-                                    <option value="factores-riesgo-salud-bucal">Factores de riesgo que afectan la salud
-                                        bucal</option>
+                                    <option value="factores-riesgo-salud-bucal">Factores de riesgo que afectan la salud bucal</option>
                                     <option value="guia-cuidado-salud">Guía para el Cuidado de la Salud</option>
                                     <option value="higiene-bucal">Higiene bucal</option>
                                     <option value="higiene-sueno">Higiene del sueño</option>
@@ -2988,44 +3224,31 @@
                                     <option value="orientacion-consejeria-madres-padres-tutores">Orientación/Consejería
                                         para madres, padres o tutores o representante legal</option>
                                     <option value="prevencion-anemia">Prevención anemia</option>
-                                    <option value="prevencion-acoso-escolar">Prevención de Acoso escolar</option>
-                                    <option value="prevencion-acoso-escolar-2">Prevención de Acoso Escolar</option>
+                                    <option value="prevencion-acoso-escolar">Prevención de Acoso Escolar</option>
                                     <option value="prevencion-adicciones">Prevención de adicciones</option>
                                     <option value="prevencion-desnutricion">Prevención de desnutrición</option>
                                     <option value="prevencion-enfermedades-bucales">Prevención de enfermedades bucales
                                     </option>
-                                    <option value="prevencion-muerte-subita-lactante">Prevención de la muerte súbita de
-                                        la y el lactante</option>
+                                    <option value="prevencion-muerte-subita-lactante">Prevención de la muerte súbita de la y el lactante</option>
                                     <option value="prevencion-raquitismo">Prevención de raquitismo</option>
-                                    <option value="prevencion-autolesion-conducta-suicida">Prevención en la Autolesión y
-                                        conducta suicida</option>
+                                    <option value="prevencion-autolesion-conducta-suicida">Prevención en la Autolesión y conducta suicida</option>
                                     <option value="prevencion-posvencion">Prevención en la Posvención</option>
-                                    <option value="prevencion-control-enfermedades-respiratorias-asma">Prevención y
-                                        control de enfermedades respiratorias no transmisibles: Asma</option>
+                                    <option value="prevencion-control-enfermedades-respiratorias-asma">Prevención y control de enfermedades respiratorias no transmisibles: Asma</option>
                                     <option value="prevenimss-familiar">PrevenIMSS Familiar</option>
                                     <option value="primera-visita-medico">Primera visita al médico</option>
-                                    <option value="resolucion-problemas-nucleo-familiar">Resolución de problemas en el
-                                        núcleo familiar</option>
-                                    <option value="salud-mental">Salud mental</option>
-                                    <option value="tamiz-auditivo-deteccion-hipoacusia">Tamiz Auditivo: Detección de
-                                        hipoacusia</option>
-                                    <option value="tamiz-cadera-displasia-cadera-desarrollo">Tamiz de Cadera: Displasia
-                                        de la Cadera en Desarrollo</option>
-                                    <option value="tamiz-neonatal-enfermedades-metabolicas-congenitas">Tamiz Neonatal:
-                                        Enfermedades Metabólicas Congénitas</option>
+                                    <option value="resolucion-problemas-nucleo-familiar">Resolución de problemas en el núcleo familiar</option>
+                                    <option value="tamiz-auditivo-deteccion-hipoacusia">Tamiz Auditivo: Detección de hipoacusia</option>
+                                    <option value="tamiz-cadera-displasia-cadera-desarrollo">Tamiz de Cadera: Displasia de la Cadera en Desarrollo</option>
+                                    <option value="tamiz-neonatal-enfermedades-metabolicas-congenitas">Tamiz Neonatal: Enfermedades Metabólicas Congénitas</option>
                                     <option value="tamiz-visual">Tamiz visual</option>
                                     <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-irritable">
-                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno
-                                        psicológico - Irritable o enojos)</option>
+                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno psicológico - Irritable o enojos)</option>
                                     <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-olvidos">
-                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno
-                                        psicológico - Olvidos)</option>
+                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno psicológico - Olvidos)</option>
                                     <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-ansiedad">
-                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastornos
-                                        psicológicos - Ansiedad)</option>
+                                        Técnicas de relajación, autocuidado y autocontrol emocional (Trastornos psicológicos - Ansiedad)</option>
                                     <option value="vacunacion">Vacunación</option>
-                                    <option value="vigilancia-evaluacion-estado-nutricional">Vigilancia y evaluación del
-                                        estado nutricional</option>
+                                    <option value="vigilancia-evaluacion-estado-nutricional">Vigilancia y evaluación del estado nutricional</option>
                                 </select>
                             </div>
 
@@ -3033,7 +3256,6 @@
                                 <div class="popup-content">
                                     <div class="popup-header">
                                         <h3 class="popup-title" id="popupTitle">Información</h3>
-                                        <button class="popup-close" onclick="cerrarPopup()">×</button>
                                     </div>
                                     <div class="popup-body" id="popupBody">
                                         <!-- El contenido se cargará dinámicamente -->
@@ -3056,7 +3278,7 @@
                         </div>
                     </div>
 
-                    <!-- Botón de Herramientas - Agregar después del div de "OTROS" -->
+                    <!-- Botón de Herramientas -->
                     <div class="herramientas-container">
                         <a href="https://www.google.com" target="_blank" class="btn-herramientas">
                             <span class="herramientas-icon">🛠️</span>
@@ -5091,8 +5313,7 @@
                                 <div class="tamiz-header">
                                     <input type="checkbox" id="atresia-biliares" name="enfermedades[]"
                                         value="atresia-biliares" class="tamiz-checkbox">
-                                    <label for="atresia-biliares" class="tamiz-label">💛 Atresia de vías
-                                        biliares</label>
+                                    <label for="atresia-biliares" class="tamiz-label">💛 Atresia de vías biliares</label>
                                 </div>
                                 <div class="tamiz-details" id="details_atresia-biliares">
                                     <div class="atresia-container">
@@ -5108,15 +5329,18 @@
                                                     <small class="error-message"
                                                         style="color: #e74c3c; font-size: 12px; display: none;"></small>
                                                 </div>
-                                                <div class="radio-item">
-                                                    <input type="radio" id="atresianormal" name="tipoatresia"
-                                                        value="normal" class="radio-input" required>
-                                                    <label for="atresianormal" class="radio-label">Normal</label>
-                                                </div>
-                                                <div class="radio-item">
-                                                    <input type="radio" id="atresiaanormal" name="tipoatresia"
-                                                        value="anormal" class="radio-input" required>
-                                                    <label for="atresiaanormal" class="radio-label">Anormal</label>
+                                                <div class="radio-group">
+                                                    <div class="radio-item ">
+                                                        <input type="radio" id="atresianormal" name="tipoatresia"
+                                                            value="normal" class="radio-input" required>
+                                                        <label for="atresianormal" class="radio-label">Normal</label>
+                                                    </div>
+                                                
+                                                    <div class="radio-item">
+                                                        <input type="radio" id="atresiaanormal" name="tipoatresia"
+                                                            value="anormal" class="radio-input" required>
+                                                        <label for="atresiaanormal" class="radio-label">Anormal</label>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -7176,91 +7400,136 @@
 
 
                 //Historial de vacunacion
-                // Funciones para el historial de vacunación
-                function guardarVacunasAlHistorial() {
-                    let vacunasGuardadas = [];
+// CÓDIGO CORREGIDO PARA DETALLES DE VACUNACIÓN
+// REEMPLAZAR las funciones del historial de vacunación
 
-                    // Obtener vacunas del esquema nacional completadas
-                    document.querySelectorAll('.dosis-item').forEach(item => {
-                        const fechaInput = item.querySelector('.fecha-input');
-                        if (fechaInput && fechaInput.value) {
-                            const vacuna = item.dataset.vacuna;
-                            const dosis = item.dataset.dosis;
-                            const fecha = fechaInput.value;
+// Variable global para almacenar detalles con información adicional para el historial
+let historialVacunasConDetalles = {};
 
-                            // Obtener nombre de la vacuna
-                            const vacunaCard = item.closest('.vacuna-card');
-                            const nombreVacuna = vacunaCard ? vacunaCard.querySelector('h4').textContent : vacuna;
+// Función corregida para guardar vacunas al historial
+function guardarVacunasAlHistorial() {
+    let vacunasGuardadas = [];
 
-                            // Obtener texto de la dosis
-                            const dosisInfo = item.querySelector('.dosis-numero');
-                            const textosDosis = dosisInfo ? dosisInfo.textContent : dosis;
+    // Limpiar historial anterior de esta sesión
+    historialVacunasConDetalles = {};
 
-                            vacunasGuardadas.push({
-                                titulo: `${nombreVacuna} - ${textosDosis}`,
-                                fecha: fecha,
-                                tipo: 'esquema_nacional'
-                            });
-                        }
-                    });
+    // Obtener vacunas del esquema nacional completadas
+    document.querySelectorAll('.dosis-item').forEach(item => {
+        const fechaInput = item.querySelector('.fecha-input');
+        if (fechaInput && fechaInput.value) {
+            const vacuna = item.dataset.vacuna;
+            const dosis = item.dataset.dosis;
+            const fecha = fechaInput.value;
 
-                    // Obtener otras vacunas agregadas
-                    document.querySelectorAll('.vacuna-agregada').forEach(item => {
-                        const titulo = item.querySelector('.vacuna-agregada-titulo').textContent;
-                        const detallesText = item.querySelector('.vacuna-agregada-detalles').textContent;
-                        // Extraer fecha del texto de detalles
-                        const fechaMatch = detallesText.match(/Fecha:\s*(\d{4}-\d{2}-\d{2})/);
-                        const fecha = fechaMatch ? fechaMatch[1] : '';
+            // Obtener nombre de la vacuna
+            const vacunaCard = item.closest('.vacuna-card');
+            const nombreVacuna = vacunaCard ? vacunaCard.querySelector('h4').textContent : vacuna;
 
-                        if (fecha) {
-                            vacunasGuardadas.push({
-                                titulo: titulo,
-                                fecha: fecha,
-                                tipo: 'otra_vacuna'
-                            });
-                        }
-                    });
+            // Obtener texto de la dosis
+            const dosisInfo = item.querySelector('.dosis-numero');
+            const textosDosis = dosisInfo ? dosisInfo.textContent : dosis;
 
-                    if (vacunasGuardadas.length === 0) {
-                        alert('No hay vacunas registradas para guardar en el historial');
-                        return;
-                    }
+            // Verificar si tiene detalles guardados
+            const clave = `${vacuna}_${dosis}`;
+            const tieneDetalles = detallesVacunas[clave] ? true : false;
 
-                    // Agregar al historial
-                    vacunasGuardadas.forEach(vacuna => {
-                        agregarAlHistorialVacuna(vacuna);
-                    });
+            // Crear identificador único para el historial
+            const historialId = `historial_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-                    // Mostrar sección de historial
-                    document.getElementById('historialVacunacion').style.display = 'block';
+            const datosVacuna = {
+                titulo: `${nombreVacuna} - ${textosDosis}`,
+                fecha: fecha,
+                tipo: 'esquema_nacional',
+                vacuna: vacuna,
+                dosis: dosis,
+                tieneDetalles: tieneDetalles,
+                historialId: historialId,
+                clave: clave
+            };
 
-                    alert(`${vacunasGuardadas.length} vacuna(s) guardada(s) en el historial`);
-                }
+            // Si tiene detalles, guardarlos en el historial especial
+            if (tieneDetalles) {
+                historialVacunasConDetalles[historialId] = {
+                    ...detallesVacunas[clave],
+                    vacuna: vacuna,
+                    dosis: dosis,
+                    nombreVacuna: nombreVacuna,
+                    textosDosis: textosDosis
+                };
+            }
 
-                function agregarAlHistorialVacuna(vacuna) {
-                    const container = document.getElementById('historialVacunas');
+            vacunasGuardadas.push(datosVacuna);
+        }
+    });
 
-                    // Buscar si ya existe una vacuna con el mismo título
-                    const vacunaExistente = Array.from(container.children).find(item => {
-                        const titulo = item.querySelector('.historial-title').textContent;
-                        return titulo === vacuna.titulo;
-                    });
+    // Debug: Mostrar qué se está guardando
+    console.log('Vacunas guardadas:', vacunasGuardadas);
+    console.log('Detalles originales:', detallesVacunas);
+    console.log('Historial con detalles:', historialVacunasConDetalles);
 
-                    if (vacunaExistente) {
-                        // Si existe, agregar la fecha al contenedor de fechas
-                        agregarFechaAVacuna(vacunaExistente, vacuna.fecha);
-                    } else {
-                        // Si no existe, crear nueva vacuna
-                        crearNuevaVacunaHistorial(vacuna);
-                    }
-                }
+    // Obtener otras vacunas agregadas
+    document.querySelectorAll('.vacuna-agregada').forEach(item => {
+        const titulo = item.querySelector('.vacuna-agregada-titulo').textContent;
+        const detallesText = item.querySelector('.vacuna-agregada-detalles').textContent;
+        // Extraer fecha del texto de detalles
+        const fechaMatch = detallesText.match(/Fecha:\s*(\d{4}-\d{2}-\d{2})/);
+        const fecha = fechaMatch ? fechaMatch[1] : '';
 
-                function crearNuevaVacunaHistorial(vacuna) {
-                    const container = document.getElementById('historialVacunas');
+        if (fecha) {
+            vacunasGuardadas.push({
+                titulo: titulo,
+                fecha: fecha,
+                tipo: 'otra_vacuna',
+                tieneDetalles: false,
+                historialId: null
+            });
+        }
+    });
 
-                    const historialItem = document.createElement('div');
-                    historialItem.classList.add('historial-item');
-                    historialItem.innerHTML = `
+    if (vacunasGuardadas.length === 0) {
+        alert('No hay vacunas registradas para guardar en el historial');
+        return;
+    }
+
+    // Agregar al historial
+    vacunasGuardadas.forEach(vacuna => {
+        agregarAlHistorialVacunaConDetalles(vacuna);
+    });
+
+    // Mostrar sección de historial
+    document.getElementById('historialVacunacion').style.display = 'block';
+
+    alert(`${vacunasGuardadas.length} vacuna(s) guardada(s) en el historial`);
+}
+
+function agregarAlHistorialVacunaConDetalles(vacuna) {
+    const container = document.getElementById('historialVacunas');
+
+    // Buscar si ya existe una vacuna con el mismo título
+    const vacunaExistente = Array.from(container.children).find(item => {
+        const titulo = item.querySelector('.historial-title').textContent;
+        return titulo === vacuna.titulo;
+    });
+
+    if (vacunaExistente) {
+        // Si existe, agregar la fecha al contenedor de fechas
+        agregarFechaAVacunaConDetalles(vacunaExistente, vacuna);
+    } else {
+        // Si no existe, crear nueva vacuna
+        crearNuevaVacunaHistorialConDetalles(vacuna);
+    }
+}
+
+function crearNuevaVacunaHistorialConDetalles(vacuna) {
+    const container = document.getElementById('historialVacunas');
+
+    const historialItem = document.createElement('div');
+    historialItem.classList.add('historial-item');
+    
+    // Crear el contenido de la fecha con indicador de detalles
+    const fechaContent = crearElementoFechaConDetalles(vacuna);
+
+    historialItem.innerHTML = `
         <div class="historial-content">
             <div class="actividad-info">
                 <div class="actividad-titulo">
@@ -7268,70 +7537,338 @@
                     <span class="fechas-contador">1</span>
                 </div>
                 <div class="fechas-scroll-compacto">
-                    <div class="fecha-item-compacto">
-                        ${vacuna.fecha}
-                    </div>
+                    ${fechaContent}
                 </div>
             </div>
         </div>
     `;
 
-                    container.appendChild(historialItem);
-                }
+    container.appendChild(historialItem);
+}
 
-                function agregarFechaAVacuna(vacunaItem, nuevaFecha) {
-                    const fechasScroll = vacunaItem.querySelector('.fechas-scroll-compacto');
-                    const contador = vacunaItem.querySelector('.fechas-contador');
+function agregarFechaAVacunaConDetalles(vacunaItem, nuevaVacuna) {
+    const fechasScroll = vacunaItem.querySelector('.fechas-scroll-compacto');
+    const contador = vacunaItem.querySelector('.fechas-contador');
 
-                    // Verificar que la fecha no esté duplicada
-                    const fechasExistentes = Array.from(fechasScroll.children).map(item =>
-                        item.textContent.replace('×', '').trim()
-                    );
-                    if (fechasExistentes.includes(nuevaFecha)) {
-                        alert('Esta fecha ya está registrada para esta vacuna');
-                        return;
-                    }
+    // Verificar que la fecha no esté duplicada
+    const fechasExistentes = Array.from(fechasScroll.children).map(item => {
+        const fechaElement = item.querySelector('.fecha-texto') || item;
+        return fechaElement.textContent.replace(/[📋❌]/g, '').trim();
+    });
+    
+    if (fechasExistentes.includes(nuevaVacuna.fecha)) {
+        alert('Esta fecha ya está registrada para esta vacuna');
+        return;
+    }
 
-                    // Crear nuevo elemento de fecha
-                    const fechaItem = document.createElement('div');
-                    fechaItem.classList.add('fecha-item-compacto');
-                    fechaItem.innerHTML = `${nuevaFecha}`;
+    // Crear nuevo elemento de fecha
+    const fechaContent = crearElementoFechaConDetalles(nuevaVacuna);
+    const fechaDiv = document.createElement('div');
+    fechaDiv.className = 'fecha-item-compacto';
+    fechaDiv.innerHTML = fechaContent;
 
-                    fechasScroll.appendChild(fechaItem);
+    fechasScroll.appendChild(fechaDiv);
 
-                    // Actualizar contador
-                    const totalFechas = fechasScroll.children.length;
-                    contador.textContent = totalFechas;
+    // Actualizar contador
+    const totalFechas = fechasScroll.children.length;
+    contador.textContent = totalFechas;
 
-                    // Hacer scroll automático al final
-                    fechasScroll.scrollTop = fechasScroll.scrollHeight;
-                }
+    // Hacer scroll automático al final
+    fechasScroll.scrollTop = fechasScroll.scrollHeight;
+}
 
-                function eliminarFechaVacuna(button) {
-                    if (confirm('¿Está seguro de eliminar esta fecha?')) {
-                        const fechaItem = button.parentElement;
-                        const fechasScroll = fechaItem.parentElement;
-                        const contador = fechasScroll.parentElement.querySelector('.fechas-contador');
+function crearElementoFechaConDetalles(vacuna) {
+    const iconoDetalles = vacuna.tieneDetalles ? '📋' : '';
+    const claseDetalles = vacuna.tieneDetalles ? 'con-detalles-disponibles' : '';
+    const clickHandler = vacuna.tieneDetalles ? `onclick="mostrarDetallesVacunaHistorial('${vacuna.historialId}')"` : '';
+    const cursor = vacuna.tieneDetalles ? 'cursor: pointer;' : '';
+    const title = vacuna.tieneDetalles ? 'Haz clic para ver detalles' : '';
 
-                        fechaItem.remove();
+    return `
+        <div class="fecha-item-compacto ${claseDetalles}" 
+             style="${cursor}" 
+             ${clickHandler}
+             title="${title}">
+            <span class="fecha-texto">${vacuna.fecha}</span>
+            ${iconoDetalles ? `<span class="icono-detalles">${iconoDetalles}</span>` : ''}
+        </div>
+    `;
+}
 
-                        // Actualizar contador
-                        const totalFechas = fechasScroll.children.length;
-                        contador.textContent = totalFechas;
+// Función corregida para mostrar detalles de vacuna desde el historial
+function mostrarDetallesVacunaHistorial(historialId) {
+    console.log('Buscando detalles para historialId:', historialId);
+    console.log('Historial disponible:', Object.keys(historialVacunasConDetalles));
+    
+    const detalles = historialVacunasConDetalles[historialId];
 
-                        // Si no quedan fechas, eliminar toda la vacuna
-                        if (totalFechas === 0) {
-                            const vacunaCompleta = fechasScroll.closest('.historial-item');
-                            vacunaCompleta.remove();
+    if (!detalles) {
+        alert('No se encontraron detalles para esta vacuna. ID: ' + historialId);
+        console.error('Detalles no encontrados para:', historialId);
+        console.log('Historial completo:', historialVacunasConDetalles);
+        return;
+    }
 
-                            // Ocultar sección de historial si no hay elementos
-                            const container = document.getElementById('historialVacunas');
-                            if (container.children.length === 0) {
-                                document.getElementById('historialVacunacion').style.display = 'none';
-                            }
-                        }
-                    }
-                }
+    // Crear modal personalizado para mostrar detalles
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'popup-overlay';
+    modalOverlay.style.display = 'flex';
+    modalOverlay.id = 'modalDetallesHistorial';
+
+    modalOverlay.innerHTML = `
+        <div class="popup-content" style="max-width: 700px;">
+            <div class="popup-header">
+                <h3 class="popup-title">📋 Detalles de Vacunación</h3>
+                <button class="popup-close" onclick="cerrarModalDetallesHistorial()">×</button>
+            </div>
+            <div class="popup-body">
+                <div class="detalles-vacuna-container">
+                    <div class="detalle-header">
+                        <h4 style="color: #3498db; margin-bottom: 15px;">
+                            ${detalles.nombreVacuna} - ${detalles.textosDosis}
+                        </h4>
+                    </div>
+                    
+                    <div class="detalles-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        
+                        <div class="detalle-item">
+                            <strong>📅 Fecha de Aplicación:</strong>
+                            <div class="detalle-valor">${detalles.fechaAplicacion || 'No especificada'}</div>
+                        </div>
+
+                        <div class="detalle-item">
+                            <strong>🔄 Rescate:</strong>
+                            <div class="detalle-valor ${detalles.rescate === 'si' ? 'rescate-si' : 'rescate-no'}">
+                                ${detalles.rescate === 'si' ? '✅ Sí' : '❌ No'}
+                            </div>
+                        </div>
+
+                        <div class="detalle-item">
+                            <strong>📝 Fecha de Registro:</strong>
+                            <div class="detalle-valor">${detalles.fechaRegistro || 'No especificada'}</div>
+                        </div>
+
+                        <div class="detalle-item">
+                            <strong>⚠️ Grupo de Riesgo:</strong>
+                            <div class="detalle-valor">${obtenerTextoGrupoRiesgo(detalles.grupoRiesgo)}</div>
+                        </div>
+
+                        <div class="detalle-item">
+                            <strong>🏷️ Lote:</strong>
+                            <div class="detalle-valor">${detalles.lote || 'No especificado'}</div>
+                        </div>
+
+                        <div class="detalle-item">
+                            <strong>⏰ Fecha de Caducidad:</strong>
+                            <div class="detalle-valor">${detalles.fechaCaducidad || 'No especificada'}</div>
+                        </div>
+
+                        <div class="detalle-item">
+                            <strong>🏥 Lugar de Aplicación:</strong>
+                            <div class="detalle-valor">${obtenerTextoLugarAplicacion(detalles.lugarAplicacion)}</div>
+                        </div>
+
+                        <div class="detalle-item">
+                            <strong>🩺 Reacciones Adversas:</strong>
+                            <div class="detalle-valor ${detalles.reaccionesAdversas === 'si' ? 'reaccion-si' : 'reaccion-no'}">
+                                ${detalles.reaccionesAdversas === 'si' ? '⚠️ Sí' : '✅ No'}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    ${detalles.molestias && detalles.molestias.length > 0 ? `
+                        <div class="molestias-section" style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                            <h5 style="color: #856404; margin-bottom: 10px;">⚠️ Molestias Reportadas:</h5>
+                            <div class="molestias-lista" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                ${detalles.molestias.map(molestia => `
+                                    <span class="molestia-badge" style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 12px; font-size: 12px;">
+                                        ${molestia === 'otra' ? (detalles.otraMolestia || 'Otra') : formatearMolestia(molestia)}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modalOverlay);
+
+    // Cerrar modal al hacer clic fuera
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === this) {
+            cerrarModalDetallesHistorial();
+        }
+    });
+}
+
+// Funciones auxiliares mejoradas
+function obtenerTextoGrupoRiesgo(grupoRiesgo) {
+    const grupos = {
+        'ninguno': 'Ninguno',
+        'inmunocompromiso': 'Inmunocompromiso',
+        'enfermedad_cronica': 'Enfermedad crónica',
+        'contacto_tb': 'Contacto TB',
+        'otros': 'Otros'
+    };
+    return grupos[grupoRiesgo] || grupoRiesgo || 'No especificado';
+}
+
+function obtenerTextoLugarAplicacion(lugar) {
+    const lugares = {
+        'intramuros': 'Intramuros',
+        'extramuros': 'Extramuros'
+    };
+    return lugares[lugar] || lugar || 'No especificado';
+}
+
+function formatearMolestia(molestia) {
+    const molestias = {
+        'cefalea': 'Cefalea',
+        'fiebre': 'Fiebre',
+        'dolor_sitio': 'Dolor en sitio de aplicación',
+        'malestar_general': 'Malestar general',
+        'escalofrio': 'Escalofrío',
+        'cansancio': 'Cansancio',
+        'inflamacion': 'Inflamación o enrojecimiento',
+        'dolor_muscular': 'Dolor muscular y articular'
+    };
+    return molestias[molestia] || molestia;
+}
+
+function cerrarModalDetallesHistorial() {
+    const modal = document.getElementById('modalDetallesHistorial');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Función para debug - agregar botón de test (opcional)
+function testDetallesVacunas() {
+    console.log('=== DEBUG DETALLES VACUNAS ===');
+    console.log('detallesVacunas:', detallesVacunas);
+    console.log('historialVacunasConDetalles:', historialVacunasConDetalles);
+    console.log('Cantidad de detalles guardados:', Object.keys(detallesVacunas).length);
+    console.log('Cantidad en historial:', Object.keys(historialVacunasConDetalles).length);
+    
+    // Mostrar todas las claves disponibles
+    console.log('Claves en detallesVacunas:', Object.keys(detallesVacunas));
+    console.log('Claves en historial:', Object.keys(historialVacunasConDetalles));
+}
+
+// Función para eliminar fecha específica del historial (mantener igual)
+function eliminarFechaVacuna(button) {
+    if (confirm('¿Está seguro de eliminar esta fecha?')) {
+        const fechaItem = button.parentElement;
+        const fechasScroll = fechaItem.parentElement;
+        const contador = fechasScroll.parentElement.querySelector('.fechas-contador');
+
+        fechaItem.remove();
+
+        // Actualizar contador
+        const totalFechas = fechasScroll.children.length;
+        contador.textContent = totalFechas;
+
+        // Si no quedan fechas, eliminar toda la vacuna
+        if (totalFechas === 0) {
+            const vacunaCompleta = fechasScroll.closest('.historial-item');
+            vacunaCompleta.remove();
+
+            // Ocultar sección de historial si no hay elementos
+            const container = document.getElementById('historialVacunas');
+            if (container.children.length === 0) {
+                document.getElementById('historialVacunacion').style.display = 'none';
+            }
+        }
+    }
+}
+
+// Funciones auxiliares
+function obtenerNombreVacuna(vacuna) {
+    const nombres = {
+        'bcg': 'BCG',
+        'hepatitis_b': 'Hepatitis B',
+        'hexavalente': 'Hexavalente',
+        'dpt': 'DPT',
+        'rotavirus': 'Rotavirus',
+        'neumococica': 'Neumocócica conjugada',
+        'influenza': 'Influenza',
+        'srp': 'SRP',
+        'covid19': 'COVID-19'
+    };
+    return nombres[vacuna] || vacuna;
+}
+
+function obtenerTextoDosis(vacuna, dosis) {
+    if (vacuna === 'influenza' && dosis.startsWith('anual_')) {
+        const año = dosis.replace('anual_', '').replace('_', ' ');
+        return `Dosis Anual - ${año.toUpperCase()}`;
+    }
+    
+    const textos = {
+        'unica': 'Única',
+        'primera': '1era dosis',
+        'segunda': '2da dosis',
+        'tercera': '3ra dosis',
+        'cuarta': '4ta dosis',
+        'refuerzo': 'Refuerzo',
+        'primera_primaria': '1era dosis (Esquema Primario)',
+        'segunda_primaria': '2da dosis (Esquema Primario)',
+        'tercera_primaria': '3ra dosis (Esquema Primario)',
+        'refuerzo_riesgo': 'Refuerzo (Grupo de Riesgo)'
+    };
+    return textos[dosis] || dosis;
+}
+
+function formatearMolestia(molestia) {
+    const molestias = {
+        'cefalea': 'Cefalea',
+        'fiebre': 'Fiebre',
+        'dolor_sitio': 'Dolor en sitio de aplicación',
+        'malestar_general': 'Malestar general',
+        'escalofrio': 'Escalofrío',
+        'cansancio': 'Cansancio',
+        'inflamacion': 'Inflamación o enrojecimiento',
+        'dolor_muscular': 'Dolor muscular y articular'
+    };
+    return molestias[molestia] || molestia;
+}
+
+function cerrarModalDetallesHistorial() {
+    const modal = document.getElementById('modalDetallesHistorial');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Eliminar fecha específica del historial
+function eliminarFechaVacuna(button) {
+    if (confirm('¿Está seguro de eliminar esta fecha?')) {
+        const fechaItem = button.parentElement;
+        const fechasScroll = fechaItem.parentElement;
+        const contador = fechasScroll.parentElement.querySelector('.fechas-contador');
+
+        fechaItem.remove();
+
+        // Actualizar contador
+        const totalFechas = fechasScroll.children.length;
+        contador.textContent = totalFechas;
+
+        // Si no quedan fechas, eliminar toda la vacuna
+        if (totalFechas === 0) {
+            const vacunaCompleta = fechasScroll.closest('.historial-item');
+            vacunaCompleta.remove();
+
+            // Ocultar sección de historial si no hay elementos
+            const container = document.getElementById('historialVacunas');
+            if (container.children.length === 0) {
+                document.getElementById('historialVacunacion').style.display = 'none';
+            }
+        }
+    }
+}
 
                 // JavaScript para el TAB de Prevención de Enfermedades
                 document.addEventListener('DOMContentLoaded', function () {
@@ -7573,17 +8110,20 @@
                                    data-registro="${registroId}" required>
                             <small class="error-message" style="color: #e74c3c; font-size: 12px; display: none;"></small>
                         </div>
-                        <div class="radio-item">
-                                        <input type="radio" id="normal" name="tipovisual" value="normal"
-                                            class="radio-input" required>
-                                        <label for="normal" class="radio-label">Normal</label>
-                                    </div>
-                                    <div class="radio-item">
-                                        <input type="radio" id="anormal" name="tipovisual" value="anormal"
-                                            class="radio-input" required>
-                                        <label for="anormal" class="radio-label">Anormal</label>
-                                    </div>
-                    </div>
+
+                    <div class="radio-group">
+                                                    <div class="radio-item ">
+                                                        <input type="radio" id="normal" name="tipovisual"
+                                                            value="normal" class="radio-input" required>
+                                                        <label for="normal" class="radio-label">Normal</label>
+                                                    </div>
+                                                
+                                                    <div class="radio-item">
+                                                        <input type="radio" id="anormal" name="tipovisual"
+                                                            value="anormal" class="radio-input" required>
+                                                        <label for="anormal" class="radio-label">Anormal</label>
+                                                    </div>
+                                                </div>
                 `;
 
                         return registroDiv;
@@ -7816,194 +8356,308 @@
                         }
                     }
                 });
-                // Definir los motivos para cada tipo de derivación
-                const motivosPorTipo = {
-                    '4.30.200': [
-                        'Atresia de Vías Biliares',
-                        'Evaluación de Desarrollo Infantil sospecha de alteración grave del desarrollo',
-                        'Falta de realización de tamiz auditivo del niño sano',
-                        'Falta de realización de tamiz de cadera',
-                        'Falta de realización de tamiz oftalmológico del niño sano',
-                        'Tamiz auditivo No pasa',
-                        'Tamiz Metabólico Neonatal caso probable'
-                    ],
-                    '4.30.8': [
-                        'Evaluación de Desarrollo Infantil sospecha alteración leve desarrollo',
-                        'Falta de toma de tamiz metabólico',
-                        'Falta de realización de tamiz auditivo'
-                    ]
-                };
+// CÓDIGO PARA CORREGIR EL PROBLEMA DE DERIVACIONES
+// REEMPLAZAR TODO EL CÓDIGO DE DERIVACIONES (desde "// Definir los motivos..." hasta el final)
 
-                // Referencias a elementos del DOM
-                const tipoDerivacionSelect = document.getElementById('tipoDerivacion');
-                const motivoDerivacionSelect = document.getElementById('motivoDerivacion');
-                const especialistaSelect = document.getElementById('especialista');
-                const otrosEspecialistaGroup = document.getElementById('otrosEspecialistaGroup');
-                const otrosEspecialistaInput = document.getElementById('otrosEspecialista');
-                const form = document.getElementById('derivacionForm');
-                const alertContainer = document.getElementById('alertContainer');
+document.addEventListener('DOMContentLoaded', function() {
+    // Definir los motivos para cada tipo de derivación
+    const motivosPorTipo = {
+        '4.30.200': [
+            'Atresia de Vías Biliares',
+            'Evaluación drrollo Infantil sospecha de alteración grave del desarrollo',
+            'Falta de realización de tamiz auditivo del niño sano',
+            'Falta de realización de tamiz de cadera',
+            'Falta de realización de tamiz oftalmológico del niño sano',
+            'Tamiz auditivo No pasa',
+            'Tamiz Metabólico Neonatal caso probable'
+        ],
+        '4.30.8': [
+            'Evaluación de Desarrollo Infantil sospecha alteración leve desarrollo',
+            'Falta de toma de tamiz metabólico',
+            'Falta de realización de tamiz auditivo'
+        ]
+    };
 
-                // Función para mostrar alertas
-                function mostrarAlerta(mensaje, tipo = 'success') {
-                    const alertClass = tipo === 'success' ? 'alert-success' : 'alert-error';
-                    alertContainer.innerHTML = `
-                <div class="alert ${alertClass}">
-                    ${mensaje}
+    // Referencias a elementos del DOM
+    const tipoDerivacionSelect = document.getElementById('tipoDerivacion');
+    const motivoDerivacionSelect = document.getElementById('motivoDerivacion');
+    const especialistaSelect = document.getElementById('especialista');
+    const form = document.getElementById('derivacionForm');
+    const alertContainer = document.getElementById('alertContainer');
+
+    // Función para mostrar alertas
+    function mostrarAlerta(mensaje, tipo = 'success') {
+        const alertClass = tipo === 'success' ? 'alert-success' : 'alert-error';
+        alertContainer.innerHTML = `
+            <div class="alert alert-info" style="margin-bottom: 20px; padding: 15px; border-radius: 8px; ${tipo === 'success' ? 'background: #d4edda; color: #155724; border: 1px solid #c3e6cb;' : 'background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'}">
+                <span style="margin-right: 10px;">${tipo === 'success' ? '✅' : '❌'}</span>
+                ${mensaje}
+            </div>
+        `;
+
+        // Hacer scroll hacia la alerta
+        alertContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        // Ocultar alerta después de 5 segundos
+        setTimeout(() => {
+            alertContainer.innerHTML = '';
+        }, 5000);
+    }
+
+    // Manejar cambio en tipo de derivación
+    if (tipoDerivacionSelect) {
+        tipoDerivacionSelect.addEventListener('change', function() {
+            const tipoSeleccionado = this.value;
+
+            // Limpiar motivos anteriores
+            motivoDerivacionSelect.innerHTML = '<option value="">-- Seleccione un motivo --</option>';
+
+            if (tipoSeleccionado && motivosPorTipo[tipoSeleccionado]) {
+                // Habilitar el select de motivos
+                motivoDerivacionSelect.disabled = false;
+
+                // Agregar motivos correspondientes
+                motivosPorTipo[tipoSeleccionado].forEach(motivo => {
+                    const option = document.createElement('option');
+                    option.value = motivo.toLowerCase().replace(/\s+/g, '_').replace(/[^\w_]/g, '');
+                    option.textContent = motivo;
+                    motivoDerivacionSelect.appendChild(option);
+                });
+            } else {
+                // Deshabilitar el select de motivos
+                motivoDerivacionSelect.disabled = true;
+                motivoDerivacionSelect.innerHTML = '<option value="">-- Primero seleccione el tipo de derivación --</option>';
+            }
+
+            // Limpiar selección de motivo al cambiar tipo
+            motivoDerivacionSelect.value = '';
+        });
+    }
+
+    // Botón limpiar derivación
+    const limpiarBtn = document.getElementById('limpiarDerivacion');
+    if (limpiarBtn) {
+        limpiarBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('¿Está seguro de que desea limpiar el formulario?')) {
+                form.reset();
+                motivoDerivacionSelect.disabled = true;
+                motivoDerivacionSelect.innerHTML = '<option value="">-- Primero seleccione el tipo de derivación --</option>';
+                alertContainer.innerHTML = '';
+                mostrarAlerta('Formulario limpiado correctamente', 'success');
+            }
+        });
+    }
+
+    // Botón guardar borrador
+    const borradorBtn = document.getElementById('guardarBorradorDer');
+    if (borradorBtn) {
+        borradorBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const derivacionData = {};
+
+            for (let [key, value] of formData.entries()) {
+                derivacionData[key] = value;
+            }
+
+            // Guardar en localStorage como borrador
+            localStorage.setItem('derivacionBorrador', JSON.stringify(derivacionData));
+            console.log('Borrador guardado:', derivacionData);
+            mostrarAlerta('Borrador guardado correctamente', 'success');
+        });
+    }
+
+    // Botón guardar derivación - CORREGIDO
+    const guardarBtn = document.getElementById('guardarDerivacion');
+    if (guardarBtn) {
+        guardarBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // IMPORTANTE: Prevenir el comportamiento por defecto del formulario
+
+            // Validar campos requeridos
+            const tipoDerivacion = tipoDerivacionSelect.value;
+            const motivoDerivacion = motivoDerivacionSelect.value;
+            const especialista = especialistaSelect.value;
+
+            if (!tipoDerivacion) {
+                mostrarAlerta('Por favor, seleccione el tipo de derivación.', 'error');
+                tipoDerivacionSelect.focus();
+                return;
+            }
+
+            if (!motivoDerivacion) {
+                mostrarAlerta('Por favor, seleccione el motivo de derivación.', 'error');
+                motivoDerivacionSelect.focus();
+                return;
+            }
+
+            if (!especialista) {
+                mostrarAlerta('Por favor, seleccione el especialista.', 'error');
+                especialistaSelect.focus();
+                return;
+            }
+
+            // Recopilar datos del formulario
+            const formData = new FormData(form);
+            const derivacionData = {};
+
+            for (let [key, value] of formData.entries()) {
+                derivacionData[key] = value;
+            }
+
+            // Agregar texto del motivo seleccionado para mejor legibilidad
+            const motivoTexto = motivoDerivacionSelect.options[motivoDerivacionSelect.selectedIndex].text;
+            derivacionData.motivoTexto = motivoTexto;
+
+            // Agregar texto del tipo de derivación
+            const tipoTexto = tipoDerivacionSelect.options[tipoDerivacionSelect.selectedIndex].text;
+            derivacionData.tipoTexto = tipoTexto;
+
+            // Agregar texto del especialista seleccionado
+            const especialistaTexto = especialistaSelect.options[especialistaSelect.selectedIndex].text;
+            derivacionData.especialistaTexto = especialistaTexto;
+
+            // Agregar fecha de registro (hoy)
+            derivacionData.fechaRegistro = new Date().toLocaleDateString('es-ES');
+
+            // Simular envío exitoso
+            console.log('Datos de derivación guardados:', derivacionData);
+
+            // Mostrar mensaje de éxito
+            mostrarAlerta('✅ Derivación registrada exitosamente. Los datos han sido guardados correctamente.');
+
+            // Agregar al historial
+            agregarDerivacionAlHistorial(derivacionData);
+
+            // Mostrar historial
+            document.getElementById('historialDerivaciones').style.display = 'block';
+
+            // Limpiar borrador guardado
+            localStorage.removeItem('derivacionBorrador');
+
+            // Opcional: Limpiar formulario después de guardar
+            // form.reset();
+            // motivoDerivacionSelect.disabled = true;
+        });
+    }
+
+    // También prevenir el envío tradicional del formulario
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevenir envío tradicional
+            // El manejo se hace en el botón guardar
+        });
+    }
+
+    // Función para agregar al historial
+    function agregarDerivacionAlHistorial(datos) {
+        const container = document.getElementById('historialDerivacionesContainer');
+        
+        if (!container) {
+            console.error('Container del historial no encontrado');
+            return;
+        }
+
+        const historialItem = document.createElement('div');
+        historialItem.classList.add('historial-item');
+        historialItem.style.cssText = `
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+            transition: all 0.3s ease;
+        `;
+
+        historialItem.innerHTML = `
+            <div class="historial-content">
+                <div class="historial-title" style="font-weight: 600; color: #2c3e50; font-size: 16px; margin-bottom: 12px;">
+                    📄 Derivación - ${datos.tipoTexto}
                 </div>
-            `;
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
+                    <div><strong>Motivo:</strong> ${datos.motivoTexto}</div>
+                    <div><strong>Especialista:</strong> ${datos.especialistaTexto}</div>
+                    <div><strong>Fecha:</strong> ${datos.fechaRegistro}</div>
+                </div>
+                <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border-left: 3px solid #3498db;">
+                    <small style="color: #6c757d;">Derivación registrada exitosamente</small>
+                </div>
+            </div>
+        `;
 
-                    // Ocultar alerta después de 5 segundos
-                    setTimeout(() => {
-                        alertContainer.innerHTML = '';
-                    }, 5000);
+        // Agregar efecto hover
+        historialItem.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 15px rgba(52, 152, 219, 0.2)';
+        });
+
+        historialItem.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 2px 8px rgba(52, 152, 219, 0.1)';
+        });
+
+        container.appendChild(historialItem);
+
+        // Hacer scroll al nuevo elemento
+        historialItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Cargar borrador si existe
+    const borradorGuardado = localStorage.getItem('derivacionBorrador');
+    if (borradorGuardado) {
+        try {
+            const datos = JSON.parse(borradorGuardado);
+            
+            // Mostrar opción de cargar borrador
+            mostrarAlerta('Se encontró un borrador guardado. Los datos han sido restaurados.', 'success');
+            
+            // Cargar datos del borrador
+            Object.keys(datos).forEach(key => {
+                const elemento = document.getElementById(key);
+                if (elemento) {
+                    elemento.value = datos[key];
+                    // Disparar evento change para actualizar dependencias
+                    elemento.dispatchEvent(new Event('change'));
                 }
+            });
+        } catch (e) {
+            console.error('Error al cargar borrador:', e);
+            localStorage.removeItem('derivacionBorrador');
+        }
+    }
+});
 
-                // Manejar cambio en tipo de derivación
-                tipoDerivacionSelect.addEventListener('change', function () {
-                    const tipoSeleccionado = this.value;
+// API pública para integración externa
+window.derivacionesAPI = {
+    obtenerDatos: function() {
+        const form = document.getElementById('derivacionForm');
+        const formData = new FormData(form);
+        const datos = {};
+        for (let [key, value] of formData.entries()) {
+            datos[key] = value;
+        }
+        return datos;
+    },
 
-                    // Limpiar motivos anteriores
-                    motivoDerivacionSelect.innerHTML = '<option value="">-- Seleccione un motivo --</option>';
+    limpiarFormulario: function() {
+        const limpiarBtn = document.getElementById('limpiarDerivacion');
+        if (limpiarBtn) {
+            limpiarBtn.click();
+        }
+    },
 
-                    if (tipoSeleccionado && motivosPorTipo[tipoSeleccionado]) {
-                        // Habilitar el select de motivos
-                        motivoDerivacionSelect.disabled = false;
-
-                        // Agregar motivos correspondientes
-                        motivosPorTipo[tipoSeleccionado].forEach(motivo => {
-                            const option = document.createElement('option');
-                            option.value = motivo.toLowerCase().replace(/\s+/g, '_').replace(/[^\w_]/g, '');
-                            option.textContent = motivo;
-                            motivoDerivacionSelect.appendChild(option);
-                        });
-                    } else {
-                        // Deshabilitar el select de motivos
-                        motivoDerivacionSelect.disabled = true;
-                        motivoDerivacionSelect.innerHTML = '<option value="">-- Primero seleccione el tipo de derivación --</option>';
-                    }
-                });
-
-                // Manejar cambio en especialista
-                especialistaSelect.addEventListener('change', function () {
-                    const especialistaSeleccionado = this.value;
-
-                    if (especialistaSeleccionado === 'otros') {
-                        otrosEspecialistaGroup.classList.remove('hidden');
-                        otrosEspecialistaInput.required = true;
-                    } else {
-                        otrosEspecialistaGroup.classList.add('hidden');
-                        otrosEspecialistaInput.required = false;
-                        otrosEspecialistaInput.value = '';
-                    }
-                });
-
-                // Establecer fecha actual por defecto
-                document.getElementById('fechaDerivacion').valueAsDate = new Date();
-
-                // Botones de acción derivacion
-                document.getElementById('limpiarDerivacion').addEventListener('click', function () {
-                    if (confirm('¿Está seguro de que desea limpiar el formulario?')) {
-                        form.reset();
-                        motivoDerivacionSelect.disabled = true;
-                        motivoDerivacionSelect.innerHTML = '<option value="">-- Primero seleccione el tipo de derivación --</option>';
-                        otrosEspecialistaGroup.classList.add('hidden');
-                        otrosEspecialistaInput.required = false;
-                        alertContainer.innerHTML = '';
-                        document.getElementById('fechaDerivacion').valueAsDate = new Date();
-                        mostrarAlerta('Formulario limpiado correctamente', 'success');
-                    }
-                });
-
-                document.getElementById('guardarBorradorDer').addEventListener('click', function () {
-                    // Guardar como borrador
-                    const formData = new FormData(form);
-                    const derivacionData = {};
-
-                    for (let [key, value] of formData.entries()) {
-                        derivacionData[key] = value;
-                    }
-
-                    // Aquí guardarías en localStorage o enviarías al servidor
-                    console.log('Borrador guardado:', derivacionData);
-                    mostrarAlerta('Borrador guardado correctamente', 'success');
-                });
-
-                // Manejar envío del formulario
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-
-                    // Validar campos requeridos
-                    const tipoDerivacion = tipoDerivacionSelect.value;
-                    const motivoDerivacion = motivoDerivacionSelect.value;
-                    const especialista = especialistaSelect.value;
-
-                    if (!tipoDerivacion || !motivoDerivacion || !especialista) {
-                        mostrarAlerta('Por favor, complete todos los campos obligatorios.', 'error');
-                        return;
-                    }
-
-                    if (especialista === 'otros' && !otrosEspecialistaInput.value.trim()) {
-                        mostrarAlerta('Por favor, especifique el tipo de especialista en el campo "Otros".', 'error');
-                        return;
-                    }
-
-                    // Recopilar datos del formulario
-                    const formData = new FormData(form);
-                    const derivacionData = {};
-
-                    for (let [key, value] of formData.entries()) {
-                        derivacionData[key] = value;
-                    }
-
-                    // Agregar texto del motivo seleccionado para mejor legibilidad
-                    const motivoTexto = motivoDerivacionSelect.options[motivoDerivacionSelect.selectedIndex].text;
-                    derivacionData.motivoTexto = motivoTexto;
-
-                    // Agregar texto del especialista seleccionado
-                    if (especialista !== 'otros') {
-                        const especialistaTexto = especialistaSelect.options[especialistaSelect.selectedIndex].text;
-                        derivacionData.especialistaTexto = especialistaTexto;
-                    } else {
-                        derivacionData.especialistaTexto = otrosEspecialistaInput.value;
-                    }
-
-                    // Simular envío (aquí conectarías con tu backend)
-                    console.log('Datos de derivación:', derivacionData);
-
-                    // Mostrar mensaje de éxito
-                    mostrarAlerta('✅ Derivación registrada exitosamente. Los datos han sido guardados correctamente.');
-
-                    // Mostrar historial (simulado)
-                    document.getElementById('historialDerivaciones').style.display = 'block';
-                });
-
-                // API para integración
-                window.derivacionesAPI = {
-                    obtenerDatos: function () {
-                        const formData = new FormData(form);
-                        const datos = {};
-                        for (let [key, value] of formData.entries()) {
-                            datos[key] = value;
-                        }
-                        return datos;
-                    },
-
-                    limpiarFormulario: function () {
-                        document.getElementById('limpiarDerivacion').click();
-                    },
-
-                    cargarDatos: function (datos) {
-                        Object.keys(datos).forEach(key => {
-                            const elemento = document.getElementById(key);
-                            if (elemento) {
-                                elemento.value = datos[key];
-                                elemento.dispatchEvent(new Event('change'));
-                            }
-                        });
-                    }
-                };
-
-
+    cargarDatos: function(datos) {
+        Object.keys(datos).forEach(key => {
+            const elemento = document.getElementById(key);
+            if (elemento) {
+                elemento.value = datos[key];
+                elemento.dispatchEvent(new Event('change'));
+            }
+        });
+    }
+};
             </script>
 </body>
 
