@@ -1927,7 +1927,7 @@
         }
 
         .prevencion-badge {
-            background: #9d06f4ff;
+            background: rgb(158, 151, 253);
             color: white;
             padding: 4px 15px;
             border-radius: 12px;
@@ -2511,20 +2511,20 @@
                                 <select id="complicacionesNacimiento" name="complicacionesNacimiento"
                                     class="form-select">
                                     <option value="">Seleccione...</option>
-                                    <option value="sin_complicaciones">Sin complicaciones</option>
+                                    <option value="apnea_recien_nacido">Apnea del recién nacido</option>
+                                    <option value="asfixia_al_nacer">Asfixia al nacer</option>
+                                    <option value="aspiracion_neonatal">Aspiración neonatal</option>
                                     <option value="bajo_peso_edad_gestacional">Bajo peso para edad gestacional</option>
-                                    <option value="sindrome_dificultad_respiratoria">Síndrome de dificultad respiratoria
-                                    </option>
-                                    <option value="sepsis_bacteriana_rn">Sepsis bacteriana del RN</option>
+                                    <option value="hipoxia_intrauterina">Hipoxia intrauterina</option>
                                     <option value="ictericia_neonatal_inespecifica">Ictericia neonatal inespecífica
                                     </option>
-                                    <option value="apnea_recien_nacido">Apnea del recién nacido</option>
-                                    <option value="hipoxia_intrauterina">Hipoxia intrauterina</option>
-                                    <option value="aspiracion_neonatal">Aspiración neonatal</option>
-                                    <option value="asfixia_al_nacer">Asfixia al nacer</option>
-                                    <option value="macrosomia_fetal">Macrosomía fetal</option>
                                     <option value="insuficiencia_cardiaca_neonatal">Insuficiencia cardíaca neonatal
                                     </option>
+                                    <option value="macrosomia_fetal">Macrosomía fetal</option>
+                                    <option value="sepsis_bacteriana_rn">Sepsis bacteriana del RN</option>
+                                    <option value="sindrome_dificultad_respiratoria">Síndrome de dificultad respiratoria
+                                    </option>
+                                    <option value="sin_complicaciones">Sin complicaciones</option>
                                 </select>
                             </div>
                         </div>
@@ -4334,7 +4334,7 @@
                                         <div class="dosis-item" data-vacuna="covid19" data-dosis="tercera_primaria">
                                             <div class="dosis-info">
                                                 <span class="dosis-numero">3ra dosis</span>
-                                                <span class="edad-oportuna">21 días después de la 1ra dosis</span>
+                                                <span class="edad-oportuna">21 días después de la 2da dosis</span>
                                             </div>
                                             <div class="fecha-aplicacion">
                                                 <input type="date" class="fecha-input"
@@ -4974,10 +4974,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="observaciones_enf_respiratorias"
-                                                class="form-label">Observaciones/Diagnóstico:</label>
+                                                class="form-label">Resultado:</label>
                                             <textarea id="observaciones_enf_respiratorias"
                                                 name="observaciones_enf_respiratorias" class="form-input" rows="2"
-                                                placeholder="Escriba aquí el diagnóstico específico y observaciones..."></textarea>
+                                                placeholder="Escriba aquí el resultado específico y observaciones..."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5000,10 +5000,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="observaciones_enf_gastrointestinales"
-                                                class="form-label">Observaciones/Diagnóstico:</label>
+                                                class="form-label">Resultado:</label>
                                             <textarea id="observaciones_enf_gastrointestinales"
                                                 name="observaciones_enf_gastrointestinales" class="form-input" rows="2"
-                                                placeholder="Escriba aquí el diagnóstico específico y observaciones..."></textarea>
+                                                placeholder="Escriba aquí el resultado específico y observaciones..."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5025,10 +5025,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="observaciones_enf_piel"
-                                                class="form-label">Observaciones/Diagnóstico:</label>
+                                                class="form-label">Resultado:</label>
                                             <textarea id="observaciones_enf_piel" name="observaciones_enf_piel"
                                                 class="form-input" rows="2"
-                                                placeholder="Escriba aquí el diagnóstico específico y observaciones..."></textarea>
+                                                placeholder="Escriba aquí el resultado específico y observaciones..."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5051,10 +5051,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="observaciones_enf_infecciosas"
-                                                class="form-label">Observaciones/Diagnóstico:</label>
+                                                class="form-label">Resultado:</label>
                                             <textarea id="observaciones_enf_infecciosas"
                                                 name="observaciones_enf_infecciosas" class="form-input" rows="2"
-                                                placeholder="Escriba aquí el diagnóstico específico y observaciones..."></textarea>
+                                                placeholder="Escriba aquí el resultado específico y observaciones..."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5077,10 +5077,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="observaciones_enf_neurologicas"
-                                                class="form-label">Observaciones/Diagnóstico:</label>
+                                                class="form-label">Resultado:</label>
                                             <textarea id="observaciones_enf_neurologicas"
                                                 name="observaciones_enf_neurologicas" class="form-input" rows="2"
-                                                placeholder="Escriba aquí el diagnóstico específico y observaciones..."></textarea>
+                                                placeholder="Escriba aquí el resultado específico y observaciones..."></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -5109,13 +5109,13 @@
                                                         style="color: #e74c3c; font-size: 12px; display: none;"></small>
                                                 </div>
                                                 <div class="radio-item">
-                                                    <input type="radio" id="atresianormal" name="tipoatresia" value="normal"
-                                                        class="radio-input" required>
+                                                    <input type="radio" id="atresianormal" name="tipoatresia"
+                                                        value="normal" class="radio-input" required>
                                                     <label for="atresianormal" class="radio-label">Normal</label>
                                                 </div>
                                                 <div class="radio-item">
-                                                    <input type="radio" id="atresiaanormal" name="tipoatresia" value="anormal"
-                                                        class="radio-input" required>
+                                                    <input type="radio" id="atresiaanormal" name="tipoatresia"
+                                                        value="anormal" class="radio-input" required>
                                                     <label for="atresiaanormal" class="radio-label">Anormal</label>
                                                 </div>
                                             </div>
@@ -5234,17 +5234,17 @@
                             <label for="especialista">Seleccione el especialista <span class="required">*</span></label>
                             <select id="especialista" name="especialista" required>
                                 <option value="">-- Seleccione una opción --</option>
-                                <option value="medico_familiar">Médico Familiar</option>
-                                <option value="trabajo_social">Trabajo Social</option>
-                                <option value="nutricion_dietetica">Nutrición y Dietética</option>
-                                <option value="estomatologia">Estomatología</option>
                                 <option value="centro_seguridad_social">Centro de Seguridad Social</option>
-                                <option value="prevenimss">PREVENIMSS</option>
+                                <option value="enfermera_geriatria">Enfermera Especialista en Geriatría</option>
                                 <option value="enfermera_medicina_familiar">Enfermera Especialista en Medicina de
                                     Familia</option>
-                                <option value="enfermera_geriatria">Enfermera Especialista en Geriatría</option>
-                                <option value="planificacion_familiar">Planificación Familiar</option>
+                                <option value="estomatologia">Estomatología</option>
+                                <option value="medico_familiar">Médico Familiar</option>
+                                <option value="nutricion_dietetica">Nutrición y Dietética</option>
                                 <option value="otros">Otros</option>
+                                <option value="planificacion_familiar">Planificación Familiar</option>
+                                <option value="prevenimss">PREVENIMSS</option>
+                                <option value="trabajo_social">Trabajo Social</option>
                             </select>
                         </div>
                     </div>
@@ -6450,61 +6450,7 @@
                 ` : ''}
             </div>
         </div>
-        <option value="acciones-prevencion-colapso-cuidador">Acciones de prevención de colapso del cuidador</option>
-                                    <option value="acciones-mejoramiento-conducta-comportamiento">Acciones para el mejoramiento en la conducta del comportamiento</option>
-                                    <option value="administracion-vitamina-a">Administración de vitamina "A"</option>
-                                    <option value="alimentacion-saludable">Alimentación saludable</option>
-                                    <option value="consejos-crianza">Consejos de Crianza</option>
-                                    <option value="consejos-crianza-salud-mental">Consejos de crianza (salud mental)</option>
-                                    <option value="consejos-salud-visual-tiempo-pantalla">Consejos sobre Salud Visual: Tiempo de pantalla</option>
-                                    <option value="control-esfinteres">Control de esfínteres</option>
-                                    <option value="control-fiebre">Control de fiebre</option>
-                                    <option value="crecimiento-desarrollo-nina-nino">Crecimiento y desarrollo de la niña y niño</option>
-                                    <option value="cuidados-nina-nino-enfermo">Cuidados de la niña y el niño enfermo</option>
-                                    <option value="cuidados-embarazo">Cuidados del embarazo</option>
-                                    <option value="cuidados-despues-parto">Cuidados después del parto</option>
-                                    <option value="cultura-donacion-organos-tejidos">Cultura para la donación de órganos y tejidos</option>
-                                    <option value="desarrollo-infantil-temprano">Desarrollo Infantil Temprano:</option>
-                                    <option value="desparasitacion-intestinal">Desparasitación intestinal</option>
-                                    <option value="deteccion-atresia-vias-biliares">Detección de atresia de vías biliares</option>
-                                    <option value="duenos-responsables-animales-compania">Dueños responsables con animales de compañía</option>
-                                    <option value="educacion-duelo">Educación del duelo</option>
-                                    <option value="ensenanza-tecnica-cepillado-dental">Enseñanza de la técnica de Cepillado Dental</option>
-                                    <option value="ensenanza-uso-hilo-dental">Enseñanza del uso del Hilo Dental (a partir de los 6 años)</option>
-                                    <option value="entorno-favorable-salud">Entorno favorable a la salud</option>
-                                    <option value="evaluacion-neurodesarrollo">Evaluación del Neurodesarrollo</option>
-                                    <option value="factores-riesgo-salud-bucal">Factores de riesgo que afectan la salud bucal</option>
-                                    <option value="guia-cuidado-salud">Guía para el Cuidado de la Salud</option>
-                                    <option value="higiene-bucal">Higiene bucal</option>
-                                    <option value="higiene-sueno">Higiene del sueño</option>
-                                    <option value="ojo-seco">Ojo seco</option>
-                                    <option value="orientacion-emociones-autoestima-apoyo-emocional">Orientación sobre emociones, autoestima y apoyo emocional (Trastornos psicológicos - Depresión o Tristeza)</option>
-                                    <option value="orientacion-consejeria-madres-padres-tutores">Orientación/Consejería para madres, padres o tutores o representante legal</option>
-                                    <option value="prevencion-anemia">Prevención anemia</option>
-                                    <option value="prevencion-acoso-escolar">Prevención de Acoso escolar</option>
-                                    <option value="prevencion-acoso-escolar-2">Prevención de Acoso Escolar</option>
-                                    <option value="prevencion-adicciones">Prevención de adicciones</option>
-                                    <option value="prevencion-desnutricion">Prevención de desnutrición</option>
-                                    <option value="prevencion-enfermedades-bucales">Prevención de enfermedades bucales</option>
-                                    <option value="prevencion-muerte-subita-lactante">Prevención de la muerte súbita de la y el lactante</option>
-                                    <option value="prevencion-raquitismo">Prevención de raquitismo</option>
-                                    <option value="prevencion-autolesion-conducta-suicida">Prevención en la Autolesión y conducta suicida</option>
-                                    <option value="prevencion-posvencion">Prevención en la Posvención</option>
-                                    <option value="prevencion-control-enfermedades-respiratorias-asma">Prevención y control de enfermedades respiratorias no transmisibles: Asma</option>
-                                    <option value="prevenimss-familiar">PrevenIMSS Familiar</option>
-                                    <option value="primera-visita-medico">Primera visita al médico</option>
-                                    <option value="resolucion-problemas-nucleo-familiar">Resolución de problemas en el núcleo familiar</option>
-                                    <option value="salud-mental">Salud mental</option>
-                                    <option value="tamiz-auditivo-deteccion-hipoacusia">Tamiz Auditivo: Detección de hipoacusia</option>
-                                    <option value="tamiz-cadera-displasia-cadera-desarrollo">Tamiz de Cadera: Displasia de la Cadera en Desarrollo</option>
-                                    <option value="tamiz-neonatal-enfermedades-metabolicas-congenitas">Tamiz Neonatal: Enfermedades Metabólicas Congénitas</option>
-                                    <option value="tamiz-visual">Tamiz visual</option>
-                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-irritable">Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno psicológico - Irritable o enojos)</option>
-                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-olvidos">Técnicas de relajación, autocuidado y autocontrol emocional (Trastorno psicológico - Olvidos)</option>
-                                    <option value="tecnicas-relajacion-autocuidado-autocontrol-emocional-ansiedad">Técnicas de relajación, autocuidado y autocontrol emocional (Trastornos psicológicos - Ansiedad)</option>
-                                    <option value="vacunacion">Vacunación</option>
-                                    <option value="vigilancia-evaluacion-estado-nutricional">Vigilancia y evaluación del estado nutricional</option>
-    `;
+            `;
 
                     container.appendChild(historialItem);
                     document.getElementById('historialNutricion').style.display = 'block';
@@ -7873,12 +7819,13 @@
                 // Definir los motivos para cada tipo de derivación
                 const motivosPorTipo = {
                     '4.30.200': [
-                        'Evaluación de Desarrollo Infantil sospecha de alteración grave del desarrollo',
                         'Atresia de Vías Biliares',
-                        'Tamiz Metabólico Neonatal caso probable',
-                        'Tamiz auditivo No pasa',
+                        'Evaluación de Desarrollo Infantil sospecha de alteración grave del desarrollo',
+                        'Falta de realización de tamiz auditivo del niño sano',
                         'Falta de realización de tamiz de cadera',
-                        'Falta de realización de tamiz oftalmológico del niño sano'
+                        'Falta de realización de tamiz oftalmológico del niño sano',
+                        'Tamiz auditivo No pasa',
+                        'Tamiz Metabólico Neonatal caso probable'
                     ],
                     '4.30.8': [
                         'Evaluación de Desarrollo Infantil sospecha alteración leve desarrollo',
@@ -7953,7 +7900,7 @@
                 // Establecer fecha actual por defecto
                 document.getElementById('fechaDerivacion').valueAsDate = new Date();
 
-                // Botones de acción
+                // Botones de acción derivacion
                 document.getElementById('limpiarDerivacion').addEventListener('click', function () {
                     if (confirm('¿Está seguro de que desea limpiar el formulario?')) {
                         form.reset();
