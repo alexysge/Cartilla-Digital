@@ -3282,7 +3282,8 @@
                                 <div class="popup-content">
                                     <div class="popup-header">
                                         <h3 class="popup-title" id="popupTitle">Información</h3>
-                                        <button class="popup-close" onclick="cerrarPopup()">×</button>
+                                        <button type="button" class="popup-close"
+                                            onclick="cerrarPopup(); return false;">×</button>
                                     </div>
                                     <div class="popup-body" id="popupBody">
                                         <!-- El contenido se cargará dinámicamente -->
@@ -4036,7 +4037,6 @@
                     </div>
                 </div>
 
-
                 <!-- Botones de Acción -->
                 <div class="action-buttons">
                     <button type="button" class="btn btn-outline" id="limpiarDesarrollo">
@@ -4049,7 +4049,27 @@
                         <span>✅</span> Guardar Desarrollo
                     </button>
                 </div>
+
+                <!-- Historial de Desarrollo Infantil -->
+                <div class="form-section" id="historialDesarrollo" style="display: none;">
+                    <div class="section-header">
+                        <div class="section-icon">📚</div>
+                        <div class="section-info">
+                            <h3>Historial de Evaluaciones de Desarrollo</h3>
+                            <p class="section-description">Evaluaciones de desarrollo infantil registradas previamente
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="historialEvaluacionesDesarrollo" class="historial-container">
+                        <!-- Aquí se mostrarán las evaluaciones guardadas -->
+                    </div>
+                </div>
+
+
             </div>
+
+
 
             <!-- TAB: Nutrición -->
             <div class="tab-content" id="nutricion">
@@ -5713,7 +5733,43 @@
                     });
 
                     document.getElementById('guardarDesarrollo')?.addEventListener('click', function () {
-                        alert('Datos de desarrollo infantil guardados correctamente');
+                        const edadSeleccionada = document.getElementById('edad_nino').value;
+                        const fechaEvaluacion = document.getElementById('fecha_evaluacion_desarrollo').value;
+
+                        if (!edadSeleccionada) {
+                            alert('Por favor seleccione la edad del niño');
+                            return;
+                        }
+
+                        if (!fechaEvaluacion) {
+                            alert('Por favor ingrese la fecha de evaluación');
+                            return;
+                        }
+
+                        // Obtener resultado del semáforo
+                        const resultadoSemaforo = obtenerResultadoSemaforoActual();
+
+                        if (!resultadoSemaforo) {
+                            alert('Por favor complete la evaluación antes de guardar');
+                            return;
+                        }
+
+                        // Recopilar respuestas de la evaluación
+                        const respuestasEvaluacion = recopilarRespuestasEvaluacion(edadSeleccionada);
+
+                        // Guardar en el historial
+                        guardarEvaluacionEnHistorial({
+                            edad: edadSeleccionada,
+                            fechaEvaluacion: fechaEvaluacion,
+                            resultado: resultadoSemaforo,
+                            respuestas: respuestasEvaluacion,
+                            contadores: { ...contadores }
+                        });
+
+                        alert('Evaluación de desarrollo infantil guardada correctamente');
+
+                        // Limpiar formulario después de guardar
+                        limpiarFormularioDesarrollo();
                     });
 
                     // Funcionalidad de borradores
@@ -6202,9 +6258,301 @@
                     }
                 }
 
-                // Función para recalcular
-                function recalcularSemaforo() {
-                    contarRespuestas();
+                // Función para obtener el resultado actual del semáforo
+                function obtenerResultadoSemaforoActual() {
+                    if (document.getElementById('luzRojo').classList.contains('activa')) {
+                        return {
+                            tipo: 'rojo',
+                            titulo: 'SOSPECHA DE ALTERACIÓN GRAVE DEL DESARROLLO',
+                            icono: '🔴',
+                            color: '#e74c3c'
+                        };
+                    } else if (document.getElementById('luzAmarillo').classList.contains('activa')) {
+                        return {
+                            tipo: 'amarillo',
+                            titulo: 'ALTERACIÓN LEVE DEL DESARROLLO',
+                            icono: '🟡',
+                            color: '#f39c12'
+                        };
+                    } else if (document.getElementById('luzVerde').classList.contains('activa')) {
+                        return {
+                            tipo: 'verde',
+                            titulo: 'DESARROLLO NORMAL',
+                            icono: '🟢',
+                            color: '#27ae60'
+                        };
+                    }
+                    return null;
+                }
+
+                // Función para recopilar respuestas de la evaluación
+                function recopilarRespuestasEvaluacion(edad) {
+                    const seccionActual = document.getElementById(`questions-${edad}`);
+                    if (!seccionActual) return {};
+
+                    const respuestas = {};
+
+                    // Obtener todas las respuestas por categoría
+                    const categorias = ['motor', 'lenguaje', 'social', 'conocimiento', 'alarma'];
+
+                    categorias.forEach(categoria => {
+                        respuestas[categoria] = [];
+                        const preguntasCategoria = seccionActual.querySelectorAll(`.${categoria}-category .radio-input:checked`);
+
+                        preguntasCategoria.forEach((radio, index) => {
+                            const preguntaTexto = radio.closest('.question-item').querySelector('.question-text').textContent;
+                            respuestas[categoria].push({
+                                pregunta: preguntaTexto,
+                                respuesta: radio.value,
+                                numero: index + 1
+                            });
+                        });
+                    });
+
+                    return respuestas;
+                }
+
+                // Función para obtener texto de edad
+                function obtenerTextoEdad(edad) {
+                    const edades = {
+                        '1mes': '1 mes',
+                        '2meses': '2 meses',
+                        '3meses': '3 meses',
+                        '6meses': '6 meses',
+                        '1ano': '1 año',
+                        '18meses': '1 año 6 meses',
+                        '2anos': '2 años',
+                        '3anos': '3 años',
+                        '4anos': '4 años',
+                        '5anos': '5 años',
+                        '6anos': '6 años',
+                        '7anos': '7 años',
+                        '8anos': '8 años'
+                    };
+                    return edades[edad] || edad;
+                }
+
+                // Función para guardar evaluación en el historial
+                function guardarEvaluacionEnHistorial(datos) {
+                    const container = document.getElementById('historialEvaluacionesDesarrollo');
+
+                    const historialItem = document.createElement('div');
+                    historialItem.classList.add('historial-item');
+
+                    // Crear ID único para el modal
+                    const evaluacionId = `evaluacion_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+                    historialItem.innerHTML = `
+        <div class="historial-content">
+            <div class="historial-title">🧠 Evaluación de Desarrollo - ${obtenerTextoEdad(datos.edad)}</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 10px;">
+                <div><strong>📅 Fecha:</strong> ${datos.fechaEvaluacion}</div>
+                <div><strong>👶 Edad:</strong> ${obtenerTextoEdad(datos.edad)}</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <strong>🚦 Resultado:</strong> 
+                    <span style="background: ${datos.resultado.color}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                        ${datos.resultado.icono} ${datos.resultado.tipo.toUpperCase()}
+                    </span>
+                </div>
+                <div style="grid-column: 1 / -1; margin-top: 8px;">
+                    <button type="button" class="btn-link" onclick="mostrarDetallesEvaluacion('${evaluacionId}')">
+                        📋 Ver Detalles Completos
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+                    container.appendChild(historialItem);
+
+                    // Guardar datos completos para el modal
+                    window.evaluacionesGuardadas = window.evaluacionesGuardadas || {};
+                    window.evaluacionesGuardadas[evaluacionId] = datos;
+
+                    // Mostrar sección de historial
+                    document.getElementById('historialDesarrollo').style.display = 'block';
+                }
+
+                // Función para limpiar formulario de desarrollo
+                function limpiarFormularioDesarrollo() {
+                    // Limpiar fecha y edad
+                    document.getElementById('fecha_evaluacion_desarrollo').value = '';
+                    document.getElementById('edad_nino').value = '';
+
+                    // Ocultar todas las secciones de preguntas
+                    document.querySelectorAll('.age-questions-section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    // Mostrar mensaje por defecto
+                    document.getElementById('no-age-message').style.display = 'block';
+
+                    // Limpiar todos los radio buttons
+                    document.querySelectorAll('#desarrollo .radio-input').forEach(radio => {
+                        radio.checked = false;
+                    });
+
+                    // Remover clases selected
+                    document.querySelectorAll('#desarrollo .radio-item').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+
+                    // Ocultar semáforo
+                    document.getElementById('semaforoDesarrollo').style.display = 'none';
+
+                    // Resetear contadores
+                    contadores = { si: 0, no: 0, ausente: 0, presente: 0 };
+                }
+
+                // Función para mostrar detalles de evaluación en modal
+                function mostrarDetallesEvaluacion(evaluacionId) {
+                    const datos = window.evaluacionesGuardadas[evaluacionId];
+                    if (!datos) {
+                        alert('No se encontraron los detalles de esta evaluación');
+                        return;
+                    }
+
+                    // Crear modal
+                    const modalOverlay = document.createElement('div');
+                    modalOverlay.className = 'popup-overlay';
+                    modalOverlay.style.display = 'flex';
+                    modalOverlay.id = 'modalDetallesEvaluacion';
+
+                    modalOverlay.innerHTML = `
+        <div class="popup-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+            <div class="popup-header">
+                <h3 class="popup-title">🧠 Detalles de Evaluación de Desarrollo</h3>
+                <button class="popup-close" onclick="cerrarModalEvaluacion()">×</button>
+            </div>
+            <div class="popup-body">
+                <div class="detalles-evaluacion-container">
+                    
+                    <!-- Información General -->
+                    <div class="detalle-header">
+                        <h4 style="color: #3498db; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+                            📋 Información General
+                        </h4>
+                    </div>
+                    
+                    <div class="detalles-grid" style="margin-bottom: 25px;">
+                        <div class="detalle-item">
+                            <strong>📅 Fecha de Evaluación:</strong>
+                            <div class="detalle-valor">${datos.fechaEvaluacion}</div>
+                        </div>
+                        <div class="detalle-item">
+                            <strong>👶 Edad Evaluada:</strong>
+                            <div class="detalle-valor">${obtenerTextoEdad(datos.edad)}</div>
+                        </div>
+                        <div class="detalle-item">
+                            <strong>🚦 Resultado:</strong>
+                            <div class="detalle-valor" style="background: ${datos.resultado.color}; color: white; padding: 8px 12px; border-radius: 8px; font-weight: bold;">
+                                ${datos.resultado.icono} ${datos.resultado.titulo}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contadores -->
+                    <div class="detalle-header">
+                        <h4 style="color: #27ae60; margin-bottom: 15px; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
+                            📊 Resumen de Respuestas
+                        </h4>
+                    </div>
+                    
+                    <div class="contadores-modal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                        <div class="contador-modal" style="background: #d4edda; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #28a745;">
+                            <div style="font-size: 24px; font-weight: bold; color: #155724;">${datos.contadores.si}</div>
+                            <div style="font-size: 12px; color: #155724;">✅ Sí lo hace</div>
+                        </div>
+                        <div class="contador-modal" style="background: #f8d7da; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #dc3545;">
+                            <div style="font-size: 24px; font-weight: bold; color: #721c24;">${datos.contadores.no}</div>
+                            <div style="font-size: 12px; color: #721c24;">❌ No lo hace</div>
+                        </div>
+                        <div class="contador-modal" style="background: #fff3cd; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #ffc107;">
+                            <div style="font-size: 24px; font-weight: bold; color: #856404;">${datos.contadores.presente}</div>
+                            <div style="font-size: 12px; color: #856404;">⚠️ Señales presentes</div>
+                        </div>
+                        <div class="contador-modal" style="background: #d1ecf1; padding: 15px; border-radius: 8px; text-align: center; border: 2px solid #17a2b8;">
+                            <div style="font-size: 24px; font-weight: bold; color: #0c5460;">${datos.contadores.ausente}</div>
+                            <div style="font-size: 12px; color: #0c5460;">✨ Señales ausentes</div>
+                        </div>
+                    </div>
+
+                    ${generarRespuestasDetalladas(datos.respuestas)}
+                </div>
+            </div>
+        </div>
+    `;
+
+                    document.body.appendChild(modalOverlay);
+
+                    // Cerrar modal al hacer clic fuera
+                    modalOverlay.addEventListener('click', function (e) {
+                        if (e.target === this) {
+                            cerrarModalEvaluacion();
+                        }
+                    });
+                }
+
+                // Función para generar respuestas detalladas
+                function generarRespuestasDetalladas(respuestas) {
+                    let html = '';
+
+                    const categorias = {
+                        'motor': { titulo: '🏃‍♂️ MOTOR', color: '#27ae60' },
+                        'lenguaje': { titulo: '💬 LENGUAJE', color: '#e91e63' },
+                        'social': { titulo: '👥 SOCIAL', color: '#f39c12' },
+                        'conocimiento': { titulo: '🧠 CONOCIMIENTOS', color: '#9b59b6' },
+                        'alarma': { titulo: '⚠️ SIGNOS DE ALARMA', color: '#e74c3c' }
+                    };
+
+                    Object.keys(categorias).forEach(categoria => {
+                        if (respuestas[categoria] && respuestas[categoria].length > 0) {
+                            html += `
+                <div class="categoria-respuestas" style="margin-bottom: 25px;">
+                    <h5 style="color: ${categorias[categoria].color}; margin-bottom: 15px; border-bottom: 2px solid ${categorias[categoria].color}; padding-bottom: 8px;">
+                        ${categorias[categoria].titulo}
+                    </h5>
+                    <div class="respuestas-lista">
+            `;
+
+                            respuestas[categoria].forEach((item, index) => {
+                                const esAlarma = categoria === 'alarma';
+                                const respuestaColor = esAlarma
+                                    ? (item.respuesta === 'presente' ? '#e74c3c' : '#27ae60')
+                                    : (item.respuesta === 'si' ? '#27ae60' : '#e74c3c');
+
+                                const respuestaTexto = esAlarma
+                                    ? (item.respuesta === 'presente' ? '⚠️ Presente' : '✅ Ausente')
+                                    : (item.respuesta === 'si' ? '✅ Sí' : '❌ No');
+
+                                html += `
+                    <div class="respuesta-item" style="background: #f8f9fa; padding: 12px; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid ${respuestaColor};">
+                        <div style="font-weight: 600; color: #2c3e50; margin-bottom: 5px;">
+                            ${index + 1}. ${item.pregunta}
+                        </div>
+                        <div style="color: ${respuestaColor}; font-weight: bold;">
+                            ${respuestaTexto}
+                        </div>
+                    </div>
+                `;
+                            });
+
+                            html += `
+                    </div>
+                </div>
+            `;
+                        }
+                    });
+
+                    return html;
+                }
+
+                // Función para cerrar modal de evaluación
+                function cerrarModalEvaluacion() {
+                    const modal = document.getElementById('modalDetallesEvaluacion');
+                    if (modal) {
+                        modal.remove();
+                    }
                 }
 
                 // Event listeners para respuestas
@@ -6607,10 +6955,6 @@
                         const fecha = document.getElementById('fecha_nutricion').value;
                         const imc = imcInput.value;
 
-                        if (!peso || !talla || !edad || !fecha) {
-                            alert('Por favor complete todos los campos obligatorios');
-                            return;
-                        }
 
                         // Agregar al historial
                         agregarAlHistorialNutricion({
@@ -6636,20 +6980,21 @@
                     });
                 });
 
-                // 1. Modificar la función guardarNutricion para incluir tipo de alimentación
+                // 1. REEMPLAZAR la función guardarNutricion existente (línea aproximada 1440)
                 document.getElementById('guardarNutricion')?.addEventListener('click', function (e) {
                     e.preventDefault();
 
-                    const peso = pesoInput.value;
-                    const talla = tallaInput.value;
-                    const edad = edadSelect.value;
+                    const peso = document.getElementById('peso_nutricion').value;
+                    const talla = document.getElementById('talla_nutricion').value;
+                    const edad = document.getElementById('edad_nutricion').value;
                     const fecha = document.getElementById('fecha_nutricion').value;
-                    const imc = imcInput.value;
+                    const imc = document.getElementById('imc_nutricion').value;
 
                     // Obtener tipo de alimentación (opcional)
                     const tipoAlimentacion = document.getElementById('tipo_alimentacion').value;
                     const tipoAlimentacionTexto = tipoAlimentacion ?
                         document.getElementById('tipo_alimentacion').options[document.getElementById('tipo_alimentacion').selectedIndex].text : '';
+                    const fechaAlimentacion = document.getElementById('fecha_alimentacion').value;
 
                     if (!peso || !talla || !edad || !fecha) {
                         alert('Por favor complete todos los campos obligatorios');
@@ -6663,23 +7008,24 @@
                         edad: edad,
                         fecha: fecha,
                         imc: imc,
-                        estado: estadoDiv.querySelector('h4')?.textContent || '',
+                        estado: document.getElementById('estado_nutricional').querySelector('h4')?.textContent || '',
                         tipoAlimentacion: tipoAlimentacion,
-                        tipoAlimentacionTexto: tipoAlimentacionTexto
+                        tipoAlimentacionTexto: tipoAlimentacionTexto,
+                        fechaAlimentacion: fechaAlimentacion
                     });
 
                     alert('Evaluación nutricional guardada correctamente');
 
                     // Limpiar formulario
                     document.getElementById('nutricionForm').reset();
-                    imcInput.value = '';
-                    resultadoDiv.style.display = 'none';
+                    document.getElementById('imc_nutricion').value = '';
+                    document.getElementById('resultado_nutricion').style.display = 'none';
                     // Limpiar también la información de alimentación
                     document.getElementById('info_alimentacion').style.display = 'none';
                     document.getElementById('alimentacion_help').style.display = 'none';
                 });
 
-                // 2. Modificar la función agregarAlHistorialNutricion
+                // 2. REEMPLAZAR la función agregarAlHistorialNutricion existente (línea aproximada 1500)
                 function agregarAlHistorialNutricion(datos) {
                     const container = document.getElementById('historialEvaluaciones');
 
@@ -6696,17 +7042,33 @@
                 <div><strong>Fecha:</strong> ${datos.fecha}</div>
                 ${datos.tipoAlimentacionTexto ? `
                     <div style="grid-column: 1 / -1; margin-top: 8px; padding: 8px; background: #f0f8f0; border-radius: 6px; border-left: 3px solid #27ae60;">
-                        <strong>🤱Tipo de Alimentación:</strong> ${datos.tipoAlimentacionTexto}
+                        <strong>🤱 Tipo de Alimentación:</strong> ${datos.tipoAlimentacionTexto}
+                        ${datos.fechaAlimentacion ? `<br><strong>📅 Fecha de Alimentación:</strong> ${datos.fechaAlimentacion}` : ''}
                     </div>
                 ` : ''}
             </div>
         </div>
-            `;
+        <div class="historial-actions">
+        </div>
+    `;
 
                     container.appendChild(historialItem);
                     document.getElementById('historialNutricion').style.display = 'block';
                 }
 
+                // 3. AGREGAR esta nueva función (después de la función agregarAlHistorialNutricion)
+                function eliminarDelHistorialNutricion(button) {
+                    if (confirm('¿Está seguro de eliminar esta evaluación nutricional del historial?')) {
+                        const historialItem = button.closest('.historial-item');
+                        historialItem.remove();
+
+                        // Ocultar sección de historial si no hay elementos
+                        const container = document.getElementById('historialEvaluaciones');
+                        if (container.children.length === 0) {
+                            document.getElementById('historialNutricion').style.display = 'none';
+                        }
+                    }
+                }
 
                 // Event listeners
                 document.addEventListener('DOMContentLoaded', function () {
@@ -6857,14 +7219,6 @@
                         otraVacunaInput.value = '';
                     }
                 });
-
-                // Modificar la función agregarOtraVacunaALista para manejar "otra"
-                // Actualizar esta parte en tu función existente donde obtienes el texto de la vacuna:
-                /*
-                const vacunaTexto = vacunaSelect.value === 'otra' 
-                    ? document.getElementById('otra_vacuna_texto').value 
-                    : vacunaSelect.options[vacunaSelect.selectedIndex].text;
-                */
 
                 // Script para manejar las validaciones y restricciones
                 document.addEventListener('DOMContentLoaded', function () {
@@ -8073,19 +8427,7 @@
                     fechasScroll.scrollTop = fechasScroll.scrollHeight;
                 }
 
-                // Función para eliminar del historial de prevención
-                function eliminarDelHistorialPrevencion(button) {
-                    if (confirm('¿Está seguro de eliminar esta actividad completa con todas sus fechas?')) {
-                        const historialItem = button.closest('.historial-item');
-                        historialItem.remove();
 
-                        // Ocultar sección de historial si no hay elementos
-                        const container = document.getElementById('historialPrevenciones');
-                        if (container.children.length === 0) {
-                            document.getElementById('historialPrevencion').style.display = 'none';
-                        }
-                    }
-                }
 
                 document.addEventListener('DOMContentLoaded', function () {
                     // Fecha de nacimiento del paciente (esto debería venir del sistema)
@@ -8383,7 +8725,7 @@
                         }
                     }
                 });
-   
+
                 document.addEventListener('DOMContentLoaded', function () {
                     // Definir los motivos para cada tipo de derivación
                     const motivosPorTipo = {
