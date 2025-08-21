@@ -4640,103 +4640,118 @@
 
                     <!-- Otras Vacunas -->
                     <div class="form-section">
-                        <div class="section-header" style="border-bottom: 2px solid #9b59b6;">
-                            <div class="section-icon" style="background: linear-gradient(135deg, #9b59b6, #bb73e0);">⭕
-                            </div>
-                            <div class="section-info">
-                                <h3 style="color: #9b59b6;">Otras Vacunas</h3>
-                                <p class="section-description">Vacunas adicionales y especiales</p>
-                            </div>
-                        </div>
+    <div class="section-header" style="border-bottom: 2px solid #9b59b6;">
+        <div class="section-icon" style="background: linear-gradient(135deg, #9b59b6, #bb73e0);">⭕
+        </div>
+        <div class="section-info">
+            <h3 style="color: #9b59b6;">Otras Vacunas</h3>
+            <p class="section-description">Vacunas adicionales y especiales</p>
+        </div>
+    </div>
 
-                        <div class="otras-vacunas-form">
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="otra_vacuna_select" class="form-label">Vacuna <span
-                                            class="required">*</span></label>
-                                    <select id="otra_vacuna_select" name="otra_vacuna" class="form-select">
-                                        <option value="">Selecciona una vacuna...</option>
-                                        <option value="antihepatitis_a">Antihepatitis A</option>
-                                        <option value="antirrabica_humana">Antirrábica humana</option>
-                                        <option value="antivaricela">Antivaricela</option>
-                                        <option value="coccidioidina">Coccidioidina</option>
-                                        <option value="faboter_antialacrán">Faboterápico antialacrán</option>
-                                        <option value="faboter_antiaracnido">Faboterápico antiarácnido</option>
-                                        <option value="faboter_anticoral">Faboterápico anticoral</option>
-                                        <option value="faboter_antiloxoceles">Faboterápico antiloxoceles</option>
-                                        <option value="faboter_antiviperino">Faboterápico antiviperino</option>
-                                        <option value="histoplasmina">Histoplasmina</option>
-                                        <option value="inmunoglobulina_antirrabica">Inmunoglobulina Antirrábica</option>
-                                        <option value="inmunoglobulina_antitetanica">Inmunoglobulina Antitetánica
-                                        </option>
-                                        <option value="inmunoglobulina_simple">Inmunoglobulina Simple</option>
-                                        <option value="neumococica_polisacarida">Neumocócica Polisacárida (23 valente)
-                                        </option>
-                                        <option value="otra">Otra</option>
-                                        <option value="tdpa">TDPA</option>
-                                        <option value="dengue">Vacuna contra el Dengue</option>
-                                        <option value="herpes_zoster">Vacuna contra el Herpes Zoster</option>
-                                        <option value="fiebre_amarilla">Vacuna contra la Fiebre amarilla</option>
-                                        <option value="meningococo">Vacuna contra el Meningococo</option>
-                                        <option value="vsr">Vacuna contra el Virus Sincicial Respiratorio (VSR)</option>
-                                    </select>
-                                    <div class="form-group" id="otra_vacuna_texto_group" style="display: none;">
-                                        <label for="otra_vacuna_texto" class="form-label">Especificar vacuna <span
-                                                class="required">*</span></label>
-                                        <input type="text" id="otra_vacuna_texto" name="otra_vacuna_texto"
-                                            class="form-input" placeholder="Escriba el nombre de la vacuna">
-                                    </div>
-                                </div>
+    <div class="otras-vacunas-form">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="otra_vacuna_select" class="form-label">Vacuna <span
+                        class="required">*</span></label>
+                <select id="otra_vacuna_select" name="otra_vacuna" class="form-select">
+                    <option value="">Selecciona una vacuna...</option>
+                    <option value="antihepatitis_a">Antihepatitis A</option>
+                    <option value="antirrabica_humana">Antirrábica humana</option>
+                    <option value="antivaricela">Antivaricela</option>
+                    <option value="coccidioidina">Coccidioidina</option>
+                    <option value="faboter_antialacrán">Faboterápico antialacrán</option>
+                    <option value="faboter_antiaracnido">Faboterápico antiarácnido</option>
+                    <option value="faboter_anticoral">Faboterápico anticoral</option>
+                    <option value="faboter_antiloxoceles">Faboterápico antiloxoceles</option>
+                    <option value="faboter_antiviperino">Faboterápico antiviperino</option>
+                    <option value="histoplasmina">Histoplasmina</option>
+                    <option value="inmunoglobulina_antirrabica">Inmunoglobulina Antirrábica</option>
+                    <option value="inmunoglobulina_antitetanica">Inmunoglobulina Antitetánica
+                    </option>
+                    <option value="inmunoglobulina_simple">Inmunoglobulina Simple</option>
+                    <option value="neumococica_polisacarida">Neumocócica Polisacárida (23 valente)
+                    </option>
+                    <option value="otra">Otra</option>
+                    <option value="tdpa">TDPA</option>
+                    <option value="dengue">Vacuna contra el Dengue</option>
+                    <option value="herpes_zoster">Vacuna contra el Herpes Zoster</option>
+                    <option value="fiebre_amarilla">Vacuna contra la Fiebre amarilla</option>
+                    <option value="meningococo">Vacuna contra el Meningococo</option>
+                    <option value="vsr">Vacuna contra el Virus Sincicial Respiratorio (VSR)</option>
+                </select>
+                <div class="form-group" id="otra_vacuna_texto_group" style="display: none;">
+                    <label for="otra_vacuna_texto" class="form-label">Especificar vacuna <span
+                            class="required">*</span></label>
+                    <input type="text" id="otra_vacuna_texto" name="otra_vacuna_texto"
+                        class="form-input" placeholder="Escriba el nombre de la vacuna">
+                </div>
+            </div>
 
-                                <div class="form-group">
-                                    <label for="otra_dosis_select" class="form-label">Dosis <span
-                                            class="required">*</span></label>
-                                    <select id="otra_dosis_select" name="otra_dosis" class="form-select">
-                                        <option value="">Selecciona dosis...</option>
-                                        <option value="primera">Primera</option>
-                                        <option value="segunda">Segunda</option>
-                                        <option value="tercera">Tercera</option>
-                                        <option value="cuarta">Cuarta</option>
-                                        <option value="refuerzo">Refuerzo</option>
-                                        <option value="adicional">Adicional</option>
-                                        <option value="intoxicacion_animal">Dosis atención intoxicación veneno animal
-                                        </option>
-                                        <option value="indicacion_medica">Dosis por indicación Médica</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="otra_fecha_vacunacion" class="form-label">Fecha de Vacunación <span
-                                            class="required">*</span></label>
-                                    <input type="date" id="otra_fecha_vacunacion" name="otra_fecha_vacunacion"
-                                        class="form-input" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="otra_lote" class="form-label">Lote de la Vacuna <span
-                                            class="required">*</span></label>
-                                    <input type="text" id="otra_lote" name="otra_lote" class="form-input"
-                                        placeholder="Ingrese el número de lote" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="otra_fecha_caducidad" class="form-label">Fecha de Caducidad <span
-                                            class="required">*</span></label>
-                                    <input type="date" id="otra_fecha_caducidad" name="otra_fecha_caducidad"
-                                        class="form-input" required>
-                                </div>
-
-                            </div>
-
-                            <div style="margin-top: 20px;">
-                                <button type="button" class="btn btn-outline" id="agregarOtraVacuna">➕ Agregar
-                                    Vacuna</button>
-                            </div>
-
-                            <!-- Lista de otras vacunas agregadas -->
-                            <div id="otrasVacunasAgregadas" style="margin-top: 20px;"></div>
-                        </div>
+            <div class="form-group">
+                <label for="otra_dosis_select" class="form-label">Dosis <span
+                        class="required">*</span></label>
+                <select id="otra_dosis_select" name="otra_dosis" class="form-select">
+                    <option value="">Selecciona dosis...</option>
+                    <option value="primera">Primera</option>
+                    <option value="segunda">Segunda</option>
+                    <option value="tercera">Tercera</option>
+                    <option value="cuarta">Cuarta</option>
+                    <option value="refuerzo">Refuerzo</option>
+                    <option value="adicional">Adicional</option>
+                    <option value="intoxicacion_animal">Dosis atención intoxicación veneno animal
+                    </option>
+                    <option value="indicacion_medica">Dosis por indicación Médica</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Rescate <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="otra_rescate_si" name="otra_rescate" value="si"
+                            class="radio-input" required>
+                        <label for="otra_rescate_si" class="radio-label">Sí</label>
                     </div>
+                    <div class="radio-item">
+                        <input type="radio" id="otra_rescate_no" name="otra_rescate" value="no"
+                            class="radio-input" required>
+                        <label for="otra_rescate_no" class="radio-label">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="otra_fecha_vacunacion" class="form-label">Fecha de Vacunación <span
+                        class="required">*</span></label>
+                <input type="date" id="otra_fecha_vacunacion" name="otra_fecha_vacunacion"
+                    class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="otra_lote" class="form-label">Lote de la Vacuna <span
+                        class="required">*</span></label>
+                <input type="text" id="otra_lote" name="otra_lote" class="form-input"
+                    placeholder="Ingrese el número de lote" required>
+            </div>
+
+            <div class="form-group">
+                <label for="otra_fecha_caducidad" class="form-label">Fecha de Caducidad <span
+                        class="required">*</span></label>
+                <input type="date" id="otra_fecha_caducidad" name="otra_fecha_caducidad"
+                    class="form-input" required>
+            </div>
+
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button type="button" class="btn btn-outline" id="agregarOtraVacuna">➕ Agregar
+                Vacuna</button>
+        </div>
+
+        <!-- Lista de otras vacunas agregadas -->
+        <div id="otrasVacunasAgregadas" style="margin-top: 20px;"></div>
+    </div>
+</div>
 
                     <!-- Botones de Acción -->
                     <div class="action-buttons">
@@ -6262,21 +6277,21 @@
                 function obtenerResultadoSemaforoActual() {
                     if (document.getElementById('luzRojo').classList.contains('activa')) {
                         return {
-                            tipo: 'rojo',
+                            tipo: 'SOSPECHA DE ALTERACIÓN GRAVE DEL DESARROLLO',
                             titulo: 'SOSPECHA DE ALTERACIÓN GRAVE DEL DESARROLLO',
                             icono: '🔴',
                             color: '#e74c3c'
                         };
                     } else if (document.getElementById('luzAmarillo').classList.contains('activa')) {
                         return {
-                            tipo: 'amarillo',
+                            tipo: 'ALTERACIÓN LEVE DEL DESARROLLO',
                             titulo: 'ALTERACIÓN LEVE DEL DESARROLLO',
                             icono: '🟡',
                             color: '#f39c12'
                         };
                     } else if (document.getElementById('luzVerde').classList.contains('activa')) {
                         return {
-                            tipo: 'verde',
+                            tipo: 'DESARROLLO NORMAL',
                             titulo: 'DESARROLLO NORMAL',
                             icono: '🟢',
                             color: '#27ae60'
@@ -6344,23 +6359,35 @@
 
                     historialItem.innerHTML = `
         <div class="historial-content">
-            <div class="historial-title">🧠 Evaluación de Desarrollo - ${obtenerTextoEdad(datos.edad)}</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 10px;">
-                <div><strong>📅 Fecha:</strong> ${datos.fechaEvaluacion}</div>
-                <div><strong>👶 Edad:</strong> ${obtenerTextoEdad(datos.edad)}</div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <strong>🚦 Resultado:</strong> 
-                    <span style="background: ${datos.resultado.color}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">
-                        ${datos.resultado.icono} ${datos.resultado.tipo.toUpperCase()}
-                    </span>
-                </div>
-                <div style="grid-column: 1 / -1; margin-top: 8px;">
-                    <button type="button" class="btn-link" onclick="mostrarDetallesEvaluacion('${evaluacionId}')">
-                        📋 Ver Detalles Completos
-                    </button>
-                </div>
+    <div class="historial-title">🧠 Evaluación de Desarrollo - ${obtenerTextoEdad(datos.edad)}</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div><strong>📅 Fecha:</strong> ${datos.fechaEvaluacion}</div>
+            <div><strong>👶 Edad:</strong> ${obtenerTextoEdad(datos.edad)}</div>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <strong>🚦 Resultado:</strong> 
+                <span style="background: ${datos.resultado.color}; color: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; font-weight: 600; white-space: nowrap;">
+                    ${datos.resultado.icono} ${datos.resultado.tipo.toUpperCase()}
+                </span>
             </div>
         </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 12px;">
+                
+            </div>
+        </div>
+        
+        <div style="grid-column: 1 / -1; margin-top: 12px; text-align: center;">
+            <button type="button" class="btn-link" onclick="mostrarDetallesEvaluacion('${evaluacionId}')">
+                📋 Ver Detalles Completos
+            </button>
+        </div>
+    </div>
+</div>
     `;
 
                     container.appendChild(historialItem);
@@ -6891,12 +6918,12 @@
                                 estado = 'Peso bajo';
                                 clase = 'peso-bajo';
                                 icono = '⬇️';
-                                derivacion = 'Derivar a Medicina Familiar y Nutricionista';
+                                derivacion = 'Envio a Medicina Familiar y Nutricionista';
                             } else if (imc < rangos.min) {
                                 estado = 'Riesgo de Peso bajo';
                                 clase = 'riesgo-peso-bajo';
                                 icono = '⚠️';
-                                derivacion = 'Derivar a Medicina Familiar y Nutricionista';
+                                derivacion = 'Envio a Medicina Familiar y Nutricionista';
                             } else if (imc <= rangos.max) {
                                 estado = 'Peso normal';
                                 clase = 'peso-normal';
@@ -6905,12 +6932,12 @@
                                 estado = 'Sobrepeso';
                                 clase = 'sobrepeso';
                                 icono = '⬆️';
-                                derivacion = 'Derivar a EEMF, Nutricionista o Medicina Familiar';
+                                derivacion = 'Envio a EEMF, Nutricionista o Medicina Familiar';
                             } else {
                                 estado = 'Obesidad';
                                 clase = 'obesidad';
                                 icono = '🔴';
-                                derivacion = 'Derivar a Medicina Familiar y Nutricionista';
+                                derivacion = 'Envio a Medicina Familiar y Nutricionista';
                             }
                         }
 
@@ -6945,34 +6972,7 @@
                         }
                     });
 
-                    // Botón guardar
-                    document.getElementById('guardarNutricion')?.addEventListener('click', function (e) {
-                        e.preventDefault();
-
-                        const peso = pesoInput.value;
-                        const talla = tallaInput.value;
-                        const edad = edadSelect.value;
-                        const fecha = document.getElementById('fecha_nutricion').value;
-                        const imc = imcInput.value;
-
-
-                        // Agregar al historial
-                        agregarAlHistorialNutricion({
-                            peso: peso,
-                            talla: talla,
-                            edad: edad,
-                            fecha: fecha,
-                            imc: imc,
-                            estado: estadoDiv.querySelector('h4')?.textContent || ''
-                        });
-
-                        alert('Evaluación nutricional guardada correctamente');
-
-                        // Limpiar formulario
-                        document.getElementById('nutricionForm').reset();
-                        imcInput.value = '';
-                        resultadoDiv.style.display = 'none';
-                    });
+                    
 
                     // Botón borrador
                     document.getElementById('guardarBorradorNut')?.addEventListener('click', function () {
@@ -8052,7 +8052,7 @@
                         </div>
 
                         <div class="detalle-item">
-                            <strong>🩺 Reacciones Adversas:</strong>
+                            <strong>🩺 Evento Supuestamente Asociado a la Vacunación o Inmunización (ESAVI):</strong>
                             <div class="detalle-valor ${detalles.reaccionesAdversas === 'si' ? 'reaccion-si' : 'reaccion-no'}">
                                 ${detalles.reaccionesAdversas === 'si' ? '⚠️ Sí' : '✅ No'}
                             </div>
